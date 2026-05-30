@@ -1,0 +1,222 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Last.fm API — Track
+  description: 'Last.fm API — Track package. 12 operations covering track metadata, similarity, search, tagging, love/unlove, scrobbling, and now playing.'
+  tags:
+    - Last.fm
+    - Track
+    - Scrobbling
+    - Music
+  created: '2026-05-29'
+  modified: '2026-05-29'
+binds:
+  - namespace: env
+    keys:
+      LASTFM_API_KEY: LASTFM_API_KEY
+      LASTFM_SHARED_SECRET: LASTFM_SHARED_SECRET
+      LASTFM_SESSION_KEY: LASTFM_SESSION_KEY
+capability:
+  consumes:
+    - type: http
+      namespace: lastfm-track
+      baseUri: https://ws.audioscrobbler.com/2.0
+      description: Last.fm track business capability covering catalog, listener actions, and Scrobbling 2.0.
+      resources:
+        - name: track-getinfo
+          path: /
+          operations:
+            - name: trackGetInfo
+              method: GET
+              description: Get track metadata, tags, and listener counts.
+              outputRawFormat: json
+              inputParameters:
+                - { name: method, in: query, type: string, value: track.getInfo }
+                - { name: api_key, in: query, type: string }
+                - { name: format, in: query, type: string, value: json }
+                - { name: artist, in: query, type: string }
+                - { name: track, in: query, type: string }
+                - { name: mbid, in: query, type: string }
+                - { name: username, in: query, type: string }
+              outputParameters:
+                - { name: result, type: object, value: $.track }
+        - name: track-getsimilar
+          path: /
+          operations:
+            - name: trackGetSimilar
+              method: GET
+              description: Get tracks similar to this one.
+              outputRawFormat: json
+              inputParameters:
+                - { name: method, in: query, type: string, value: track.getSimilar }
+                - { name: api_key, in: query, type: string }
+                - { name: format, in: query, type: string, value: json }
+                - { name: artist, in: query, type: string }
+                - { name: track, in: query, type: string }
+                - { name: limit, in: query, type: integer }
+              outputParameters:
+                - { name: result, type: object, value: $.similartracks }
+        - name: track-search
+          path: /
+          operations:
+            - name: trackSearch
+              method: GET
+              description: Search for tracks by name.
+              outputRawFormat: json
+              inputParameters:
+                - { name: method, in: query, type: string, value: track.search }
+                - { name: api_key, in: query, type: string }
+                - { name: format, in: query, type: string, value: json }
+                - { name: track, in: query, type: string }
+                - { name: artist, in: query, type: string }
+                - { name: limit, in: query, type: integer }
+              outputParameters:
+                - { name: result, type: object, value: $.results }
+        - name: track-toptags
+          path: /
+          operations:
+            - name: trackGetTopTags
+              method: GET
+              description: Get the top tags for a track.
+              outputRawFormat: json
+              inputParameters:
+                - { name: method, in: query, type: string, value: track.getTopTags }
+                - { name: api_key, in: query, type: string }
+                - { name: format, in: query, type: string, value: json }
+                - { name: artist, in: query, type: string }
+                - { name: track, in: query, type: string }
+              outputParameters:
+                - { name: result, type: object, value: $.toptags }
+        - name: track-correction
+          path: /
+          operations:
+            - name: trackGetCorrection
+              method: GET
+              description: Get canonical track correction.
+              outputRawFormat: json
+              inputParameters:
+                - { name: method, in: query, type: string, value: track.getCorrection }
+                - { name: api_key, in: query, type: string }
+                - { name: format, in: query, type: string, value: json }
+                - { name: artist, in: query, type: string }
+                - { name: track, in: query, type: string }
+              outputParameters:
+                - { name: result, type: object, value: $.corrections }
+        - name: track-usertags
+          path: /
+          operations:
+            - name: trackGetTags
+              method: GET
+              description: Get user-applied tags for a track.
+              outputRawFormat: json
+              inputParameters:
+                - { name: method, in: query, type: string, value: track.getTags }
+                - { name: api_key, in: query, type: string }
+                - { name: format, in: query, type: string, value: json }
+                - { name: artist, in: query, type: string }
+                - { name: track, in: query, type: string }
+                - { name: user, in: query, type: string }
+              outputParameters:
+                - { name: result, type: object, value: $.tags }
+        - name: track-scrobble
+          path: /
+          operations:
+            - name: trackScrobble
+              method: POST
+              description: Scrobble a track (or batch of up to 50) to the authenticated user's profile.
+              outputRawFormat: json
+              inputParameters:
+                - { name: method, in: formData, type: string, value: track.scrobble }
+                - { name: api_key, in: formData, type: string }
+                - { name: artist, in: formData, type: string }
+                - { name: track, in: formData, type: string }
+                - { name: album, in: formData, type: string }
+                - { name: timestamp, in: formData, type: integer }
+                - { name: duration, in: formData, type: integer }
+                - { name: sk, in: formData, type: string }
+                - { name: api_sig, in: formData, type: string }
+              outputParameters:
+                - { name: result, type: object, value: $.scrobbles }
+        - name: track-updatenowplaying
+          path: /
+          operations:
+            - name: trackUpdateNowPlaying
+              method: POST
+              description: Notify Last.fm of the currently playing track for the authenticated user.
+              outputRawFormat: json
+              inputParameters:
+                - { name: method, in: formData, type: string, value: track.updateNowPlaying }
+                - { name: api_key, in: formData, type: string }
+                - { name: artist, in: formData, type: string }
+                - { name: track, in: formData, type: string }
+                - { name: album, in: formData, type: string }
+                - { name: duration, in: formData, type: integer }
+                - { name: sk, in: formData, type: string }
+                - { name: api_sig, in: formData, type: string }
+              outputParameters:
+                - { name: status, type: string, value: $.status }
+        - name: track-love
+          path: /
+          operations:
+            - name: trackLove
+              method: POST
+              description: Mark a track as loved for the authenticated user.
+              outputRawFormat: json
+              inputParameters:
+                - { name: method, in: formData, type: string, value: track.love }
+                - { name: api_key, in: formData, type: string }
+                - { name: artist, in: formData, type: string }
+                - { name: track, in: formData, type: string }
+                - { name: sk, in: formData, type: string }
+                - { name: api_sig, in: formData, type: string }
+              outputParameters:
+                - { name: status, type: string, value: $.status }
+        - name: track-unlove
+          path: /
+          operations:
+            - name: trackUnlove
+              method: POST
+              description: Unlove a previously loved track.
+              outputRawFormat: json
+              inputParameters:
+                - { name: method, in: formData, type: string, value: track.unlove }
+                - { name: api_key, in: formData, type: string }
+                - { name: artist, in: formData, type: string }
+                - { name: track, in: formData, type: string }
+                - { name: sk, in: formData, type: string }
+                - { name: api_sig, in: formData, type: string }
+              outputParameters:
+                - { name: status, type: string, value: $.status }
+        - name: track-addtags
+          path: /
+          operations:
+            - name: trackAddTags
+              method: POST
+              description: Add tags to a track (authenticated).
+              outputRawFormat: json
+              inputParameters:
+                - { name: method, in: formData, type: string, value: track.addTags }
+                - { name: api_key, in: formData, type: string }
+                - { name: artist, in: formData, type: string }
+                - { name: track, in: formData, type: string }
+                - { name: tags, in: formData, type: string }
+                - { name: sk, in: formData, type: string }
+                - { name: api_sig, in: formData, type: string }
+              outputParameters:
+                - { name: status, type: string, value: $.status }
+        - name: track-removetag
+          path: /
+          operations:
+            - name: trackRemoveTag
+              method: POST
+              description: Remove a tag from a track.
+              outputRawFormat: json
+              inputParameters:
+                - { name: method, in: formData, type: string, value: track.removeTag }
+                - { name: api_key, in: formData, type: string }
+                - { name: artist, in: formData, type: string }
+                - { name: track, in: formData, type: string }
+                - { name: tag, in: formData, type: string }
+                - { name: sk, in: formData, type: string }
+                - { name: api_sig, in: formData, type: string }
+              outputParameters:
+                - { name: status, type: string, value: $.status }

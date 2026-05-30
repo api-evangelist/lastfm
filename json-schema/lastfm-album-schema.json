@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/lastfm/main/json-schema/lastfm-album-schema.json",
+  "title": "Last.fm Album",
+  "description": "An album record as returned by Last.fm's album.getInfo / album.search methods.",
+  "type": "object",
+  "required": ["name", "artist"],
+  "properties": {
+    "name": { "type": "string", "description": "Album title." },
+    "artist": { "type": "string", "description": "Primary album artist (or name string)." },
+    "mbid": { "type": "string", "description": "MusicBrainz album identifier." },
+    "url": { "type": "string", "format": "uri", "description": "Canonical Last.fm album URL." },
+    "image": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "size": { "type": "string", "enum": ["small", "medium", "large", "extralarge", "mega"] },
+          "#text": { "type": "string", "format": "uri" }
+        }
+      }
+    },
+    "listeners": { "type": "string", "description": "Unique listener count (stringified integer)." },
+    "playcount": { "type": "string", "description": "Total play count (stringified integer)." },
+    "userplaycount": { "type": "string", "description": "Authenticated user's play count for the album." },
+    "tracks": {
+      "type": "object",
+      "properties": {
+        "track": {
+          "type": "array",
+          "items": { "$ref": "lastfm-track-schema.json" }
+        }
+      }
+    },
+    "tags": {
+      "type": "object",
+      "properties": {
+        "tag": {
+          "type": "array",
+          "items": { "$ref": "lastfm-tag-schema.json" }
+        }
+      }
+    },
+    "wiki": {
+      "type": "object",
+      "properties": {
+        "published": { "type": "string" },
+        "summary": { "type": "string" },
+        "content": { "type": "string" }
+      }
+    }
+  }
+}

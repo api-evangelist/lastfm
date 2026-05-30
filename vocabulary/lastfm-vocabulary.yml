@@ -1,0 +1,152 @@
+vocabulary:
+  name: Last.fm Music Vocabulary
+  description: >-
+    Domain vocabulary for the Last.fm (AudioScrobbler) music platform, covering
+    catalog entities (artist/album/track), tags as folksonomy, scrobbling, charts,
+    geo, and user listening history.
+  version: "1.0.0"
+  created: "2026-05-29"
+  modified: "2026-05-29"
+  provider: Last.fm
+  domain: Music Recommendation and Scrobbling
+
+terms:
+  - term: Scrobble
+    definition: >-
+      A single play of a single track logged to a user's Last.fm profile via
+      track.scrobble. Qualifies when the track is longer than 30 seconds and has
+      been played for at least half its duration or 4 minutes — whichever is shorter.
+    tags: [Listening, Telemetry]
+    aliases: [play log]
+
+  - term: AudioScrobbler
+    definition: >-
+      The legacy / underlying brand for Last.fm's listening-history collection
+      service. The current API endpoint still lives at ws.audioscrobbler.com/2.0/.
+    tags: [Platform, Brand]
+    aliases: [Audioscrobbler]
+
+  - term: Method
+    definition: >-
+      A `package.methodName` identifier (e.g. `artist.getTopTracks`) passed via
+      the `method` query/body parameter to select the operation at the single
+      Last.fm dispatch endpoint.
+    tags: [API, Dispatch]
+    examples: ["track.getInfo", "user.getRecentTracks", "chart.getTopArtists"]
+
+  - term: Now Playing
+    definition: >-
+      A transient signal sent via track.updateNowPlaying notifying Last.fm of the
+      track a user is currently listening to. Does not affect charts but populates
+      the profile's now-playing indicator.
+    tags: [Listening, Telemetry]
+
+  - term: Love
+    definition: >-
+      A user action that marks a track as personally favored (track.love) and
+      surfaces in the loved-tracks list. Reversed via track.unlove.
+    tags: [Listening, User Signal]
+
+  - term: Tag
+    definition: >-
+      A free-form folksonomy label applied to artists, albums, or tracks by users.
+      Tags drive genre discovery and weighted recommendations.
+    tags: [Folksonomy, Metadata]
+    schema_type: schema:keywords
+
+  - term: Correction
+    definition: >-
+      A canonical artist/track suggestion returned when the user-supplied name
+      maps to an alternate spelling Last.fm recognizes (e.g. "the beatles" ->
+      "The Beatles"). Surfaced via artist.getCorrection and track.getCorrection.
+    tags: [Catalog, Normalization]
+
+  - term: Autocorrect
+    definition: >-
+      Optional query parameter (`autocorrect=1`) that returns the corrected
+      canonical name in metadata responses instead of the supplied variant.
+    tags: [Query]
+
+  - term: MBID
+    definition: >-
+      MusicBrainz identifier. A UUID that can substitute for artist/album/track
+      name parameters; takes precedence over name strings when supplied.
+    tags: [Identity, Reference]
+    aliases: [MusicBrainz ID]
+
+  - term: Session Key
+    definition: >-
+      A long-lived per-user token (`sk`) returned by auth.getSession or
+      auth.getMobileSession. Required on all write methods alongside `api_sig`.
+    tags: [Auth, Token]
+
+  - term: API Signature
+    definition: >-
+      The `api_sig` parameter — MD5 hash of all request parameters (excluding
+      `format` and `callback`) sorted alphabetically, concatenated as name+value
+      pairs, with the shared secret appended.
+    tags: [Auth, Security]
+    aliases: [api_sig]
+
+  - term: API Key
+    definition: >-
+      Free-tier credential issued at last.fm/api/account/create. Required on all
+      requests as `api_key`. Commercial use requires a separate agreement
+      (partners@last.fm).
+    tags: [Auth]
+
+  - term: Shared Secret
+    definition: >-
+      Private secret paired with the API key, used to compute `api_sig` for
+      signed write operations. Never sent in requests directly.
+    tags: [Auth, Security]
+
+  - term: Chart
+    definition: >-
+      A ranked top-N list. Global charts (chart.getTopArtists/Tracks/Tags) span
+      all Last.fm users; user.getWeekly*Chart returns per-user date-bounded charts.
+    tags: [Ranking]
+
+  - term: Period
+    definition: >-
+      Aggregation window for user.getTop* methods. Allowed values
+      `overall`, `7day`, `1month`, `3month`, `6month`, `12month`.
+    tags: [Query, Time]
+
+  - term: Weekly Chart List
+    definition: >-
+      Sequence of week-bounded `from`/`to` Unix-timestamp ranges available for a
+      user (user.getWeeklyChartList) or tag (tag.getWeeklyChartList). Pass a
+      range back into the corresponding chart method.
+    tags: [Time, Pagination]
+
+  - term: Library
+    definition: >-
+      The set of artists a user has scrobbled. library.getArtists returns the
+      paginated list with playcounts and tag counts.
+    tags: [Collection]
+
+  - term: Format
+    definition: >-
+      Response serialization selector. `format=xml` (default) returns Last.fm
+      idiom XML wrapped in `<lfm status="ok|failed">`; `format=json` returns
+      attribute-flattened JSON.
+    tags: [Serialization]
+
+  - term: Callback
+    definition: >-
+      JSONP wrapper function name applied when `format=json` and `callback=`
+      is supplied. Wraps the JSON response in `callback(...)`.
+    tags: [Serialization, Web]
+
+  - term: Reasonable Usage Cap
+    definition: >-
+      The 100 MB total storage limit (per ToS) for Last.fm Data held by an
+      integration. Higher caps require written consent from partners@last.fm.
+    tags: [Policy, Quota]
+
+  - term: powered by AudioScrobbler
+    definition: >-
+      Attribution button/badge required by the Last.fm API Terms of Service on
+      any UI surface that uses Last.fm Data. Must link to last.fm.
+    tags: [Branding, Compliance]

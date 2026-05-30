@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/lastfm/main/json-schema/lastfm-artist-schema.json",
+  "title": "Last.fm Artist",
+  "description": "An artist record as returned by Last.fm's artist.getInfo / artist.search / artist.getSimilar methods.",
+  "type": "object",
+  "required": ["name"],
+  "properties": {
+    "name": { "type": "string", "description": "Artist name." },
+    "mbid": { "type": "string", "description": "MusicBrainz artist identifier." },
+    "url": { "type": "string", "format": "uri", "description": "Canonical Last.fm artist URL." },
+    "image": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "size": { "type": "string" },
+          "#text": { "type": "string", "format": "uri" }
+        }
+      }
+    },
+    "streamable": { "type": "string" },
+    "ontour": { "type": "string", "description": "Touring flag — '1' if currently on tour." },
+    "stats": {
+      "type": "object",
+      "properties": {
+        "listeners": { "type": "string" },
+        "playcount": { "type": "string" },
+        "userplaycount": { "type": "string" }
+      }
+    },
+    "similar": {
+      "type": "object",
+      "properties": {
+        "artist": {
+          "type": "array",
+          "items": { "$ref": "lastfm-artist-schema.json" }
+        }
+      }
+    },
+    "tags": {
+      "type": "object",
+      "properties": {
+        "tag": {
+          "type": "array",
+          "items": { "$ref": "lastfm-tag-schema.json" }
+        }
+      }
+    },
+    "bio": {
+      "type": "object",
+      "properties": {
+        "links": { "type": "object" },
+        "published": { "type": "string" },
+        "summary": { "type": "string" },
+        "content": { "type": "string" }
+      }
+    }
+  }
+}

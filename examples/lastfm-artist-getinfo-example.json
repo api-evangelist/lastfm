@@ -1,0 +1,35 @@
+{
+  "artist": {
+    "name": "Radiohead",
+    "mbid": "a74b1b7f-71a5-4011-9441-d0b5e4122711",
+    "url": "https://www.last.fm/music/Radiohead",
+    "image": [
+      { "size": "small", "#text": "https://lastfm.freetls.fastly.net/i/u/34s/2a96cbd8b46e442fc41c2b86b821562f.png" },
+      { "size": "medium", "#text": "https://lastfm.freetls.fastly.net/i/u/64s/2a96cbd8b46e442fc41c2b86b821562f.png" },
+      { "size": "large", "#text": "https://lastfm.freetls.fastly.net/i/u/174s/2a96cbd8b46e442fc41c2b86b821562f.png" },
+      { "size": "extralarge", "#text": "https://lastfm.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png" }
+    ],
+    "streamable": "0",
+    "ontour": "0",
+    "stats": { "listeners": "5341295", "playcount": "743219384" },
+    "similar": {
+      "artist": [
+        { "name": "Thom Yorke", "url": "https://www.last.fm/music/Thom+Yorke" },
+        { "name": "Atoms for Peace", "url": "https://www.last.fm/music/Atoms+for+Peace" },
+        { "name": "Muse", "url": "https://www.last.fm/music/Muse" }
+      ]
+    },
+    "tags": {
+      "tag": [
+        { "name": "alternative rock", "url": "https://www.last.fm/tag/alternative+rock" },
+        { "name": "rock", "url": "https://www.last.fm/tag/rock" },
+        { "name": "indie", "url": "https://www.last.fm/tag/indie" }
+      ]
+    },
+    "bio": {
+      "published": "21 Aug 2007, 11:30",
+      "summary": "Radiohead is an English rock band from Abingdon, Oxfordshire, formed in 1985.",
+      "content": "Radiohead is an English rock band from Abingdon, Oxfordshire, formed in 1985. The band consists of Thom Yorke, Jonny Greenwood, Colin Greenwood, Ed O'Brien, and Philip Selway."
+    }
+  }
+}

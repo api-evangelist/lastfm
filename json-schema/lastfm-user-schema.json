@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/lastfm/main/json-schema/lastfm-user-schema.json",
+  "title": "Last.fm User",
+  "description": "A user profile record returned by user.getInfo and embedded in user.getFriends.",
+  "type": "object",
+  "required": ["name"],
+  "properties": {
+    "name": { "type": "string", "description": "Last.fm username (login)." },
+    "realname": { "type": "string", "description": "Display name (real name) if set." },
+    "url": { "type": "string", "format": "uri" },
+    "country": { "type": "string" },
+    "age": { "type": "string" },
+    "gender": { "type": "string" },
+    "subscriber": { "type": "string", "enum": ["0", "1"] },
+    "playcount": { "type": "string", "description": "Total lifetime scrobble count." },
+    "playlists": { "type": "string" },
+    "bootstrap": { "type": "string" },
+    "registered": {
+      "type": "object",
+      "properties": {
+        "unixtime": { "type": "string" },
+        "#text": { "type": "string" }
+      }
+    },
+    "image": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "size": { "type": "string" },
+          "#text": { "type": "string", "format": "uri" }
+        }
+      }
+    }
+  }
+}

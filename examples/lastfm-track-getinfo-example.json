@@ -1,0 +1,36 @@
+{
+  "track": {
+    "name": "Karma Police",
+    "mbid": "63b3a8ca-26f2-4e2b-b867-647a6ec2bebd",
+    "url": "https://www.last.fm/music/Radiohead/_/Karma+Police",
+    "duration": "262000",
+    "streamable": { "#text": "0", "fulltrack": "0" },
+    "listeners": "2456391",
+    "playcount": "21384590",
+    "artist": {
+      "name": "Radiohead",
+      "mbid": "a74b1b7f-71a5-4011-9441-d0b5e4122711",
+      "url": "https://www.last.fm/music/Radiohead"
+    },
+    "album": {
+      "artist": "Radiohead",
+      "title": "OK Computer",
+      "mbid": "0b6b4ba0-d36f-47bd-b4ea-6a5b91842d29",
+      "url": "https://www.last.fm/music/Radiohead/OK+Computer"
+    },
+    "toptags": {
+      "tag": [
+        { "name": "alternative", "url": "https://www.last.fm/tag/alternative" },
+        { "name": "rock", "url": "https://www.last.fm/tag/rock" },
+        { "name": "alternative rock", "url": "https://www.last.fm/tag/alternative+rock" },
+        { "name": "indie", "url": "https://www.last.fm/tag/indie" },
+        { "name": "britpop", "url": "https://www.last.fm/tag/britpop" }
+      ]
+    },
+    "wiki": {
+      "published": "30 Aug 2008, 14:42",
+      "summary": "\"Karma Police\" is a song by the English rock band Radiohead, released as the second single from their third album, OK Computer (1997).",
+      "content": "\"Karma Police\" is a song by the English rock band Radiohead, released as the second single from their third album, OK Computer (1997). The song peaked at number eight on the UK Singles Chart."
+    }
+  }
+}

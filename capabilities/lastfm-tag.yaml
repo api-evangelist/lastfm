@@ -1,0 +1,121 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Last.fm API — Tag
+  description: 'Last.fm API — Tag package. 7 operations covering tag metadata, similar tags, top albums/artists/tracks/tags, and weekly chart list.'
+  tags:
+    - Last.fm
+    - Tag
+    - Music
+  created: '2026-05-29'
+  modified: '2026-05-29'
+binds:
+  - namespace: env
+    keys:
+      LASTFM_API_KEY: LASTFM_API_KEY
+capability:
+  consumes:
+    - type: http
+      namespace: lastfm-tag
+      baseUri: https://ws.audioscrobbler.com/2.0
+      description: Last.fm tag capability for genre/folksonomy discovery.
+      resources:
+        - name: tag-getinfo
+          path: /
+          operations:
+            - name: tagGetInfo
+              method: GET
+              description: Get tag metadata.
+              outputRawFormat: json
+              inputParameters:
+                - { name: method, in: query, type: string, value: tag.getInfo }
+                - { name: api_key, in: query, type: string }
+                - { name: format, in: query, type: string, value: json }
+                - { name: tag, in: query, type: string }
+              outputParameters:
+                - { name: result, type: object, value: $.tag }
+        - name: tag-getsimilar
+          path: /
+          operations:
+            - name: tagGetSimilar
+              method: GET
+              description: Get tags similar to this one.
+              outputRawFormat: json
+              inputParameters:
+                - { name: method, in: query, type: string, value: tag.getSimilar }
+                - { name: api_key, in: query, type: string }
+                - { name: format, in: query, type: string, value: json }
+                - { name: tag, in: query, type: string }
+              outputParameters:
+                - { name: result, type: object, value: $.similartags }
+        - name: tag-topalbums
+          path: /
+          operations:
+            - name: tagGetTopAlbums
+              method: GET
+              description: Get top albums for a tag.
+              outputRawFormat: json
+              inputParameters:
+                - { name: method, in: query, type: string, value: tag.getTopAlbums }
+                - { name: api_key, in: query, type: string }
+                - { name: format, in: query, type: string, value: json }
+                - { name: tag, in: query, type: string }
+                - { name: limit, in: query, type: integer }
+              outputParameters:
+                - { name: result, type: object, value: $.albums }
+        - name: tag-topartists
+          path: /
+          operations:
+            - name: tagGetTopArtists
+              method: GET
+              description: Get top artists for a tag.
+              outputRawFormat: json
+              inputParameters:
+                - { name: method, in: query, type: string, value: tag.getTopArtists }
+                - { name: api_key, in: query, type: string }
+                - { name: format, in: query, type: string, value: json }
+                - { name: tag, in: query, type: string }
+                - { name: limit, in: query, type: integer }
+              outputParameters:
+                - { name: result, type: object, value: $.topartists }
+        - name: tag-toptracks
+          path: /
+          operations:
+            - name: tagGetTopTracks
+              method: GET
+              description: Get top tracks for a tag.
+              outputRawFormat: json
+              inputParameters:
+                - { name: method, in: query, type: string, value: tag.getTopTracks }
+                - { name: api_key, in: query, type: string }
+                - { name: format, in: query, type: string, value: json }
+                - { name: tag, in: query, type: string }
+                - { name: limit, in: query, type: integer }
+              outputParameters:
+                - { name: result, type: object, value: $.tracks }
+        - name: tag-toptags
+          path: /
+          operations:
+            - name: tagGetTopTags
+              method: GET
+              description: Get the global top tags.
+              outputRawFormat: json
+              inputParameters:
+                - { name: method, in: query, type: string, value: tag.getTopTags }
+                - { name: api_key, in: query, type: string }
+                - { name: format, in: query, type: string, value: json }
+              outputParameters:
+                - { name: result, type: object, value: $.toptags }
+        - name: tag-weeklychartlist
+          path: /
+          operations:
+            - name: tagGetWeeklyChartList
+              method: GET
+              description: Get available weekly chart date ranges for a tag.
+              outputRawFormat: json
+              inputParameters:
+                - { name: method, in: query, type: string, value: tag.getWeeklyChartList }
+                - { name: api_key, in: query, type: string }
+                - { name: format, in: query, type: string, value: json }
+                - { name: tag, in: query, type: string }
+              outputParameters:
+                - { name: result, type: object, value: $.weeklychartlist }

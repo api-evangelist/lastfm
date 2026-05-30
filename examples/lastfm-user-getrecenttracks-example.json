@@ -1,0 +1,32 @@
+{
+  "recenttracks": {
+    "track": [
+      {
+        "artist": { "mbid": "a74b1b7f-71a5-4011-9441-d0b5e4122711", "#text": "Radiohead" },
+        "streamable": "0",
+        "image": [
+          { "size": "small", "#text": "https://lastfm.freetls.fastly.net/i/u/34s/abcd.png" }
+        ],
+        "mbid": "63b3a8ca-26f2-4e2b-b867-647a6ec2bebd",
+        "album": { "mbid": "0b6b4ba0-d36f-47bd-b4ea-6a5b91842d29", "#text": "OK Computer" },
+        "name": "Karma Police",
+        "@attr": { "nowplaying": "true" },
+        "url": "https://www.last.fm/music/Radiohead/_/Karma+Police"
+      },
+      {
+        "artist": { "mbid": "20244d07-534f-4eff-b4d4-930878889970", "#text": "Taylor Swift" },
+        "name": "Anti-Hero",
+        "album": { "mbid": "", "#text": "Midnights" },
+        "url": "https://www.last.fm/music/Taylor+Swift/_/Anti-Hero",
+        "date": { "uts": "1716910230", "#text": "28 May 2026, 16:50" }
+      }
+    ],
+    "@attr": {
+      "user": "rj",
+      "page": "1",
+      "perPage": "50",
+      "totalPages": "184932",
+      "total": "9246589"
+    }
+  }
+}

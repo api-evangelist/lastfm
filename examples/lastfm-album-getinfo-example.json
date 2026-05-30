@@ -1,0 +1,32 @@
+{
+  "album": {
+    "name": "OK Computer",
+    "artist": "Radiohead",
+    "mbid": "0b6b4ba0-d36f-47bd-b4ea-6a5b91842d29",
+    "url": "https://www.last.fm/music/Radiohead/OK+Computer",
+    "image": [
+      { "size": "small", "#text": "https://lastfm.freetls.fastly.net/i/u/34s/ok.png" },
+      { "size": "extralarge", "#text": "https://lastfm.freetls.fastly.net/i/u/300x300/ok.png" }
+    ],
+    "listeners": "1928374",
+    "playcount": "84219384",
+    "tracks": {
+      "track": [
+        { "name": "Airbag", "duration": "284", "url": "https://www.last.fm/music/Radiohead/_/Airbag", "@attr": { "rank": "1" } },
+        { "name": "Paranoid Android", "duration": "383", "url": "https://www.last.fm/music/Radiohead/_/Paranoid+Android", "@attr": { "rank": "2" } },
+        { "name": "Karma Police", "duration": "262", "url": "https://www.last.fm/music/Radiohead/_/Karma+Police", "@attr": { "rank": "6" } }
+      ]
+    },
+    "tags": {
+      "tag": [
+        { "name": "alternative rock", "url": "https://www.last.fm/tag/alternative+rock" },
+        { "name": "britpop", "url": "https://www.last.fm/tag/britpop" }
+      ]
+    },
+    "wiki": {
+      "published": "16 Jun 2008, 22:21",
+      "summary": "OK Computer is the third studio album by the English rock band Radiohead, released on 21 May 1997.",
+      "content": "OK Computer is the third studio album by the English rock band Radiohead, released on 21 May 1997."
+    }
+  }
+}

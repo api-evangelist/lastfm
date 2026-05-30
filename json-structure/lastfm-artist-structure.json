@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-structure.org/draft/2025/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/lastfm/main/json-structure/lastfm-artist-structure.json",
+  "name": "LastfmArtistStructure",
+  "description": "JSON Structure representation of a Last.fm artist record with stats, tags, similar artists, and bio.",
+  "type": "object",
+  "properties": {
+    "name": { "type": "string" },
+    "mbid": { "type": "string" },
+    "url": { "type": "string" },
+    "ontour": { "type": "string" },
+    "stats": {
+      "type": "object",
+      "properties": {
+        "listeners": { "type": "string" },
+        "playcount": { "type": "string" },
+        "userplaycount": { "type": "string" }
+      }
+    },
+    "similar": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "url": { "type": "string" }
+        }
+      }
+    },
+    "tags": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "bio": {
+      "type": "object",
+      "properties": {
+        "summary": { "type": "string" },
+        "content": { "type": "string" }
+      }
+    }
+  },
+  "required": ["name"]
+}

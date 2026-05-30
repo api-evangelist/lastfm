@@ -1,0 +1,118 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: Last.fm
+providerId: lastfm
+created: '2026-05-29'
+modified: '2026-05-29'
+tags:
+  - Music
+  - Scrobbling
+  - Audio
+  - Recommendations
+description: >-
+  Last.fm publishes no public pricing for its 2.0 Web Services. The API has a single
+  free non-commercial tier obtained by registering an API account at
+  last.fm/api/account/create. Commercial, redistribution, or research/academic use
+  requires a private commercial use agreement negotiated via partners@last.fm. The
+  values below reflect the documented Reasonable Usage Cap (100 MB storage) and the
+  per-origin rate guidance (5 req/sec) from the Terms of Service.
+plans:
+  - id: lastfm-free
+    name: Free (Non-Commercial)
+    type: freemium
+    description: >-
+      Default tier issued to anyone with a Last.fm account. Allows non-commercial
+      personal/hobby use of the read methods and authenticated user-scoped write
+      methods (scrobble, love, tag). Requires "powered by AudioScrobbler"
+      attribution and prohibits sub-licensing.
+    entries:
+      - label: Storage Cap
+        description: Reasonable Usage Cap on stored Last.fm Data per integration.
+        name: storage_cap
+        type: quota
+        metric: bytes
+        limit: 104857600
+        timeFrame: total
+        geo: global
+        domains:
+          - https://ws.audioscrobbler.com/2.0
+        unit: 1
+        price: '0.00'
+        userMultiplied: false
+      - label: Rate Limit Guidance
+        description: Per-origin rate guidance; sustained violations may suspend the key.
+        name: rate_limit
+        type: rate
+        metric: requests_per_second
+        limit: 5
+        timeFrame: second
+        geo: global
+        domains:
+          - https://ws.audioscrobbler.com/2.0
+        unit: 1
+        price: '0.00'
+        userMultiplied: false
+      - label: Scrobble Batch
+        description: Maximum number of scrobbles per track.scrobble batch request.
+        name: scrobble_batch
+        type: quota
+        metric: scrobbles_per_request
+        limit: 50
+        timeFrame: request
+        geo: global
+        domains:
+          - https://ws.audioscrobbler.com/2.0
+        unit: 1
+        price: '0.00'
+        userMultiplied: false
+    elements:
+      - name: API Account
+        description: Free self-service registration at last.fm/api/account/create.
+      - name: Methods
+        description: All read methods plus authenticated user-scoped write methods.
+      - name: Attribution
+        description: '"Powered by AudioScrobbler" badge required on consuming surfaces.'
+      - name: Sub-Licensing
+        description: Forbidden. Data may not be redistributed or resold.
+  - id: lastfm-commercial
+    name: Commercial Use Agreement
+    type: enterprise
+    description: >-
+      Negotiated agreement required for any commercial, redistribution,
+      research/academic, or above-the-cap usage. Pricing and quotas are
+      published only under NDA — contact partners@last.fm.
+    entries:
+      - label: Storage Cap
+        description: Custom storage cap above the 100 MB Reasonable Usage limit.
+        name: storage_cap
+        type: quota
+        metric: bytes
+        limit: 0
+        timeFrame: total
+        geo: global
+        domains:
+          - https://ws.audioscrobbler.com/2.0
+        unit: 1
+        price: 'on-request'
+        userMultiplied: false
+      - label: Rate Limit
+        description: Custom rate limit negotiated with Last.fm partners team.
+        name: rate_limit
+        type: rate
+        metric: requests_per_second
+        limit: 0
+        timeFrame: second
+        geo: global
+        domains:
+          - https://ws.audioscrobbler.com/2.0
+        unit: 1
+        price: 'on-request'
+        userMultiplied: false
+    elements:
+      - name: Contact
+        description: partners@last.fm
+      - name: Use Cases
+        description: Commercial products, research, academia, redistribution.
+      - name: Pricing
+        description: Not publicly disclosed.

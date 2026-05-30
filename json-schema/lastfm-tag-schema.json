@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/lastfm/main/json-schema/lastfm-tag-schema.json",
+  "title": "Last.fm Tag",
+  "description": "A tag (folksonomy / genre label) as returned by Last.fm's tag.getInfo, *.getTopTags, and *.getTags methods.",
+  "type": "object",
+  "required": ["name"],
+  "properties": {
+    "name": { "type": "string", "description": "Tag name (free-form, lower-case)." },
+    "url": { "type": "string", "format": "uri", "description": "Canonical Last.fm tag URL." },
+    "count": { "type": "integer", "description": "Count of taggings or relative weight." },
+    "reach": { "type": "integer", "description": "Number of distinct users using this tag." },
+    "total": { "type": "integer", "description": "Total usage count for the tag." },
+    "wiki": {
+      "type": "object",
+      "properties": {
+        "summary": { "type": "string" },
+        "content": { "type": "string" }
+      }
+    }
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "scrobbles": {
+    "@attr": { "accepted": 1, "ignored": 0 },
+    "scrobble": [
+      {
+        "artist": { "#text": "Radiohead", "corrected": "0" },
+        "album": { "#text": "OK Computer", "corrected": "0" },
+        "track": { "#text": "Karma Police", "corrected": "0" },
+        "albumArtist": { "#text": "Radiohead", "corrected": "0" },
+        "timestamp": "1716910230",
+        "ignoredMessage": { "code": "0", "#text": "" }
+      }
+    ]
+  }
+}

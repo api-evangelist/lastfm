@@ -1,0 +1,108 @@
+extends: spectral:oas
+rules:
+  lastfm-operation-ids-required:
+    description: All operations must have an operationId.
+    severity: error
+    given: "$.paths[*][get,post,put,patch,delete]"
+    then:
+      field: operationId
+      function: truthy
+
+  lastfm-operation-summary-required:
+    description: All operations must have a summary.
+    severity: error
+    given: "$.paths[*][get,post,put,patch,delete]"
+    then:
+      field: summary
+      function: truthy
+
+  lastfm-operation-summary-title-case:
+    description: Operation summaries should use Title Case.
+    severity: warn
+    given: "$.paths[*][get,post,put,patch,delete].summary"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^([A-Z][a-zA-Z0-9]*)(\\s+([A-Z][a-zA-Z0-9]*|For|By|To|And|Or|Of|The|A|An))*$"
+
+  lastfm-tags-required:
+    description: All operations must have at least one tag.
+    severity: error
+    given: "$.paths[*][get,post,put,patch,delete]"
+    then:
+      field: tags
+      function: truthy
+
+  lastfm-api-key-required:
+    description: All read operations should accept the api_key parameter.
+    severity: warn
+    given: "$.paths[?(@property.match(/method=/))].get.parameters[*]"
+    then:
+      function: defined
+
+  lastfm-method-name-convention:
+    description: Method names should follow `package.methodName` naming (camelCase method).
+    severity: warn
+    given: "$.paths[*]"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^/\\?method=[a-z]+\\.[a-zA-Z]+$|^/$"
+
+  lastfm-write-operations-require-post:
+    description: Write methods (addTags, removeTag, scrobble, love, unlove, updateNowPlaying, getSession, getMobileSession) must use POST.
+    severity: error
+    given: "$.paths[?(@property.match(/addTags|removeTag|scrobble|love|unlove|updateNowPlaying|getMobileSession/))]"
+    then:
+      field: post
+      function: truthy
+
+  lastfm-response-200-required:
+    description: All operations must document a 200 response.
+    severity: error
+    given: "$.paths[*][get,post,put,patch,delete]"
+    then:
+      field: responses.200
+      function: truthy
+
+  lastfm-error-codes-documented:
+    description: Documented Last.fm numeric error codes should be referenced in descriptions.
+    severity: info
+    given: "$.components.schemas.ErrorPayload.properties.error.description"
+    then:
+      function: truthy
+
+  lastfm-rate-limit-documented:
+    description: API description should mention the 5 req/sec/origin rate guidance.
+    severity: info
+    given: "$.info.description"
+    then:
+      function: truthy
+
+  lastfm-security-defined:
+    description: API must define ApiKeyAuth and SignedAuth security schemes.
+    severity: error
+    given: "$.components.securitySchemes"
+    then:
+      function: truthy
+
+  lastfm-base-url-canonical:
+    description: Primary server URL must be https://ws.audioscrobbler.com/2.0.
+    severity: warn
+    given: "$.servers[0].url"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^https://ws\\.audioscrobbler\\.com/2\\.0$"
+
+  lastfm-format-param-json:
+    description: Operations should support format=json via the format query parameter.
+    severity: info
+    given: "$.components.parameters.FormatParam.schema.enum"
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          type: array
+          contains:
+            const: json

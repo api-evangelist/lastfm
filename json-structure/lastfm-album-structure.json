@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-structure.org/draft/2025/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/lastfm/main/json-structure/lastfm-album-structure.json",
+  "name": "LastfmAlbumStructure",
+  "description": "JSON Structure representation of a Last.fm album record, including tracks, tags, and wiki block.",
+  "type": "object",
+  "properties": {
+    "name": { "type": "string" },
+    "artist": { "type": "string" },
+    "mbid": { "type": "string" },
+    "url": { "type": "string" },
+    "listeners": { "type": "string" },
+    "playcount": { "type": "string" },
+    "userplaycount": { "type": "string" },
+    "image": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "size": { "type": "string" },
+          "url": { "type": "string" }
+        }
+      }
+    },
+    "tracks": {
+      "type": "array",
+      "items": { "$ref": "lastfm-track-structure.json" }
+    },
+    "tags": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "wiki": {
+      "type": "object",
+      "properties": {
+        "published": { "type": "string" },
+        "summary": { "type": "string" },
+        "content": { "type": "string" }
+      }
+    }
+  },
+  "required": ["name", "artist"]
+}

@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-structure.org/draft/2025/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/lastfm/main/json-structure/lastfm-track-structure.json",
+  "name": "LastfmTrackStructure",
+  "description": "JSON Structure representation of a Last.fm track record with artist, album, listening stats, and optional scrobble date.",
+  "type": "object",
+  "properties": {
+    "name": { "type": "string" },
+    "mbid": { "type": "string" },
+    "url": { "type": "string" },
+    "duration": { "type": "string" },
+    "artist": { "$ref": "lastfm-artist-structure.json" },
+    "album": {
+      "type": "object",
+      "properties": {
+        "title": { "type": "string" },
+        "mbid": { "type": "string" },
+        "url": { "type": "string" }
+      }
+    },
+    "listeners": { "type": "string" },
+    "playcount": { "type": "string" },
+    "userplaycount": { "type": "string" },
+    "userloved": { "type": "string" },
+    "tags": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "scrobbledAt": {
+      "type": "object",
+      "properties": {
+        "unixtime": { "type": "string" },
+        "humanReadable": { "type": "string" }
+      }
+    }
+  },
+  "required": ["name"]
+}

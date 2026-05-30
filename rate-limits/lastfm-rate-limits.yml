@@ -1,0 +1,84 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: Last.fm
+providerId: lastfm
+created: '2026-05-29'
+modified: '2026-05-29'
+tags:
+  - Music
+  - Scrobbling
+  - Rate Limiting
+  - Throttling
+description: >-
+  Last.fm enforces rate limits at the originating IP / API key level. The
+  documented guidance is approximately 5 requests per second per originating IP.
+  Sustained excess yields account suspension. The API does not publish standard
+  RFC 9239 RateLimit headers and instead returns numeric Last.fm error codes
+  (notably code 29 — Rate limit exceeded — and code 26 — Suspended API key).
+  Scrobble batches are hard-capped at 50 scrobbles per request.
+headers:
+  limit: null
+  remaining: null
+  reset: null
+  retryAfter: Retry-After
+  policy: null
+responseCodes:
+  throttled: 429
+  quotaExceeded: 403
+  serviceUnavailable: 503
+errorCodes:
+  rateLimitExceeded: 29
+  suspendedApiKey: 26
+  serviceTemporarilyUnavailable: 16
+  invalidApiKey: 10
+  invalidMethodSignature: 13
+limits:
+  - tier: free
+    name: Per-Origin Rate Guidance
+    scope: originating-ip
+    metric: requests_per_second
+    limit: 5
+    burst: 10
+    timeFrame: second
+    applies:
+      - Last.fm Web Services 2.0
+    notes: >-
+      "Your account may be suspended if your application is continuously making
+      several calls per second or if you're making excessive calls."
+      (from www.last.fm/api/intro)
+  - tier: free
+    name: Scrobble Batch Cap
+    scope: api-key
+    metric: scrobbles_per_request
+    limit: 50
+    timeFrame: request
+    applies:
+      - track.scrobble
+    notes: A single track.scrobble call may carry at most 50 scrobbles.
+  - tier: free
+    name: Reasonable Usage Cap
+    scope: api-key
+    metric: bytes_total
+    limit: 104857600
+    timeFrame: total
+    applies:
+      - All methods (data storage by consumer)
+    notes: From Terms of Service — 100 MB total stored Last.fm Data per integration.
+  - tier: commercial
+    name: Commercial Agreement Negotiated Rate
+    scope: api-key
+    metric: requests_per_second
+    limit: 0
+    timeFrame: second
+    applies:
+      - Last.fm Web Services 2.0
+    notes: >-
+      Higher rates available only under a commercial agreement — contact
+      partners@last.fm.
+recommendations:
+  - identify your client with a descriptive User-Agent header
+  - back off on HTTP 503 and on Last.fm error codes 16 (temporarily unavailable) and 29 (rate limited)
+  - avoid bursting requests on page load — defer and cache results
+  - cache long-lived metadata (artist.getInfo, album.getInfo, tag.getInfo) aggressively
+  - resend scrobbles after connection failure via batched track.scrobble (up to 50)

@@ -1,0 +1,51 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Last.fm API — Geo
+  description: 'Last.fm API — Geo package. 2 operations returning the most popular artists and tracks by country.'
+  tags:
+    - Last.fm
+    - Geo
+    - Music
+  created: '2026-05-29'
+  modified: '2026-05-29'
+binds:
+  - namespace: env
+    keys:
+      LASTFM_API_KEY: LASTFM_API_KEY
+capability:
+  consumes:
+    - type: http
+      namespace: lastfm-geo
+      baseUri: https://ws.audioscrobbler.com/2.0
+      description: Last.fm country-level chart capability.
+      resources:
+        - name: geo-topartists
+          path: /
+          operations:
+            - name: geoGetTopArtists
+              method: GET
+              description: Get the most popular artists by country.
+              outputRawFormat: json
+              inputParameters:
+                - { name: method, in: query, type: string, value: geo.getTopArtists }
+                - { name: api_key, in: query, type: string }
+                - { name: format, in: query, type: string, value: json }
+                - { name: country, in: query, type: string }
+                - { name: limit, in: query, type: integer }
+              outputParameters:
+                - { name: result, type: object, value: $.topartists }
+        - name: geo-toptracks
+          path: /
+          operations:
+            - name: geoGetTopTracks
+              method: GET
+              description: Get the most popular tracks by country.
+              outputRawFormat: json
+              inputParameters:
+                - { name: method, in: query, type: string, value: geo.getTopTracks }
+                - { name: api_key, in: query, type: string }
+                - { name: format, in: query, type: string, value: json }
+                - { name: country, in: query, type: string }
+                - { name: limit, in: query, type: integer }
+              outputParameters:
+                - { name: result, type: object, value: $.tracks }

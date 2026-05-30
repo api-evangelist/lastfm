@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/lastfm/main/json-schema/lastfm-track-schema.json",
+  "title": "Last.fm Track",
+  "description": "A track record as returned by Last.fm's track.getInfo, track.search, user.getRecentTracks, and track.getSimilar methods.",
+  "type": "object",
+  "required": ["name"],
+  "properties": {
+    "name": { "type": "string", "description": "Track title." },
+    "mbid": { "type": "string", "description": "MusicBrainz track identifier." },
+    "url": { "type": "string", "format": "uri", "description": "Canonical Last.fm track URL." },
+    "duration": { "type": "string", "description": "Track length in milliseconds (stringified integer)." },
+    "streamable": { "type": "object" },
+    "artist": {
+      "oneOf": [
+        { "type": "string" },
+        { "$ref": "lastfm-artist-schema.json" }
+      ]
+    },
+    "album": {
+      "type": "object",
+      "properties": {
+        "artist": { "type": "string" },
+        "title": { "type": "string" },
+        "mbid": { "type": "string" },
+        "url": { "type": "string", "format": "uri" }
+      }
+    },
+    "listeners": { "type": "string" },
+    "playcount": { "type": "string" },
+    "userplaycount": { "type": "string" },
+    "userloved": { "type": "string", "enum": ["0", "1"] },
+    "toptags": {
+      "type": "object",
+      "properties": {
+        "tag": {
+          "type": "array",
+          "items": { "$ref": "lastfm-tag-schema.json" }
+        }
+      }
+    },
+    "wiki": {
+      "type": "object",
+      "properties": {
+        "published": { "type": "string" },
+        "summary": { "type": "string" },
+        "content": { "type": "string" }
+      }
+    },
+    "date": {
+      "type": "object",
+      "properties": {
+        "uts": { "type": "string", "description": "Unix timestamp string." },
+        "#text": { "type": "string", "description": "Human-readable date." }
+      }
+    },
+    "@attr": {
+      "type": "object",
+      "properties": {
+        "nowplaying": { "type": "string", "description": "'true' if this is the currently-playing track." }
+      }
+    }
+  }
+}

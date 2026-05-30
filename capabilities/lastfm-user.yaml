@@ -1,0 +1,223 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Last.fm API — User
+  description: 'Last.fm API — User package. 13 operations covering profile data, friends, listening history, top entities, and weekly charts.'
+  tags:
+    - Last.fm
+    - User
+    - Music
+  created: '2026-05-29'
+  modified: '2026-05-29'
+binds:
+  - namespace: env
+    keys:
+      LASTFM_API_KEY: LASTFM_API_KEY
+capability:
+  consumes:
+    - type: http
+      namespace: lastfm-user
+      baseUri: https://ws.audioscrobbler.com/2.0
+      description: Last.fm user listening data capability.
+      resources:
+        - name: user-getinfo
+          path: /
+          operations:
+            - name: userGetInfo
+              method: GET
+              description: Get profile information for a user.
+              outputRawFormat: json
+              inputParameters:
+                - { name: method, in: query, type: string, value: user.getInfo }
+                - { name: api_key, in: query, type: string }
+                - { name: format, in: query, type: string, value: json }
+                - { name: user, in: query, type: string }
+              outputParameters:
+                - { name: result, type: object, value: $.user }
+        - name: user-getfriends
+          path: /
+          operations:
+            - name: userGetFriends
+              method: GET
+              description: Get a user's friends.
+              outputRawFormat: json
+              inputParameters:
+                - { name: method, in: query, type: string, value: user.getFriends }
+                - { name: api_key, in: query, type: string }
+                - { name: format, in: query, type: string, value: json }
+                - { name: user, in: query, type: string }
+                - { name: limit, in: query, type: integer }
+              outputParameters:
+                - { name: result, type: object, value: $.friends }
+        - name: user-recenttracks
+          path: /
+          operations:
+            - name: userGetRecentTracks
+              method: GET
+              description: Get a user's recent listening history.
+              outputRawFormat: json
+              inputParameters:
+                - { name: method, in: query, type: string, value: user.getRecentTracks }
+                - { name: api_key, in: query, type: string }
+                - { name: format, in: query, type: string, value: json }
+                - { name: user, in: query, type: string }
+                - { name: limit, in: query, type: integer }
+                - { name: from, in: query, type: integer }
+                - { name: to, in: query, type: integer }
+                - { name: extended, in: query, type: integer }
+              outputParameters:
+                - { name: result, type: object, value: $.recenttracks }
+        - name: user-lovedtracks
+          path: /
+          operations:
+            - name: userGetLovedTracks
+              method: GET
+              description: Get the tracks a user has loved.
+              outputRawFormat: json
+              inputParameters:
+                - { name: method, in: query, type: string, value: user.getLovedTracks }
+                - { name: api_key, in: query, type: string }
+                - { name: format, in: query, type: string, value: json }
+                - { name: user, in: query, type: string }
+                - { name: limit, in: query, type: integer }
+              outputParameters:
+                - { name: result, type: object, value: $.lovedtracks }
+        - name: user-topartists
+          path: /
+          operations:
+            - name: userGetTopArtists
+              method: GET
+              description: Get top artists for a user over a period.
+              outputRawFormat: json
+              inputParameters:
+                - { name: method, in: query, type: string, value: user.getTopArtists }
+                - { name: api_key, in: query, type: string }
+                - { name: format, in: query, type: string, value: json }
+                - { name: user, in: query, type: string }
+                - { name: period, in: query, type: string }
+                - { name: limit, in: query, type: integer }
+              outputParameters:
+                - { name: result, type: object, value: $.topartists }
+        - name: user-topalbums
+          path: /
+          operations:
+            - name: userGetTopAlbums
+              method: GET
+              description: Get top albums for a user over a period.
+              outputRawFormat: json
+              inputParameters:
+                - { name: method, in: query, type: string, value: user.getTopAlbums }
+                - { name: api_key, in: query, type: string }
+                - { name: format, in: query, type: string, value: json }
+                - { name: user, in: query, type: string }
+                - { name: period, in: query, type: string }
+                - { name: limit, in: query, type: integer }
+              outputParameters:
+                - { name: result, type: object, value: $.topalbums }
+        - name: user-toptracks
+          path: /
+          operations:
+            - name: userGetTopTracks
+              method: GET
+              description: Get top tracks for a user over a period.
+              outputRawFormat: json
+              inputParameters:
+                - { name: method, in: query, type: string, value: user.getTopTracks }
+                - { name: api_key, in: query, type: string }
+                - { name: format, in: query, type: string, value: json }
+                - { name: user, in: query, type: string }
+                - { name: period, in: query, type: string }
+                - { name: limit, in: query, type: integer }
+              outputParameters:
+                - { name: result, type: object, value: $.toptracks }
+        - name: user-toptags
+          path: /
+          operations:
+            - name: userGetTopTags
+              method: GET
+              description: Get the top tags used by a user.
+              outputRawFormat: json
+              inputParameters:
+                - { name: method, in: query, type: string, value: user.getTopTags }
+                - { name: api_key, in: query, type: string }
+                - { name: format, in: query, type: string, value: json }
+                - { name: user, in: query, type: string }
+              outputParameters:
+                - { name: result, type: object, value: $.toptags }
+        - name: user-personaltags
+          path: /
+          operations:
+            - name: userGetPersonalTags
+              method: GET
+              description: Get a user's personal tags applied to a specific tag scope.
+              outputRawFormat: json
+              inputParameters:
+                - { name: method, in: query, type: string, value: user.getPersonalTags }
+                - { name: api_key, in: query, type: string }
+                - { name: format, in: query, type: string, value: json }
+                - { name: user, in: query, type: string }
+                - { name: tag, in: query, type: string }
+                - { name: taggingtype, in: query, type: string }
+              outputParameters:
+                - { name: result, type: object, value: $.taggings }
+        - name: user-weeklyalbumchart
+          path: /
+          operations:
+            - name: userGetWeeklyAlbumChart
+              method: GET
+              description: Get a user's weekly album chart.
+              outputRawFormat: json
+              inputParameters:
+                - { name: method, in: query, type: string, value: user.getWeeklyAlbumChart }
+                - { name: api_key, in: query, type: string }
+                - { name: format, in: query, type: string, value: json }
+                - { name: user, in: query, type: string }
+                - { name: from, in: query, type: integer }
+                - { name: to, in: query, type: integer }
+              outputParameters:
+                - { name: result, type: object, value: $.weeklyalbumchart }
+        - name: user-weeklyartistchart
+          path: /
+          operations:
+            - name: userGetWeeklyArtistChart
+              method: GET
+              description: Get a user's weekly artist chart.
+              outputRawFormat: json
+              inputParameters:
+                - { name: method, in: query, type: string, value: user.getWeeklyArtistChart }
+                - { name: api_key, in: query, type: string }
+                - { name: format, in: query, type: string, value: json }
+                - { name: user, in: query, type: string }
+                - { name: from, in: query, type: integer }
+                - { name: to, in: query, type: integer }
+              outputParameters:
+                - { name: result, type: object, value: $.weeklyartistchart }
+        - name: user-weeklytrackchart
+          path: /
+          operations:
+            - name: userGetWeeklyTrackChart
+              method: GET
+              description: Get a user's weekly track chart.
+              outputRawFormat: json
+              inputParameters:
+                - { name: method, in: query, type: string, value: user.getWeeklyTrackChart }
+                - { name: api_key, in: query, type: string }
+                - { name: format, in: query, type: string, value: json }
+                - { name: user, in: query, type: string }
+                - { name: from, in: query, type: integer }
+                - { name: to, in: query, type: integer }
+              outputParameters:
+                - { name: result, type: object, value: $.weeklytrackchart }
+        - name: user-weeklychartlist
+          path: /
+          operations:
+            - name: userGetWeeklyChartList
+              method: GET
+              description: Get a list of available weekly chart date ranges for a user.
+              outputRawFormat: json
+              inputParameters:
+                - { name: method, in: query, type: string, value: user.getWeeklyChartList }
+                - { name: api_key, in: query, type: string }
+                - { name: format, in: query, type: string, value: json }
+                - { name: user, in: query, type: string }
+              outputParameters:
+                - { name: result, type: object, value: $.weeklychartlist }

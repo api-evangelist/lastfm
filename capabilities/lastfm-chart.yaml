@@ -1,0 +1,63 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Last.fm API — Chart
+  description: 'Last.fm API — Chart package. 3 operations returning the global top artists, tracks, and tags.'
+  tags:
+    - Last.fm
+    - Chart
+    - Music
+  created: '2026-05-29'
+  modified: '2026-05-29'
+binds:
+  - namespace: env
+    keys:
+      LASTFM_API_KEY: LASTFM_API_KEY
+capability:
+  consumes:
+    - type: http
+      namespace: lastfm-chart
+      baseUri: https://ws.audioscrobbler.com/2.0
+      description: Last.fm global chart capability.
+      resources:
+        - name: chart-topartists
+          path: /
+          operations:
+            - name: chartGetTopArtists
+              method: GET
+              description: Get the top artists chart.
+              outputRawFormat: json
+              inputParameters:
+                - { name: method, in: query, type: string, value: chart.getTopArtists }
+                - { name: api_key, in: query, type: string }
+                - { name: format, in: query, type: string, value: json }
+                - { name: limit, in: query, type: integer }
+              outputParameters:
+                - { name: result, type: object, value: $.artists }
+        - name: chart-toptracks
+          path: /
+          operations:
+            - name: chartGetTopTracks
+              method: GET
+              description: Get the top tracks chart.
+              outputRawFormat: json
+              inputParameters:
+                - { name: method, in: query, type: string, value: chart.getTopTracks }
+                - { name: api_key, in: query, type: string }
+                - { name: format, in: query, type: string, value: json }
+                - { name: limit, in: query, type: integer }
+              outputParameters:
+                - { name: result, type: object, value: $.tracks }
+        - name: chart-toptags
+          path: /
+          operations:
+            - name: chartGetTopTags
+              method: GET
+              description: Get the top tags chart.
+              outputRawFormat: json
+              inputParameters:
+                - { name: method, in: query, type: string, value: chart.getTopTags }
+                - { name: api_key, in: query, type: string }
+                - { name: format, in: query, type: string, value: json }
+                - { name: limit, in: query, type: integer }
+              outputParameters:
+                - { name: result, type: object, value: $.tags }
