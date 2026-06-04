@@ -1,0 +1,113 @@
+arazzo: 1.0.1
+info:
+  title: Last.fm Genre Artist Explorer
+  summary: Take a genre tag's top artist, branch into similar artists, and pull that artist's top tracks.
+  description: >-
+    A genre-led artist explorer. It lists the top artists for a tag, takes the
+    leading artist, finds artists similar to them, and pulls the lead artist's
+    top tracks so a listener can move laterally through a genre. Each request is
+    written inline, including the required api_key and the format=json selector,
+    so the chain is self-contained and replayable without the OpenAPI source.
+  version: 1.0.0
+sourceDescriptions:
+- name: lastfmApi
+  url: ../openapi/lastfm-openapi-original.yml
+  type: openapi
+workflows:
+- workflowId: genre-artist-explorer
+  summary: Explore a genre's top artist via similar artists and top tracks.
+  description: >-
+    Lists a tag's top artists, then resolves the leading artist's similar
+    artists and top tracks.
+  inputs:
+    type: object
+    required:
+    - apiKey
+    - tag
+    properties:
+      apiKey:
+        type: string
+        description: Your Last.fm API key.
+      tag:
+        type: string
+        description: The genre tag to explore (e.g. "post-punk").
+      limit:
+        type: integer
+        description: Max items per page for the lists.
+        default: 10
+  steps:
+  - stepId: tagTopArtists
+    description: >-
+      List the top artists tagged with this genre, ordered by tag count.
+    operationId: tagGetTopArtists
+    parameters:
+    - name: api_key
+      in: query
+      value: $inputs.apiKey
+    - name: format
+      in: query
+      value: json
+    - name: tag
+      in: query
+      value: $inputs.tag
+    - name: limit
+      in: query
+      value: $inputs.limit
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      topArtistName: $response.body#/artists/artist/0/name
+      topArtists: $response.body#/artists/artist
+  - stepId: similarArtists
+    description: >-
+      Find artists similar to the genre's leading artist for lateral discovery.
+    operationId: artistGetSimilar
+    parameters:
+    - name: api_key
+      in: query
+      value: $inputs.apiKey
+    - name: format
+      in: query
+      value: json
+    - name: artist
+      in: query
+      value: $steps.tagTopArtists.outputs.topArtistName
+    - name: limit
+      in: query
+      value: $inputs.limit
+    - name: autocorrect
+      in: query
+      value: 1
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      similarArtists: $response.body#/similarartists/artist
+  - stepId: leadArtistTopTracks
+    description: >-
+      Pull the genre's leading artist's most popular tracks.
+    operationId: artistGetTopTracks
+    parameters:
+    - name: api_key
+      in: query
+      value: $inputs.apiKey
+    - name: format
+      in: query
+      value: json
+    - name: artist
+      in: query
+      value: $steps.tagTopArtists.outputs.topArtistName
+    - name: limit
+      in: query
+      value: $inputs.limit
+    - name: autocorrect
+      in: query
+      value: 1
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      topTracks: $response.body#/toptracks/track
+  outputs:
+    tag: $inputs.tag
+    topArtistName: $steps.tagTopArtists.outputs.topArtistName
+    similarArtists: $steps.similarArtists.outputs.similarArtists
+    leadArtistTopTracks: $steps.leadArtistTopTracks.outputs.topTracks

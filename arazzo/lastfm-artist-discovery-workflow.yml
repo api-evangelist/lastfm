@@ -1,0 +1,142 @@
+arazzo: 1.0.1
+info:
+  title: Last.fm Artist Discovery
+  summary: Search for an artist by name, resolve full metadata, then surface their top tracks and similar artists.
+  description: >-
+    A discovery flow that starts from a free-text artist query and progressively
+    enriches it. It searches the Last.fm catalog for matching artists, takes the
+    best match and pulls the full artist profile, then fans out into the artist's
+    most popular tracks and the artists most similar to them. Each step spells
+    out its request inline — including the required api_key and the format=json
+    selector — so the flow can be read and executed without opening the
+    underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: lastfmApi
+  url: ../openapi/lastfm-openapi-original.yml
+  type: openapi
+workflows:
+- workflowId: artist-discovery
+  summary: Turn an artist name into a rich profile of info, top tracks, and similar artists.
+  description: >-
+    Resolves an artist name to a canonical match, retrieves the artist info
+    envelope, then chains into the artist's top tracks and similar artists.
+  inputs:
+    type: object
+    required:
+    - apiKey
+    - artist
+    properties:
+      apiKey:
+        type: string
+        description: Your Last.fm API key.
+      artist:
+        type: string
+        description: The artist name to search for (e.g. "Radiohead").
+      limit:
+        type: integer
+        description: Max items per page for the top tracks and similar artists lists.
+        default: 10
+  steps:
+  - stepId: searchArtist
+    description: >-
+      Search the Last.fm catalog for artists matching the supplied name,
+      returning matches sorted by relevance.
+    operationId: artistSearch
+    parameters:
+    - name: api_key
+      in: query
+      value: $inputs.apiKey
+    - name: format
+      in: query
+      value: json
+    - name: artist
+      in: query
+      value: $inputs.artist
+    - name: limit
+      in: query
+      value: 5
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      bestMatchName: $response.body#/results/artistmatches/artist/0/name
+      bestMatchMbid: $response.body#/results/artistmatches/artist/0/mbid
+  - stepId: getArtistInfo
+    description: >-
+      Retrieve the full artist profile for the best matching artist, including
+      stats, bio, and tags.
+    operationId: artistGetInfo
+    parameters:
+    - name: api_key
+      in: query
+      value: $inputs.apiKey
+    - name: format
+      in: query
+      value: json
+    - name: artist
+      in: query
+      value: $steps.searchArtist.outputs.bestMatchName
+    - name: autocorrect
+      in: query
+      value: 1
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      artistName: $response.body#/artist/name
+      artistUrl: $response.body#/artist/url
+      listeners: $response.body#/artist/stats/listeners
+  - stepId: getTopTracks
+    description: >-
+      Pull the artist's most popular tracks, ordered by listener play counts.
+    operationId: artistGetTopTracks
+    parameters:
+    - name: api_key
+      in: query
+      value: $inputs.apiKey
+    - name: format
+      in: query
+      value: json
+    - name: artist
+      in: query
+      value: $steps.getArtistInfo.outputs.artistName
+    - name: limit
+      in: query
+      value: $inputs.limit
+    - name: autocorrect
+      in: query
+      value: 1
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      topTracks: $response.body#/toptracks/track
+      topTrackName: $response.body#/toptracks/track/0/name
+  - stepId: getSimilarArtists
+    description: >-
+      Find artists most similar to the resolved artist, based on listening data.
+    operationId: artistGetSimilar
+    parameters:
+    - name: api_key
+      in: query
+      value: $inputs.apiKey
+    - name: format
+      in: query
+      value: json
+    - name: artist
+      in: query
+      value: $steps.getArtistInfo.outputs.artistName
+    - name: limit
+      in: query
+      value: $inputs.limit
+    - name: autocorrect
+      in: query
+      value: 1
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      similarArtists: $response.body#/similarartists/artist
+  outputs:
+    artistName: $steps.getArtistInfo.outputs.artistName
+    artistUrl: $steps.getArtistInfo.outputs.artistUrl
+    listeners: $steps.getArtistInfo.outputs.listeners
+    topTracks: $steps.getTopTracks.outputs.topTracks
+    similarArtists: $steps.getSimilarArtists.outputs.similarArtists

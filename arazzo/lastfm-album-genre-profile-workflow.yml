@@ -1,0 +1,116 @@
+arazzo: 1.0.1
+info:
+  title: Last.fm Album Genre Profile
+  summary: Search for an album, resolve its full info and tracklist, then surface the community tags that define its genre.
+  description: >-
+    A cataloging flow that turns an album query into a genre-labeled profile. It
+    searches the catalog for an album, resolves the best match's full info and
+    tracklist, and then pulls the top community tags applied to the album so it
+    can be filed under the right genres. Each request is written inline,
+    including the required api_key and the format=json selector, so the chain is
+    self-contained and replayable without the OpenAPI source.
+  version: 1.0.0
+sourceDescriptions:
+- name: lastfmApi
+  url: ../openapi/lastfm-openapi-original.yml
+  type: openapi
+workflows:
+- workflowId: album-genre-profile
+  summary: Resolve a searched album into a full profile plus its defining community tags.
+  description: >-
+    Searches for an album, resolves the best match's info and tracklist, and
+    pulls its top community tags.
+  inputs:
+    type: object
+    required:
+    - apiKey
+    - album
+    properties:
+      apiKey:
+        type: string
+        description: Your Last.fm API key.
+      album:
+        type: string
+        description: The album name to search for.
+  steps:
+  - stepId: searchAlbum
+    description: >-
+      Search the catalog for albums matching the supplied name, sorted by
+      relevance.
+    operationId: albumSearch
+    parameters:
+    - name: api_key
+      in: query
+      value: $inputs.apiKey
+    - name: format
+      in: query
+      value: json
+    - name: album
+      in: query
+      value: $inputs.album
+    - name: limit
+      in: query
+      value: 5
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      matchName: $response.body#/results/albummatches/album/0/name
+      matchArtist: $response.body#/results/albummatches/album/0/artist
+  - stepId: albumInfo
+    description: >-
+      Resolve the best matching album's full metadata and tracklist.
+    operationId: albumGetInfo
+    parameters:
+    - name: api_key
+      in: query
+      value: $inputs.apiKey
+    - name: format
+      in: query
+      value: json
+    - name: artist
+      in: query
+      value: $steps.searchAlbum.outputs.matchArtist
+    - name: album
+      in: query
+      value: $steps.searchAlbum.outputs.matchName
+    - name: autocorrect
+      in: query
+      value: 1
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      albumName: $response.body#/album/name
+      albumArtist: $response.body#/album/artist
+      albumUrl: $response.body#/album/url
+      tracklist: $response.body#/album/tracks/track
+  - stepId: albumTopTags
+    description: >-
+      Pull the top community tags applied to the album to define its genre.
+    operationId: albumGetTopTags
+    parameters:
+    - name: api_key
+      in: query
+      value: $inputs.apiKey
+    - name: format
+      in: query
+      value: json
+    - name: artist
+      in: query
+      value: $steps.albumInfo.outputs.albumArtist
+    - name: album
+      in: query
+      value: $steps.albumInfo.outputs.albumName
+    - name: autocorrect
+      in: query
+      value: 1
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      topTags: $response.body#/toptags/tag
+      topTagName: $response.body#/toptags/tag/0/name
+  outputs:
+    albumName: $steps.albumInfo.outputs.albumName
+    albumArtist: $steps.albumInfo.outputs.albumArtist
+    albumUrl: $steps.albumInfo.outputs.albumUrl
+    tracklist: $steps.albumInfo.outputs.tracklist
+    topTags: $steps.albumTopTags.outputs.topTags

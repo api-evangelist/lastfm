@@ -1,0 +1,110 @@
+arazzo: 1.0.1
+info:
+  title: Last.fm Chart To Album Deep Dive
+  summary: Take the #1 artist from the global chart, list their top albums, and pull full info for the leading album.
+  description: >-
+    A trend-following flow that climbs the global Last.fm charts and drills down
+    into a single album. It reads the top artists chart, selects the leading
+    artist, lists that artist's top albums, and then fetches the full metadata
+    and tracklist for the highest-ranked album. Every request is written inline,
+    including the required api_key and the format=json selector, so the chain can
+    be read and replayed without consulting the OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: lastfmApi
+  url: ../openapi/lastfm-openapi-original.yml
+  type: openapi
+workflows:
+- workflowId: chart-to-album
+  summary: Climb from the global artist chart down to a single album's full metadata.
+  description: >-
+    Reads the global top artists chart, takes the top artist, lists their top
+    albums, and resolves the leading album's info and tracklist.
+  inputs:
+    type: object
+    required:
+    - apiKey
+    properties:
+      apiKey:
+        type: string
+        description: Your Last.fm API key.
+      limit:
+        type: integer
+        description: Max items per page for the chart and the top albums list.
+        default: 10
+  steps:
+  - stepId: chartTopArtists
+    description: >-
+      Read the global top artists chart on Last.fm, ordered by popularity.
+    operationId: chartGetTopArtists
+    parameters:
+    - name: api_key
+      in: query
+      value: $inputs.apiKey
+    - name: format
+      in: query
+      value: json
+    - name: limit
+      in: query
+      value: $inputs.limit
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      topArtistName: $response.body#/artists/artist/0/name
+      topArtistMbid: $response.body#/artists/artist/0/mbid
+  - stepId: artistTopAlbums
+    description: >-
+      List the top albums for the chart-leading artist, ordered by play count.
+    operationId: artistGetTopAlbums
+    parameters:
+    - name: api_key
+      in: query
+      value: $inputs.apiKey
+    - name: format
+      in: query
+      value: json
+    - name: artist
+      in: query
+      value: $steps.chartTopArtists.outputs.topArtistName
+    - name: limit
+      in: query
+      value: $inputs.limit
+    - name: autocorrect
+      in: query
+      value: 1
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      topAlbumName: $response.body#/topalbums/album/0/name
+      topAlbumArtist: $response.body#/topalbums/album/0/artist/name
+  - stepId: albumInfo
+    description: >-
+      Fetch the full metadata and tracklist for the artist's leading album.
+    operationId: albumGetInfo
+    parameters:
+    - name: api_key
+      in: query
+      value: $inputs.apiKey
+    - name: format
+      in: query
+      value: json
+    - name: artist
+      in: query
+      value: $steps.artistTopAlbums.outputs.topAlbumArtist
+    - name: album
+      in: query
+      value: $steps.artistTopAlbums.outputs.topAlbumName
+    - name: autocorrect
+      in: query
+      value: 1
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      albumName: $response.body#/album/name
+      albumUrl: $response.body#/album/url
+      tracklist: $response.body#/album/tracks/track
+  outputs:
+    topArtistName: $steps.chartTopArtists.outputs.topArtistName
+    albumName: $steps.albumInfo.outputs.albumName
+    albumUrl: $steps.albumInfo.outputs.albumUrl
+    tracklist: $steps.albumInfo.outputs.tracklist

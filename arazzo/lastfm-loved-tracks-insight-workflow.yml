@@ -1,0 +1,113 @@
+arazzo: 1.0.1
+info:
+  title: Last.fm Loved Tracks Insight
+  summary: Read a user's loved tracks, resolve the latest one's full info, and surface the community tags that describe it.
+  description: >-
+    An insight flow that explains a listener's favorites. It reads the tracks a
+    user has loved, takes the most recent one, resolves its full info envelope,
+    and pulls the top community tags applied to it so a UI can characterize the
+    listener's taste in their own favorite. Each request is written inline,
+    including the required api_key and the format=json selector, so the chain is
+    self-contained and replayable without the OpenAPI source.
+  version: 1.0.0
+sourceDescriptions:
+- name: lastfmApi
+  url: ../openapi/lastfm-openapi-original.yml
+  type: openapi
+workflows:
+- workflowId: loved-tracks-insight
+  summary: Turn a user's latest loved track into a tagged, fully-described profile.
+  description: >-
+    Reads loved tracks, resolves the latest loved track's info, and pulls its
+    top community tags.
+  inputs:
+    type: object
+    required:
+    - apiKey
+    - user
+    properties:
+      apiKey:
+        type: string
+        description: Your Last.fm API key.
+      user:
+        type: string
+        description: The Last.fm username whose loved tracks to inspect.
+  steps:
+  - stepId: lovedTracks
+    description: >-
+      Read the tracks the user has marked as loved.
+    operationId: userGetLovedTracks
+    parameters:
+    - name: api_key
+      in: query
+      value: $inputs.apiKey
+    - name: format
+      in: query
+      value: json
+    - name: user
+      in: query
+      value: $inputs.user
+    - name: limit
+      in: query
+      value: 10
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      latestLovedName: $response.body#/lovedtracks/track/0/name
+      latestLovedArtist: $response.body#/lovedtracks/track/0/artist/name
+  - stepId: trackInfo
+    description: >-
+      Resolve the full info envelope for the user's most recently loved track.
+    operationId: trackGetInfo
+    parameters:
+    - name: api_key
+      in: query
+      value: $inputs.apiKey
+    - name: format
+      in: query
+      value: json
+    - name: artist
+      in: query
+      value: $steps.lovedTracks.outputs.latestLovedArtist
+    - name: track
+      in: query
+      value: $steps.lovedTracks.outputs.latestLovedName
+    - name: autocorrect
+      in: query
+      value: 1
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      trackName: $response.body#/track/name
+      trackArtist: $response.body#/track/artist/name
+      trackUrl: $response.body#/track/url
+  - stepId: trackTopTags
+    description: >-
+      Pull the top community tags applied to the loved track.
+    operationId: trackGetTopTags
+    parameters:
+    - name: api_key
+      in: query
+      value: $inputs.apiKey
+    - name: format
+      in: query
+      value: json
+    - name: artist
+      in: query
+      value: $steps.trackInfo.outputs.trackArtist
+    - name: track
+      in: query
+      value: $steps.trackInfo.outputs.trackName
+    - name: autocorrect
+      in: query
+      value: 1
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      topTags: $response.body#/toptags/tag
+  outputs:
+    user: $inputs.user
+    trackName: $steps.trackInfo.outputs.trackName
+    trackArtist: $steps.trackInfo.outputs.trackArtist
+    trackUrl: $steps.trackInfo.outputs.trackUrl
+    topTags: $steps.trackTopTags.outputs.topTags

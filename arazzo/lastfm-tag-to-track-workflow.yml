@@ -1,0 +1,114 @@
+arazzo: 1.0.1
+info:
+  title: Last.fm Tag To Track Deep Dive
+  summary: Resolve a tag's metadata, pull its top tracks, and fetch full info for the leading track.
+  description: >-
+    A genre exploration flow that starts from a single tag and ends on a fully
+    described track. It reads the tag metadata, lists the top tracks carrying
+    that tag, takes the highest-ranked track, and resolves its full info envelope
+    including listeners and play counts. Every request is written inline,
+    including the required api_key and the format=json selector, so the chain is
+    readable and replayable without the OpenAPI source.
+  version: 1.0.0
+sourceDescriptions:
+- name: lastfmApi
+  url: ../openapi/lastfm-openapi-original.yml
+  type: openapi
+workflows:
+- workflowId: tag-to-track
+  summary: Go from a tag's metadata to the full info of its top-ranked track.
+  description: >-
+    Reads tag info, lists the tag's top tracks, and resolves the leading track's
+    full metadata.
+  inputs:
+    type: object
+    required:
+    - apiKey
+    - tag
+    properties:
+      apiKey:
+        type: string
+        description: Your Last.fm API key.
+      tag:
+        type: string
+        description: The tag to explore (e.g. "shoegaze").
+      limit:
+        type: integer
+        description: Max items per page for the tag top tracks list.
+        default: 10
+  steps:
+  - stepId: tagInfo
+    description: >-
+      Read the metadata for the supplied tag, including reach and total uses.
+    operationId: tagGetInfo
+    parameters:
+    - name: api_key
+      in: query
+      value: $inputs.apiKey
+    - name: format
+      in: query
+      value: json
+    - name: tag
+      in: query
+      value: $inputs.tag
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      tagName: $response.body#/tag/name
+      reach: $response.body#/tag/reach
+      total: $response.body#/tag/total
+  - stepId: tagTopTracks
+    description: >-
+      List the top tracks carrying this tag, ordered by tag count.
+    operationId: tagGetTopTracks
+    parameters:
+    - name: api_key
+      in: query
+      value: $inputs.apiKey
+    - name: format
+      in: query
+      value: json
+    - name: tag
+      in: query
+      value: $steps.tagInfo.outputs.tagName
+    - name: limit
+      in: query
+      value: $inputs.limit
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      topTrackName: $response.body#/toptracks/track/0/name
+      topTrackArtist: $response.body#/toptracks/track/0/artist/name
+  - stepId: trackInfo
+    description: >-
+      Resolve the full info envelope for the tag's leading track.
+    operationId: trackGetInfo
+    parameters:
+    - name: api_key
+      in: query
+      value: $inputs.apiKey
+    - name: format
+      in: query
+      value: json
+    - name: artist
+      in: query
+      value: $steps.tagTopTracks.outputs.topTrackArtist
+    - name: track
+      in: query
+      value: $steps.tagTopTracks.outputs.topTrackName
+    - name: autocorrect
+      in: query
+      value: 1
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      trackName: $response.body#/track/name
+      trackUrl: $response.body#/track/url
+      listeners: $response.body#/track/listeners
+      playcount: $response.body#/track/playcount
+  outputs:
+    tagName: $steps.tagInfo.outputs.tagName
+    reach: $steps.tagInfo.outputs.reach
+    trackName: $steps.trackInfo.outputs.trackName
+    trackUrl: $steps.trackInfo.outputs.trackUrl
+    listeners: $steps.trackInfo.outputs.listeners

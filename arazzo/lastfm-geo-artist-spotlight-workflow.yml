@@ -1,0 +1,115 @@
+arazzo: 1.0.1
+info:
+  title: Last.fm Geo Artist Spotlight
+  summary: Find the top artist in a country, resolve their full profile, and list their top albums.
+  description: >-
+    A localized spotlight flow that surfaces what a country is listening to. It
+    reads the most popular artists for a given country, takes the leading
+    artist, resolves their full profile, and lists their top albums for a
+    ready-to-render spotlight. Each request is written inline, including the
+    required api_key and the format=json selector, so the flow is self-contained
+    and replayable without the OpenAPI source.
+  version: 1.0.0
+sourceDescriptions:
+- name: lastfmApi
+  url: ../openapi/lastfm-openapi-original.yml
+  type: openapi
+workflows:
+- workflowId: geo-artist-spotlight
+  summary: Spotlight a country's top artist with full profile and top albums.
+  description: >-
+    Reads a country's top artists, resolves the leading artist's profile, and
+    lists their top albums.
+  inputs:
+    type: object
+    required:
+    - apiKey
+    - country
+    properties:
+      apiKey:
+        type: string
+        description: Your Last.fm API key.
+      country:
+        type: string
+        description: ISO 3166-1 country name (e.g. "United States").
+      limit:
+        type: integer
+        description: Max items per page for the geo and top albums lists.
+        default: 10
+  steps:
+  - stepId: geoTopArtists
+    description: >-
+      Read the most popular artists in the supplied country.
+    operationId: geoGetTopArtists
+    parameters:
+    - name: api_key
+      in: query
+      value: $inputs.apiKey
+    - name: format
+      in: query
+      value: json
+    - name: country
+      in: query
+      value: $inputs.country
+    - name: limit
+      in: query
+      value: $inputs.limit
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      topArtistName: $response.body#/topartists/artist/0/name
+      topArtistMbid: $response.body#/topartists/artist/0/mbid
+  - stepId: artistInfo
+    description: >-
+      Resolve the full profile for the country's leading artist.
+    operationId: artistGetInfo
+    parameters:
+    - name: api_key
+      in: query
+      value: $inputs.apiKey
+    - name: format
+      in: query
+      value: json
+    - name: artist
+      in: query
+      value: $steps.geoTopArtists.outputs.topArtistName
+    - name: autocorrect
+      in: query
+      value: 1
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      artistName: $response.body#/artist/name
+      artistUrl: $response.body#/artist/url
+      listeners: $response.body#/artist/stats/listeners
+  - stepId: artistTopAlbums
+    description: >-
+      List the leading artist's top albums, ordered by play count.
+    operationId: artistGetTopAlbums
+    parameters:
+    - name: api_key
+      in: query
+      value: $inputs.apiKey
+    - name: format
+      in: query
+      value: json
+    - name: artist
+      in: query
+      value: $steps.artistInfo.outputs.artistName
+    - name: limit
+      in: query
+      value: $inputs.limit
+    - name: autocorrect
+      in: query
+      value: 1
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      topAlbums: $response.body#/topalbums/album
+      topAlbumName: $response.body#/topalbums/album/0/name
+  outputs:
+    country: $inputs.country
+    artistName: $steps.artistInfo.outputs.artistName
+    artistUrl: $steps.artistInfo.outputs.artistUrl
+    listeners: $steps.artistInfo.outputs.listeners
+    topAlbums: $steps.artistTopAlbums.outputs.topAlbums

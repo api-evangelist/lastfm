@@ -1,0 +1,140 @@
+arazzo: 1.0.1
+info:
+  title: Last.fm Track Radio Seed
+  summary: Search for a track, resolve its full info, and build a similar-tracks radio seed — branching when no match is found.
+  description: >-
+    A radio-seeding flow that turns a free-text track query into a list of
+    similar tracks. It searches the catalog for a track, branches on whether a
+    match was returned, resolves the best match's full info, and then pulls
+    tracks similar to it to seed a radio queue. Every request is written inline,
+    including the required api_key and the format=json selector, so the chain is
+    readable and replayable without the OpenAPI source.
+  version: 1.0.0
+sourceDescriptions:
+- name: lastfmApi
+  url: ../openapi/lastfm-openapi-original.yml
+  type: openapi
+workflows:
+- workflowId: track-radio-seed
+  summary: Resolve a searched track into a similar-tracks radio seed, branching on no match.
+  description: >-
+    Searches for a track, branches when there is no match, resolves the best
+    match's info, and builds a similar-tracks list.
+  inputs:
+    type: object
+    required:
+    - apiKey
+    - track
+    properties:
+      apiKey:
+        type: string
+        description: Your Last.fm API key.
+      track:
+        type: string
+        description: The track name to search for.
+      artist:
+        type: string
+        description: Optional artist name to narrow the search.
+      limit:
+        type: integer
+        description: Max items per page for the similar tracks list.
+        default: 20
+  steps:
+  - stepId: searchTrack
+    description: >-
+      Search the catalog for tracks matching the supplied name, narrowed by
+      artist when provided.
+    operationId: trackSearch
+    parameters:
+    - name: api_key
+      in: query
+      value: $inputs.apiKey
+    - name: format
+      in: query
+      value: json
+    - name: track
+      in: query
+      value: $inputs.track
+    - name: artist
+      in: query
+      value: $inputs.artist
+    - name: limit
+      in: query
+      value: 5
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      matchName: $response.body#/results/trackmatches/track/0/name
+      matchArtist: $response.body#/results/trackmatches/track/0/artist
+    onSuccess:
+    - name: hasMatch
+      type: goto
+      stepId: trackInfo
+      criteria:
+      - context: $response.body
+        condition: $.results.trackmatches.track.length > 0
+        type: jsonpath
+    - name: noMatch
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.results.trackmatches.track.length == 0
+        type: jsonpath
+  - stepId: trackInfo
+    description: >-
+      Resolve the full info envelope for the best matching track.
+    operationId: trackGetInfo
+    parameters:
+    - name: api_key
+      in: query
+      value: $inputs.apiKey
+    - name: format
+      in: query
+      value: json
+    - name: artist
+      in: query
+      value: $steps.searchTrack.outputs.matchArtist
+    - name: track
+      in: query
+      value: $steps.searchTrack.outputs.matchName
+    - name: autocorrect
+      in: query
+      value: 1
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      trackName: $response.body#/track/name
+      trackArtist: $response.body#/track/artist/name
+      trackUrl: $response.body#/track/url
+  - stepId: similarTracks
+    description: >-
+      Pull tracks similar to the resolved track to seed a radio queue.
+    operationId: trackGetSimilar
+    parameters:
+    - name: api_key
+      in: query
+      value: $inputs.apiKey
+    - name: format
+      in: query
+      value: json
+    - name: artist
+      in: query
+      value: $steps.trackInfo.outputs.trackArtist
+    - name: track
+      in: query
+      value: $steps.trackInfo.outputs.trackName
+    - name: limit
+      in: query
+      value: $inputs.limit
+    - name: autocorrect
+      in: query
+      value: 1
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      similarTracks: $response.body#/similartracks/track
+  outputs:
+    trackName: $steps.trackInfo.outputs.trackName
+    trackArtist: $steps.trackInfo.outputs.trackArtist
+    trackUrl: $steps.trackInfo.outputs.trackUrl
+    similarTracks: $steps.similarTracks.outputs.similarTracks
