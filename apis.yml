@@ -170,6 +170,8 @@ apis:
       - type: ListenBrainz
         description: ListenBrainz publishes a Last.fm-compatible API surface for portable scrobbling.
 common:
+  - type: PostmanWorkspace
+    url: https://www.postman.com/kinlaneapi/lastfm/overview
   - type: ArazzoWorkflows
     url: arazzo/
     workflows:
