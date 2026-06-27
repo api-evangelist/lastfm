@@ -66,13 +66,13 @@ apis:
         url: https://www.last.fm/api/intro
       - type: Authentication
         url: https://www.last.fm/api/authentication
-      - type: SignUp
+      - type: Signup
         url: https://www.last.fm/api/account/create
       - type: RateLimits
         url: rate-limits/lastfm-rate-limits.yml
       - type: TermsOfService
         url: https://www.last.fm/api/tos
-      - type: Errors
+      - type: ErrorCodes
         url: https://www.last.fm/api/errorcodes
       - type: JSONSchema
         url: json-schema/lastfm-album-schema.json
@@ -92,39 +92,39 @@ apis:
         url: json-structure/lastfm-track-structure.json
       - type: JSONLD
         url: json-ld/lastfm-context.jsonld
-      - type: Example
+      - type: Examples
         url: examples/lastfm-album-getinfo-example.json
-      - type: Example
+      - type: Examples
         url: examples/lastfm-artist-getinfo-example.json
-      - type: Example
+      - type: Examples
         url: examples/lastfm-track-getinfo-example.json
-      - type: Example
+      - type: Examples
         url: examples/lastfm-chart-gettopartists-example.json
-      - type: Example
+      - type: Examples
         url: examples/lastfm-user-getrecenttracks-example.json
-      - type: Example
+      - type: Examples
         url: examples/lastfm-track-scrobble-example.json
-      - type: NaftikoCapability
+      - type: X-NaftikoCapability
         url: capabilities/lastfm-album.yaml
-      - type: NaftikoCapability
+      - type: X-NaftikoCapability
         url: capabilities/lastfm-artist.yaml
-      - type: NaftikoCapability
+      - type: X-NaftikoCapability
         url: capabilities/lastfm-auth.yaml
-      - type: NaftikoCapability
+      - type: X-NaftikoCapability
         url: capabilities/lastfm-chart.yaml
-      - type: NaftikoCapability
+      - type: X-NaftikoCapability
         url: capabilities/lastfm-geo.yaml
-      - type: NaftikoCapability
+      - type: X-NaftikoCapability
         url: capabilities/lastfm-library.yaml
-      - type: NaftikoCapability
+      - type: X-NaftikoCapability
         url: capabilities/lastfm-tag.yaml
-      - type: NaftikoCapability
+      - type: X-NaftikoCapability
         url: capabilities/lastfm-track.yaml
-      - type: NaftikoCapability
+      - type: X-NaftikoCapability
         url: capabilities/lastfm-user.yaml
-      - type: NaftikoCapability
+      - type: X-NaftikoCapability
         url: capabilities/music-discovery.yaml
-      - type: NaftikoCapability
+      - type: X-NaftikoCapability
         url: capabilities/music-scrobbling.yaml
     features:
       - type: MusicCatalog
@@ -172,39 +172,36 @@ apis:
 common:
   - type: PostmanWorkspace
     url: https://www.postman.com/kinlaneapi/lastfm/overview
-  - type: ArazzoWorkflows
-    url: arazzo/
-    workflows:
-    - url: arazzo/lastfm-album-genre-profile-workflow.yml
-      name: Last.fm Album Genre Profile
-      summary: Search for an album, resolve its full info and tracklist, then surface the community tags that define its genre.
-    - url: arazzo/lastfm-artist-discovery-workflow.yml
-      name: Last.fm Artist Discovery
-      summary: Search for an artist by name, resolve full metadata, then surface their top tracks and similar artists.
-    - url: arazzo/lastfm-chart-to-album-workflow.yml
-      name: Last.fm Chart To Album Deep Dive
-      summary: Take the
-    - url: arazzo/lastfm-genre-artist-explorer-workflow.yml
-      name: Last.fm Genre Artist Explorer
-      summary: Take a genre tag's top artist, branch into similar artists, and pull that artist's top tracks.
-    - url: arazzo/lastfm-geo-artist-spotlight-workflow.yml
-      name: Last.fm Geo Artist Spotlight
-      summary: Find the top artist in a country, resolve their full profile, and list their top albums.
-    - url: arazzo/lastfm-loved-tracks-insight-workflow.yml
-      name: Last.fm Loved Tracks Insight
-      summary: Read a user's loved tracks, resolve the latest one's full info, and surface the community tags that describe it.
-    - url: arazzo/lastfm-now-playing-context-workflow.yml
-      name: Last.fm Now Playing Context
-      summary: Read a user's most recent track, resolve its full info, and surface the community tags that describe it.
-    - url: arazzo/lastfm-tag-to-track-workflow.yml
-      name: Last.fm Tag To Track Deep Dive
-      summary: Resolve a tag's metadata, pull its top tracks, and fetch full info for the leading track.
-    - url: arazzo/lastfm-track-radio-workflow.yml
-      name: Last.fm Track Radio Seed
-      summary: "Search for a track, resolve its full info, and build a similar-tracks radio seed \u2014 branching when no match is found."
-    - url: arazzo/lastfm-user-taste-profile-workflow.yml
-      name: Last.fm User Taste Profile
-      summary: Read a user's profile, find their top artist for a period, and surface that artist's top tracks.
+  - type: Arazzo
+    url: arazzo/lastfm-album-genre-profile-workflow.yml
+    name: Last.fm Album Genre Profile
+  - type: Arazzo
+    url: arazzo/lastfm-artist-discovery-workflow.yml
+    name: Last.fm Artist Discovery
+  - type: Arazzo
+    url: arazzo/lastfm-chart-to-album-workflow.yml
+    name: Last.fm Chart To Album Deep Dive
+  - type: Arazzo
+    url: arazzo/lastfm-genre-artist-explorer-workflow.yml
+    name: Last.fm Genre Artist Explorer
+  - type: Arazzo
+    url: arazzo/lastfm-geo-artist-spotlight-workflow.yml
+    name: Last.fm Geo Artist Spotlight
+  - type: Arazzo
+    url: arazzo/lastfm-loved-tracks-insight-workflow.yml
+    name: Last.fm Loved Tracks Insight
+  - type: Arazzo
+    url: arazzo/lastfm-now-playing-context-workflow.yml
+    name: Last.fm Now Playing Context
+  - type: Arazzo
+    url: arazzo/lastfm-tag-to-track-workflow.yml
+    name: Last.fm Tag To Track Deep Dive
+  - type: Arazzo
+    url: arazzo/lastfm-track-radio-workflow.yml
+    name: Last.fm Track Radio Seed
+  - type: Arazzo
+    url: arazzo/lastfm-user-taste-profile-workflow.yml
+    name: Last.fm User Taste Profile
   - type: Website
     url: https://www.last.fm
   - type: DeveloperPortal
@@ -217,13 +214,13 @@ common:
     url: https://www.last.fm/api/intro
   - type: Authentication
     url: https://www.last.fm/api/authentication
-  - type: SignUp
+  - type: Signup
     url: https://www.last.fm/api/account/create
   - type: TermsOfService
     url: https://www.last.fm/api/tos
   - type: PrivacyPolicy
     url: https://www.last.fm/legal/privacy
-  - type: Errors
+  - type: ErrorCodes
     url: https://www.last.fm/api/errorcodes
   - type: Support
     url: https://support.last.fm
@@ -243,46 +240,46 @@ common:
     url: json-ld/lastfm-context.jsonld
   - type: PublicAPIsListing
     url: https://github.com/public-apis/public-apis
-  - type: SDK
+  - type: SDKs
     url: https://github.com/inflatablefriends/lastfm
     title: Inflatable.Lastfm (.NET / NuGet) — portable C# client
-  - type: SDK
+  - type: SDKs
     url: https://github.com/feross/last-fm
     title: feross/last-fm (JavaScript) — simple public-data client
-  - type: SDK
+  - type: SDKs
     url: https://github.com/dandelionmood/php-lastfm
     title: dandelionmood/php-lastfm (PHP) — dead-simple wrapper
-  - type: SDK
+  - type: SDKs
     url: https://github.com/barryvanveen/lastfm
     title: barryvanveen/lastfm (PHP + Laravel service provider)
-  - type: SDK
+  - type: SDKs
     url: https://github.com/gordonbisnor/lastfm
     title: gordonbisnor/lastfm (Ruby) — Rails plugin
-  - type: SDK
+  - type: SDKs
     url: https://github.com/codegram/lastfm
     title: codegram/lastfm (Ruby) — broad method coverage
-  - type: SDK
+  - type: SDKs
     url: https://github.com/theorangewill/pylastfmapi
     title: theorangewill/pylastfmapi (Python)
-  - type: SDK
+  - type: SDKs
     url: https://github.com/jrichocean/Elixirfm
     title: jrichocean/Elixirfm (Elixir)
-  - type: SDK
+  - type: SDKs
     url: https://github.com/mihaiolteanu/lastfm
     title: mihaiolteanu/lastfm (Common Lisp)
-  - type: SDK
+  - type: SDKs
     url: https://github.com/supki/liblastfm
     title: supki/liblastfm (Haskell)
-  - type: SDK
+  - type: SDKs
     url: https://github.com/Nebulino/Scrobblenaut
     title: Nebulino/Scrobblenaut (Dart)
-  - type: SDK
+  - type: SDKs
     url: https://github.com/SHOEGAZEssb/Shoegaze.LastFM
     title: SHOEGAZEssb/Shoegaze.LastFM (modern C#)
-  - type: SDK
+  - type: SDKs
     url: https://github.com/mannuelf/lastfm-nodejs-client
     title: mannuelf/lastfm-nodejs-client (TypeScript / Node.js)
-  - type: SDK
+  - type: SDKs
     url: https://github.com/michaellavelle/spring-social-lastfm
     title: michaellavelle/spring-social-lastfm (Java / Spring Social)
   - type: Tools
