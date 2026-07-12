@@ -1,0 +1,26 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/lastfm-openapi-original.yml
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - query
+schemes:
+- name: ApiKeyAuth
+  type: apiKey
+  in: query
+  parameter: api_key
+  description: Required on all calls. Obtain from https://www.last.fm/api/account/create.
+  sources:
+  - openapi/lastfm-openapi-original.yml
+- name: SignedAuth
+  type: apiKey
+  in: query
+  parameter: api_sig
+  description: |-
+    MD5 signature of all request parameters (excluding format and callback)
+    sorted alphabetically by name, concatenated as name+value pairs, with
+    the shared secret appended. Required for all write/auth methods.
+  sources:
+  - openapi/lastfm-openapi-original.yml

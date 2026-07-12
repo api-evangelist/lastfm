@@ -170,6 +170,10 @@ apis:
       - type: ListenBrainz
         description: ListenBrainz publishes a Last.fm-compatible API surface for portable scrobbling.
 common:
+  - type: DomainSecurity
+    url: security/lastfm-domain-security.yml
+  - type: Authentication
+    url: authentication/lastfm-authentication.yml
   - type: PostmanWorkspace
     url: https://www.postman.com/kinlaneapi/lastfm/overview
   - type: Arazzo
