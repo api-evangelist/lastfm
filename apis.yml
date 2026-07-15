@@ -170,6 +170,8 @@ apis:
       - type: ListenBrainz
         description: ListenBrainz publishes a Last.fm-compatible API surface for portable scrobbling.
 common:
+  - type: AgenticAccess
+    url: agentic-access/lastfm-agentic-access.yml
   - type: DomainSecurity
     url: security/lastfm-domain-security.yml
   - type: Authentication
