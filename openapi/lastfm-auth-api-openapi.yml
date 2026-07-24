@@ -1,0 +1,271 @@
+openapi: 3.0.3
+info:
+  title: Last.fm Web Services API (2.0) Album Auth API
+  version: '2.0'
+  description: 'The Last.fm (AudioScrobbler) Web Services 2.0 API provides programmatic access to
+
+    music metadata, charts, geo-listening data, tags, user listening history, and
+
+    scrobbling. The API is method-dispatched: every request targets the single endpoint
+
+    `https://ws.audioscrobbler.com/2.0/` and identifies the operation via the `method`
+
+    query/body parameter (e.g. `method=track.getInfo`).
+
+
+    Read methods accept `GET`; write methods (scrobbling, tagging, love/unlove, session
+
+    management) require `POST` with an authenticated session key and a signed
+
+    `api_sig` parameter (MD5 of sorted params + shared secret).
+
+
+    Responses default to XML; pass `format=json` for JSON.
+
+    '
+  termsOfService: https://www.last.fm/api/tos
+  contact:
+    name: Last.fm API Support
+    url: https://www.last.fm/api
+    email: partners@last.fm
+  license:
+    name: Last.fm API Terms of Service
+    url: https://www.last.fm/api/tos
+servers:
+- url: https://ws.audioscrobbler.com/2.0
+  description: Production AudioScrobbler endpoint
+- url: http://ws.audioscrobbler.com/2.0
+  description: Non-TLS endpoint (legacy)
+security:
+- ApiKeyAuth: []
+- SignedAuth: []
+tags:
+- name: Auth
+  description: Token, session, and mobile session acquisition for authenticated calls.
+paths:
+  /:
+    post:
+      operationId: invokeWriteMethod
+      summary: Invoke A Write Method
+      description: 'Single write-side dispatch endpoint. Used for authenticated write actions:
+
+        `track.scrobble`, `track.updateNowPlaying`, `track.love`, `track.unlove`,
+
+        `album.addTags`, `album.removeTag`, `artist.addTags`, `artist.removeTag`,
+
+        `track.addTags`, `track.removeTag`. POST body parameters are
+
+        `application/x-www-form-urlencoded` UTF-8 encoded and must include
+
+        `api_key`, `sk` (session key), and `api_sig`.
+
+        '
+      tags:
+      - Auth
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/WriteRequestBody'
+      responses:
+        '200':
+          description: Successful write response with status wrapper.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WriteResponse'
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+        '403':
+          $ref: '#/components/responses/ErrorResponse'
+        '429':
+          $ref: '#/components/responses/ErrorResponse'
+  /?method=auth.getMobileSession:
+    post:
+      operationId: authGetMobileSession
+      summary: Get Mobile Session
+      tags:
+      - Auth
+      description: Create a Last.fm web service session for a user. Used by mobile devices. Requires signed POST.
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required:
+              - method
+              - api_key
+              - username
+              - password
+              - api_sig
+              properties:
+                method:
+                  type: string
+                  enum:
+                  - auth.getMobileSession
+                api_key:
+                  type: string
+                username:
+                  type: string
+                password:
+                  type: string
+                api_sig:
+                  type: string
+                  description: MD5 signature of sorted params + secret.
+      responses:
+        '200':
+          description: Session response with session key, name, and subscriber flag.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SessionResponse'
+  /?method=auth.getSession:
+    get:
+      operationId: authGetSession
+      summary: Get Web Session
+      tags:
+      - Auth
+      description: Fetch a session key for a user using a previously authorized token.
+      parameters:
+      - $ref: '#/components/parameters/ApiKeyParam'
+      - $ref: '#/components/parameters/FormatParam'
+      - name: token
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: api_sig
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Session response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SessionResponse'
+  /?method=auth.getToken:
+    get:
+      operationId: authGetToken
+      summary: Get Auth Token
+      tags:
+      - Auth
+      description: Fetch an unauthorized request token for an API account. Returns a token to be authorized by the user.
+      parameters:
+      - $ref: '#/components/parameters/ApiKeyParam'
+      - $ref: '#/components/parameters/FormatParam'
+      responses:
+        '200':
+          description: Unauthorized token.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  token:
+                    type: string
+components:
+  responses:
+    ErrorResponse:
+      description: Error response (status='failed').
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorPayload'
+        application/xml:
+          schema:
+            type: string
+            description: '`<lfm status="failed"><error code="N">message</error></lfm>`'
+  schemas:
+    WriteResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          example: ok
+    SessionResponse:
+      type: object
+      properties:
+        session:
+          type: object
+          properties:
+            name:
+              type: string
+            key:
+              type: string
+            subscriber:
+              type: integer
+    ErrorPayload:
+      type: object
+      properties:
+        error:
+          type: integer
+          description: 'Numeric Last.fm error code. Common: 2 invalid service, 3 invalid method,
+
+            4 authentication failed, 5 invalid format, 6 invalid parameters,
+
+            7 invalid resource, 8 operation failed, 9 invalid session key,
+
+            10 invalid api key, 11 service offline, 13 invalid method signature,
+
+            16 service temporarily unavailable, 26 suspended api key, 29 rate limit exceeded.
+
+            '
+        message:
+          type: string
+    WriteRequestBody:
+      type: object
+      required:
+      - method
+      - api_key
+      properties:
+        method:
+          type: string
+        api_key:
+          type: string
+        sk:
+          type: string
+          description: Session key returned by auth.getSession / auth.getMobileSession.
+        api_sig:
+          type: string
+          description: MD5 signature of params + secret.
+      additionalProperties: true
+  parameters:
+    ApiKeyParam:
+      name: api_key
+      in: query
+      required: true
+      schema:
+        type: string
+      description: Your Last.fm API key.
+    FormatParam:
+      name: format
+      in: query
+      schema:
+        type: string
+        enum:
+        - xml
+        - json
+        default: xml
+      description: Response format. Defaults to XML.
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: query
+      name: api_key
+      description: Required on all calls. Obtain from https://www.last.fm/api/account/create.
+    SignedAuth:
+      type: apiKey
+      in: query
+      name: api_sig
+      description: 'MD5 signature of all request parameters (excluding format and callback)
+
+        sorted alphabetically by name, concatenated as name+value pairs, with
+
+        the shared secret appended. Required for all write/auth methods.
+
+        '
