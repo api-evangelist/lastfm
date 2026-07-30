@@ -13,9 +13,22 @@ description: >-
   The API is free for non-commercial use; commercial use requires a separate
   agreement via partners@last.fm.
 type: Index
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
 position: Consuming
 access: 3rd-Party
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/lastfm.png
 tags:
   - Music
   - Audio
@@ -34,141 +47,708 @@ x-type: company
 x-tier: 3
 x-tier-reason: bulk-registered-from-public-apis-then-enriched
 apis:
-  - aid: lastfm:lastfm-web-services-2-0
-    name: Last.fm Web Services 2.0
-    description: >-
-      The AudioScrobbler / Last.fm Web Services 2.0 API. A single method-dispatched
-      endpoint (`https://ws.audioscrobbler.com/2.0/`) serves all read operations as
-      GET requests and all authenticated write operations as POST requests. Methods
-      are organized by package: album, artist, auth, chart, geo, library, tag,
-      track, user. Default response format is XML; pass `format=json` for JSON.
-    humanURL: https://www.last.fm/api
-    baseURL: https://ws.audioscrobbler.com/2.0
-    tags:
-      - Album
-      - Artist
-      - Auth
-      - Chart
-      - Geo
-      - Library
-      - Tag
-      - Track
-      - User
-      - Scrobbling
-    properties:
-      - type: Documentation
-        url: https://www.last.fm/api
-      - type: OpenAPI
-        url: openapi/lastfm-openapi-original.yml
-      - type: GettingStarted
-        url: https://www.last.fm/api/intro
-      - type: APIReference
-        url: https://www.last.fm/api/intro
-      - type: Authentication
-        url: https://www.last.fm/api/authentication
-      - type: Signup
-        url: https://www.last.fm/api/account/create
-      - type: RateLimits
-        url: rate-limits/lastfm-rate-limits.yml
-      - type: TermsOfService
-        url: https://www.last.fm/api/tos
-      - type: ErrorCodes
-        url: https://www.last.fm/api/errorcodes
-      - type: JSONSchema
-        url: json-schema/lastfm-album-schema.json
-      - type: JSONSchema
-        url: json-schema/lastfm-artist-schema.json
-      - type: JSONSchema
-        url: json-schema/lastfm-track-schema.json
-      - type: JSONSchema
-        url: json-schema/lastfm-tag-schema.json
-      - type: JSONSchema
-        url: json-schema/lastfm-user-schema.json
-      - type: JSONStructure
-        url: json-structure/lastfm-album-structure.json
-      - type: JSONStructure
-        url: json-structure/lastfm-artist-structure.json
-      - type: JSONStructure
-        url: json-structure/lastfm-track-structure.json
-      - type: JSONLD
-        url: json-ld/lastfm-context.jsonld
-      - type: Examples
-        url: examples/lastfm-album-getinfo-example.json
-      - type: Examples
-        url: examples/lastfm-artist-getinfo-example.json
-      - type: Examples
-        url: examples/lastfm-track-getinfo-example.json
-      - type: Examples
-        url: examples/lastfm-chart-gettopartists-example.json
-      - type: Examples
-        url: examples/lastfm-user-getrecenttracks-example.json
-      - type: Examples
-        url: examples/lastfm-track-scrobble-example.json
-      - type: X-NaftikoCapability
-        url: capabilities/lastfm-album.yaml
-      - type: X-NaftikoCapability
-        url: capabilities/lastfm-artist.yaml
-      - type: X-NaftikoCapability
-        url: capabilities/lastfm-auth.yaml
-      - type: X-NaftikoCapability
-        url: capabilities/lastfm-chart.yaml
-      - type: X-NaftikoCapability
-        url: capabilities/lastfm-geo.yaml
-      - type: X-NaftikoCapability
-        url: capabilities/lastfm-library.yaml
-      - type: X-NaftikoCapability
-        url: capabilities/lastfm-tag.yaml
-      - type: X-NaftikoCapability
-        url: capabilities/lastfm-track.yaml
-      - type: X-NaftikoCapability
-        url: capabilities/lastfm-user.yaml
-      - type: X-NaftikoCapability
-        url: capabilities/music-discovery.yaml
-      - type: X-NaftikoCapability
-        url: capabilities/music-scrobbling.yaml
-    features:
-      - type: MusicCatalog
-        description: Artist, album, track, and tag metadata for the Last.fm music graph.
-      - type: Scrobbling
-        description: Authenticated track.scrobble write surface (Scrobbling 2.0) with batching up to 50 plays per request.
-      - type: ListeningHistory
-        description: Per-user recent tracks, loved tracks, weekly charts, and personal tags.
-      - type: SimilarityGraph
-        description: Artist-to-artist, track-to-track, and tag-to-tag similarity derived from listening data.
-      - type: GlobalCharts
-        description: Top artists, top tracks, and top tags across the entire Last.fm community.
-      - type: GeoCharts
-        description: Top artists and tracks by country (geo.getTopArtists / geo.getTopTracks).
-      - type: TaggingFolksonomy
-        description: User-applied free-form tags on artists, albums, and tracks; weighted by usage.
-      - type: NowPlaying
-        description: Lightweight currently-listening signal that does not affect charts.
-      - type: Corrections
-        description: Canonical name resolution for misspelled artist/track inputs.
-      - type: WeeklyCharts
-        description: Per-user, per-tag, and global week-bounded chart slices addressable by Unix timestamp range.
-    useCases:
-      - type: MusicRecommendation
-        description: Build recommendation engines using artist.getSimilar, track.getSimilar, and tag-based pivots.
-      - type: ListenLogging
-        description: Scrobble plays from desktop, mobile, or embedded players to a user's Last.fm profile.
-      - type: TasteProfiling
-        description: Aggregate user.getTopArtists/Albums/Tracks across `overall|7day|1month|3month|6month|12month` periods to model taste.
-      - type: MusicDiscoveryDashboards
-        description: Compose chart, geo, and tag endpoints into trend/discovery dashboards.
-      - type: PlaylistEnrichment
-        description: Augment a playlist UI with Last.fm metadata, top tags, similar artists, and bio content.
-      - type: ResearchAndAcademia
-        description: Use anonymized listening data for music information retrieval (MIR) research — under a commercial use agreement.
-      - type: NowPlayingWidgets
-        description: Public "now playing" / recent-track widgets from user.getRecentTracks.
-    integrations:
-      - type: MusicBrainz
-        description: Last.fm accepts MusicBrainz IDs (mbid) in place of artist/album/track name parameters.
-      - type: Spotify
-        description: Common pairing — many third-party tools sync Spotify playback to Last.fm scrobbles.
-      - type: ListenBrainz
-        description: ListenBrainz publishes a Last.fm-compatible API surface for portable scrobbling.
+- aid: lastfm:lastfm-album-api
+  name: Last.fm Album API
+  description: Album metadata, tagging, and search.
+  humanURL: https://www.last.fm/api
+  baseURL: https://ws.audioscrobbler.com/2.0
+  tags:
+  - Album
+  properties:
+  - type: OpenAPI
+    url: openapi/lastfm-album-api-openapi.yml
+  - type: Documentation
+    url: https://www.last.fm/api
+  - type: GettingStarted
+    url: https://www.last.fm/api/intro
+  - type: APIReference
+    url: https://www.last.fm/api/intro
+  - type: Authentication
+    url: https://www.last.fm/api/authentication
+  - type: Signup
+    url: https://www.last.fm/api/account/create
+  - type: RateLimits
+    url: rate-limits/lastfm-rate-limits.yml
+  - type: TermsOfService
+    url: https://www.last.fm/api/tos
+  - type: ErrorCodes
+    url: https://www.last.fm/api/errorcodes
+  - type: JSONSchema
+    url: json-schema/lastfm-album-schema.json
+  - type: JSONSchema
+    url: json-schema/lastfm-artist-schema.json
+  - type: JSONSchema
+    url: json-schema/lastfm-track-schema.json
+  - type: JSONSchema
+    url: json-schema/lastfm-tag-schema.json
+  - type: JSONSchema
+    url: json-schema/lastfm-user-schema.json
+  - type: JSONStructure
+    url: json-structure/lastfm-album-structure.json
+  - type: JSONStructure
+    url: json-structure/lastfm-artist-structure.json
+  - type: JSONStructure
+    url: json-structure/lastfm-track-structure.json
+  - type: JSONLD
+    url: json-ld/lastfm-context.jsonld
+  - type: Examples
+    url: examples/lastfm-album-getinfo-example.json
+  - type: Examples
+    url: examples/lastfm-artist-getinfo-example.json
+  - type: Examples
+    url: examples/lastfm-track-getinfo-example.json
+  - type: Examples
+    url: examples/lastfm-chart-gettopartists-example.json
+  - type: Examples
+    url: examples/lastfm-user-getrecenttracks-example.json
+  - type: Examples
+    url: examples/lastfm-track-scrobble-example.json
+  - type: X-NaftikoCapability
+    url: capabilities/lastfm-album.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/lastfm-artist.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/lastfm-auth.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/lastfm-chart.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/lastfm-geo.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/lastfm-library.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/lastfm-tag.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/lastfm-track.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/lastfm-user.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/music-discovery.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/music-scrobbling.yaml
+- aid: lastfm:lastfm-artist-api
+  name: Last.fm Artist API
+  description: Artist metadata, similarity, tagging, top albums/tracks, and search.
+  humanURL: https://www.last.fm/api
+  baseURL: https://ws.audioscrobbler.com/2.0
+  tags:
+  - Artist
+  properties:
+  - type: OpenAPI
+    url: openapi/lastfm-artist-api-openapi.yml
+  - type: Documentation
+    url: https://www.last.fm/api
+  - type: GettingStarted
+    url: https://www.last.fm/api/intro
+  - type: APIReference
+    url: https://www.last.fm/api/intro
+  - type: Authentication
+    url: https://www.last.fm/api/authentication
+  - type: Signup
+    url: https://www.last.fm/api/account/create
+  - type: RateLimits
+    url: rate-limits/lastfm-rate-limits.yml
+  - type: TermsOfService
+    url: https://www.last.fm/api/tos
+  - type: ErrorCodes
+    url: https://www.last.fm/api/errorcodes
+  - type: JSONSchema
+    url: json-schema/lastfm-album-schema.json
+  - type: JSONSchema
+    url: json-schema/lastfm-artist-schema.json
+  - type: JSONSchema
+    url: json-schema/lastfm-track-schema.json
+  - type: JSONSchema
+    url: json-schema/lastfm-tag-schema.json
+  - type: JSONSchema
+    url: json-schema/lastfm-user-schema.json
+  - type: JSONStructure
+    url: json-structure/lastfm-album-structure.json
+  - type: JSONStructure
+    url: json-structure/lastfm-artist-structure.json
+  - type: JSONStructure
+    url: json-structure/lastfm-track-structure.json
+  - type: JSONLD
+    url: json-ld/lastfm-context.jsonld
+  - type: Examples
+    url: examples/lastfm-album-getinfo-example.json
+  - type: Examples
+    url: examples/lastfm-artist-getinfo-example.json
+  - type: Examples
+    url: examples/lastfm-track-getinfo-example.json
+  - type: Examples
+    url: examples/lastfm-chart-gettopartists-example.json
+  - type: Examples
+    url: examples/lastfm-user-getrecenttracks-example.json
+  - type: Examples
+    url: examples/lastfm-track-scrobble-example.json
+  - type: X-NaftikoCapability
+    url: capabilities/lastfm-album.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/lastfm-artist.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/lastfm-auth.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/lastfm-chart.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/lastfm-geo.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/lastfm-library.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/lastfm-tag.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/lastfm-track.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/lastfm-user.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/music-discovery.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/music-scrobbling.yaml
+- aid: lastfm:lastfm-auth-api
+  name: Last.fm Auth API
+  description: Token, session, and mobile session acquisition for authenticated calls.
+  humanURL: https://www.last.fm/api
+  baseURL: https://ws.audioscrobbler.com/2.0
+  tags:
+  - Auth
+  properties:
+  - type: OpenAPI
+    url: openapi/lastfm-auth-api-openapi.yml
+  - type: Documentation
+    url: https://www.last.fm/api
+  - type: GettingStarted
+    url: https://www.last.fm/api/intro
+  - type: APIReference
+    url: https://www.last.fm/api/intro
+  - type: Authentication
+    url: https://www.last.fm/api/authentication
+  - type: Signup
+    url: https://www.last.fm/api/account/create
+  - type: RateLimits
+    url: rate-limits/lastfm-rate-limits.yml
+  - type: TermsOfService
+    url: https://www.last.fm/api/tos
+  - type: ErrorCodes
+    url: https://www.last.fm/api/errorcodes
+  - type: JSONSchema
+    url: json-schema/lastfm-album-schema.json
+  - type: JSONSchema
+    url: json-schema/lastfm-artist-schema.json
+  - type: JSONSchema
+    url: json-schema/lastfm-track-schema.json
+  - type: JSONSchema
+    url: json-schema/lastfm-tag-schema.json
+  - type: JSONSchema
+    url: json-schema/lastfm-user-schema.json
+  - type: JSONStructure
+    url: json-structure/lastfm-album-structure.json
+  - type: JSONStructure
+    url: json-structure/lastfm-artist-structure.json
+  - type: JSONStructure
+    url: json-structure/lastfm-track-structure.json
+  - type: JSONLD
+    url: json-ld/lastfm-context.jsonld
+  - type: Examples
+    url: examples/lastfm-album-getinfo-example.json
+  - type: Examples
+    url: examples/lastfm-artist-getinfo-example.json
+  - type: Examples
+    url: examples/lastfm-track-getinfo-example.json
+  - type: Examples
+    url: examples/lastfm-chart-gettopartists-example.json
+  - type: Examples
+    url: examples/lastfm-user-getrecenttracks-example.json
+  - type: Examples
+    url: examples/lastfm-track-scrobble-example.json
+  - type: X-NaftikoCapability
+    url: capabilities/lastfm-album.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/lastfm-artist.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/lastfm-auth.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/lastfm-chart.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/lastfm-geo.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/lastfm-library.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/lastfm-tag.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/lastfm-track.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/lastfm-user.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/music-discovery.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/music-scrobbling.yaml
+- aid: lastfm:lastfm-chart-api
+  name: Last.fm Chart API
+  description: Global top artists, tags, and tracks.
+  humanURL: https://www.last.fm/api
+  baseURL: https://ws.audioscrobbler.com/2.0
+  tags:
+  - Chart
+  properties:
+  - type: OpenAPI
+    url: openapi/lastfm-chart-api-openapi.yml
+  - type: Documentation
+    url: https://www.last.fm/api
+  - type: GettingStarted
+    url: https://www.last.fm/api/intro
+  - type: APIReference
+    url: https://www.last.fm/api/intro
+  - type: Authentication
+    url: https://www.last.fm/api/authentication
+  - type: Signup
+    url: https://www.last.fm/api/account/create
+  - type: RateLimits
+    url: rate-limits/lastfm-rate-limits.yml
+  - type: TermsOfService
+    url: https://www.last.fm/api/tos
+  - type: ErrorCodes
+    url: https://www.last.fm/api/errorcodes
+  - type: JSONSchema
+    url: json-schema/lastfm-album-schema.json
+  - type: JSONSchema
+    url: json-schema/lastfm-artist-schema.json
+  - type: JSONSchema
+    url: json-schema/lastfm-track-schema.json
+  - type: JSONSchema
+    url: json-schema/lastfm-tag-schema.json
+  - type: JSONSchema
+    url: json-schema/lastfm-user-schema.json
+  - type: JSONStructure
+    url: json-structure/lastfm-album-structure.json
+  - type: JSONStructure
+    url: json-structure/lastfm-artist-structure.json
+  - type: JSONStructure
+    url: json-structure/lastfm-track-structure.json
+  - type: JSONLD
+    url: json-ld/lastfm-context.jsonld
+  - type: Examples
+    url: examples/lastfm-album-getinfo-example.json
+  - type: Examples
+    url: examples/lastfm-artist-getinfo-example.json
+  - type: Examples
+    url: examples/lastfm-track-getinfo-example.json
+  - type: Examples
+    url: examples/lastfm-chart-gettopartists-example.json
+  - type: Examples
+    url: examples/lastfm-user-getrecenttracks-example.json
+  - type: Examples
+    url: examples/lastfm-track-scrobble-example.json
+  - type: X-NaftikoCapability
+    url: capabilities/lastfm-album.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/lastfm-artist.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/lastfm-auth.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/lastfm-chart.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/lastfm-geo.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/lastfm-library.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/lastfm-tag.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/lastfm-track.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/lastfm-user.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/music-discovery.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/music-scrobbling.yaml
+- aid: lastfm:lastfm-geo-api
+  name: Last.fm Geo API
+  description: Country-level top artists and tracks.
+  humanURL: https://www.last.fm/api
+  baseURL: https://ws.audioscrobbler.com/2.0
+  tags:
+  - Geo
+  properties:
+  - type: OpenAPI
+    url: openapi/lastfm-geo-api-openapi.yml
+  - type: Documentation
+    url: https://www.last.fm/api
+  - type: GettingStarted
+    url: https://www.last.fm/api/intro
+  - type: APIReference
+    url: https://www.last.fm/api/intro
+  - type: Authentication
+    url: https://www.last.fm/api/authentication
+  - type: Signup
+    url: https://www.last.fm/api/account/create
+  - type: RateLimits
+    url: rate-limits/lastfm-rate-limits.yml
+  - type: TermsOfService
+    url: https://www.last.fm/api/tos
+  - type: ErrorCodes
+    url: https://www.last.fm/api/errorcodes
+  - type: JSONSchema
+    url: json-schema/lastfm-album-schema.json
+  - type: JSONSchema
+    url: json-schema/lastfm-artist-schema.json
+  - type: JSONSchema
+    url: json-schema/lastfm-track-schema.json
+  - type: JSONSchema
+    url: json-schema/lastfm-tag-schema.json
+  - type: JSONSchema
+    url: json-schema/lastfm-user-schema.json
+  - type: JSONStructure
+    url: json-structure/lastfm-album-structure.json
+  - type: JSONStructure
+    url: json-structure/lastfm-artist-structure.json
+  - type: JSONStructure
+    url: json-structure/lastfm-track-structure.json
+  - type: JSONLD
+    url: json-ld/lastfm-context.jsonld
+  - type: Examples
+    url: examples/lastfm-album-getinfo-example.json
+  - type: Examples
+    url: examples/lastfm-artist-getinfo-example.json
+  - type: Examples
+    url: examples/lastfm-track-getinfo-example.json
+  - type: Examples
+    url: examples/lastfm-chart-gettopartists-example.json
+  - type: Examples
+    url: examples/lastfm-user-getrecenttracks-example.json
+  - type: Examples
+    url: examples/lastfm-track-scrobble-example.json
+  - type: X-NaftikoCapability
+    url: capabilities/lastfm-album.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/lastfm-artist.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/lastfm-auth.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/lastfm-chart.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/lastfm-geo.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/lastfm-library.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/lastfm-tag.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/lastfm-track.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/lastfm-user.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/music-discovery.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/music-scrobbling.yaml
+- aid: lastfm:lastfm-library-api
+  name: Last.fm Library API
+  description: A user's scrobbled artist library.
+  humanURL: https://www.last.fm/api
+  baseURL: https://ws.audioscrobbler.com/2.0
+  tags:
+  - Library
+  properties:
+  - type: OpenAPI
+    url: openapi/lastfm-library-api-openapi.yml
+  - type: Documentation
+    url: https://www.last.fm/api
+  - type: GettingStarted
+    url: https://www.last.fm/api/intro
+  - type: APIReference
+    url: https://www.last.fm/api/intro
+  - type: Authentication
+    url: https://www.last.fm/api/authentication
+  - type: Signup
+    url: https://www.last.fm/api/account/create
+  - type: RateLimits
+    url: rate-limits/lastfm-rate-limits.yml
+  - type: TermsOfService
+    url: https://www.last.fm/api/tos
+  - type: ErrorCodes
+    url: https://www.last.fm/api/errorcodes
+  - type: JSONSchema
+    url: json-schema/lastfm-album-schema.json
+  - type: JSONSchema
+    url: json-schema/lastfm-artist-schema.json
+  - type: JSONSchema
+    url: json-schema/lastfm-track-schema.json
+  - type: JSONSchema
+    url: json-schema/lastfm-tag-schema.json
+  - type: JSONSchema
+    url: json-schema/lastfm-user-schema.json
+  - type: JSONStructure
+    url: json-structure/lastfm-album-structure.json
+  - type: JSONStructure
+    url: json-structure/lastfm-artist-structure.json
+  - type: JSONStructure
+    url: json-structure/lastfm-track-structure.json
+  - type: JSONLD
+    url: json-ld/lastfm-context.jsonld
+  - type: Examples
+    url: examples/lastfm-album-getinfo-example.json
+  - type: Examples
+    url: examples/lastfm-artist-getinfo-example.json
+  - type: Examples
+    url: examples/lastfm-track-getinfo-example.json
+  - type: Examples
+    url: examples/lastfm-chart-gettopartists-example.json
+  - type: Examples
+    url: examples/lastfm-user-getrecenttracks-example.json
+  - type: Examples
+    url: examples/lastfm-track-scrobble-example.json
+  - type: X-NaftikoCapability
+    url: capabilities/lastfm-album.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/lastfm-artist.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/lastfm-auth.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/lastfm-chart.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/lastfm-geo.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/lastfm-library.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/lastfm-tag.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/lastfm-track.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/lastfm-user.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/music-discovery.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/music-scrobbling.yaml
+- aid: lastfm:lastfm-tag-api
+  name: Last.fm Tag API
+  description: Tag metadata, similar tags, top albums/artists/tracks, and chart history.
+  humanURL: https://www.last.fm/api
+  baseURL: https://ws.audioscrobbler.com/2.0
+  tags:
+  - Tag
+  properties:
+  - type: OpenAPI
+    url: openapi/lastfm-tag-api-openapi.yml
+  - type: Documentation
+    url: https://www.last.fm/api
+  - type: GettingStarted
+    url: https://www.last.fm/api/intro
+  - type: APIReference
+    url: https://www.last.fm/api/intro
+  - type: Authentication
+    url: https://www.last.fm/api/authentication
+  - type: Signup
+    url: https://www.last.fm/api/account/create
+  - type: RateLimits
+    url: rate-limits/lastfm-rate-limits.yml
+  - type: TermsOfService
+    url: https://www.last.fm/api/tos
+  - type: ErrorCodes
+    url: https://www.last.fm/api/errorcodes
+  - type: JSONSchema
+    url: json-schema/lastfm-album-schema.json
+  - type: JSONSchema
+    url: json-schema/lastfm-artist-schema.json
+  - type: JSONSchema
+    url: json-schema/lastfm-track-schema.json
+  - type: JSONSchema
+    url: json-schema/lastfm-tag-schema.json
+  - type: JSONSchema
+    url: json-schema/lastfm-user-schema.json
+  - type: JSONStructure
+    url: json-structure/lastfm-album-structure.json
+  - type: JSONStructure
+    url: json-structure/lastfm-artist-structure.json
+  - type: JSONStructure
+    url: json-structure/lastfm-track-structure.json
+  - type: JSONLD
+    url: json-ld/lastfm-context.jsonld
+  - type: Examples
+    url: examples/lastfm-album-getinfo-example.json
+  - type: Examples
+    url: examples/lastfm-artist-getinfo-example.json
+  - type: Examples
+    url: examples/lastfm-track-getinfo-example.json
+  - type: Examples
+    url: examples/lastfm-chart-gettopartists-example.json
+  - type: Examples
+    url: examples/lastfm-user-getrecenttracks-example.json
+  - type: Examples
+    url: examples/lastfm-track-scrobble-example.json
+  - type: X-NaftikoCapability
+    url: capabilities/lastfm-album.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/lastfm-artist.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/lastfm-auth.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/lastfm-chart.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/lastfm-geo.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/lastfm-library.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/lastfm-tag.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/lastfm-track.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/lastfm-user.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/music-discovery.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/music-scrobbling.yaml
+- aid: lastfm:lastfm-track-api
+  name: Last.fm Track API
+  description: Track metadata, scrobbling, love/unlove, tagging, search.
+  humanURL: https://www.last.fm/api
+  baseURL: https://ws.audioscrobbler.com/2.0
+  tags:
+  - Track
+  properties:
+  - type: OpenAPI
+    url: openapi/lastfm-track-api-openapi.yml
+  - type: Documentation
+    url: https://www.last.fm/api
+  - type: GettingStarted
+    url: https://www.last.fm/api/intro
+  - type: APIReference
+    url: https://www.last.fm/api/intro
+  - type: Authentication
+    url: https://www.last.fm/api/authentication
+  - type: Signup
+    url: https://www.last.fm/api/account/create
+  - type: RateLimits
+    url: rate-limits/lastfm-rate-limits.yml
+  - type: TermsOfService
+    url: https://www.last.fm/api/tos
+  - type: ErrorCodes
+    url: https://www.last.fm/api/errorcodes
+  - type: JSONSchema
+    url: json-schema/lastfm-album-schema.json
+  - type: JSONSchema
+    url: json-schema/lastfm-artist-schema.json
+  - type: JSONSchema
+    url: json-schema/lastfm-track-schema.json
+  - type: JSONSchema
+    url: json-schema/lastfm-tag-schema.json
+  - type: JSONSchema
+    url: json-schema/lastfm-user-schema.json
+  - type: JSONStructure
+    url: json-structure/lastfm-album-structure.json
+  - type: JSONStructure
+    url: json-structure/lastfm-artist-structure.json
+  - type: JSONStructure
+    url: json-structure/lastfm-track-structure.json
+  - type: JSONLD
+    url: json-ld/lastfm-context.jsonld
+  - type: Examples
+    url: examples/lastfm-album-getinfo-example.json
+  - type: Examples
+    url: examples/lastfm-artist-getinfo-example.json
+  - type: Examples
+    url: examples/lastfm-track-getinfo-example.json
+  - type: Examples
+    url: examples/lastfm-chart-gettopartists-example.json
+  - type: Examples
+    url: examples/lastfm-user-getrecenttracks-example.json
+  - type: Examples
+    url: examples/lastfm-track-scrobble-example.json
+  - type: X-NaftikoCapability
+    url: capabilities/lastfm-album.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/lastfm-artist.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/lastfm-auth.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/lastfm-chart.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/lastfm-geo.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/lastfm-library.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/lastfm-tag.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/lastfm-track.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/lastfm-user.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/music-discovery.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/music-scrobbling.yaml
+- aid: lastfm:lastfm-user-api
+  name: Last.fm User API
+  description: User profile, friends, listening history, top entities, and weekly charts.
+  humanURL: https://www.last.fm/api
+  baseURL: https://ws.audioscrobbler.com/2.0
+  tags:
+  - User
+  properties:
+  - type: OpenAPI
+    url: openapi/lastfm-user-api-openapi.yml
+  - type: Documentation
+    url: https://www.last.fm/api
+  - type: GettingStarted
+    url: https://www.last.fm/api/intro
+  - type: APIReference
+    url: https://www.last.fm/api/intro
+  - type: Authentication
+    url: https://www.last.fm/api/authentication
+  - type: Signup
+    url: https://www.last.fm/api/account/create
+  - type: RateLimits
+    url: rate-limits/lastfm-rate-limits.yml
+  - type: TermsOfService
+    url: https://www.last.fm/api/tos
+  - type: ErrorCodes
+    url: https://www.last.fm/api/errorcodes
+  - type: JSONSchema
+    url: json-schema/lastfm-album-schema.json
+  - type: JSONSchema
+    url: json-schema/lastfm-artist-schema.json
+  - type: JSONSchema
+    url: json-schema/lastfm-track-schema.json
+  - type: JSONSchema
+    url: json-schema/lastfm-tag-schema.json
+  - type: JSONSchema
+    url: json-schema/lastfm-user-schema.json
+  - type: JSONStructure
+    url: json-structure/lastfm-album-structure.json
+  - type: JSONStructure
+    url: json-structure/lastfm-artist-structure.json
+  - type: JSONStructure
+    url: json-structure/lastfm-track-structure.json
+  - type: JSONLD
+    url: json-ld/lastfm-context.jsonld
+  - type: Examples
+    url: examples/lastfm-album-getinfo-example.json
+  - type: Examples
+    url: examples/lastfm-artist-getinfo-example.json
+  - type: Examples
+    url: examples/lastfm-track-getinfo-example.json
+  - type: Examples
+    url: examples/lastfm-chart-gettopartists-example.json
+  - type: Examples
+    url: examples/lastfm-user-getrecenttracks-example.json
+  - type: Examples
+    url: examples/lastfm-track-scrobble-example.json
+  - type: X-NaftikoCapability
+    url: capabilities/lastfm-album.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/lastfm-artist.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/lastfm-auth.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/lastfm-chart.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/lastfm-geo.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/lastfm-library.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/lastfm-tag.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/lastfm-track.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/lastfm-user.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/music-discovery.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/music-scrobbling.yaml
 common:
   - type: AgenticAccess
     url: agentic-access/lastfm-agentic-access.yml
