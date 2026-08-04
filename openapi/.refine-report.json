@@ -1,0 +1,30 @@
+{
+  "provider": "lastfm",
+  "sources": [
+    "lastfm-album-api-openapi.yml",
+    "lastfm-artist-api-openapi.yml",
+    "lastfm-auth-api-openapi.yml",
+    "lastfm-chart-api-openapi.yml",
+    "lastfm-geo-api-openapi.yml",
+    "lastfm-library-api-openapi.yml",
+    "lastfm-tag-api-openapi.yml",
+    "lastfm-track-api-openapi.yml",
+    "lastfm-user-api-openapi.yml"
+  ],
+  "outputs": [
+    "lastfm-album-api-openapi.yml",
+    "lastfm-artist-api-openapi.yml",
+    "lastfm-auth-api-openapi.yml",
+    "lastfm-chart-api-openapi.yml",
+    "lastfm-geo-api-openapi.yml",
+    "lastfm-library-api-openapi.yml",
+    "lastfm-tag-api-openapi.yml",
+    "lastfm-track-api-openapi.yml",
+    "lastfm-user-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
