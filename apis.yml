@@ -1,17 +1,13 @@
 aid: lastfm
 name: Last.fm
-description: >-
-  Last.fm is the long-running music recommendation, scrobbling, and music-data
-  service operated by CBS Interactive. Its Web Services 2.0 API (the
-  AudioScrobbler API at ws.audioscrobbler.com/2.0/) exposes catalog data
-  (artists, albums, tracks, tags), charts, geo-listening data, user listening
-  history (recent tracks, top tracks/albums/artists, weekly charts), and the
-  Scrobbling 2.0 write surface (track.scrobble, track.updateNowPlaying,
-  track.love). Every operation is dispatched through a single endpoint via the
-  `method` parameter (e.g. `method=user.getRecentTracks`). Authentication uses
-  an API key for reads and a signed (`api_sig`) session-key flow for writes.
-  The API is free for non-commercial use; commercial use requires a separate
-  agreement via partners@last.fm.
+description: Last.fm is the long-running music recommendation, scrobbling, and music-data service operated
+  by CBS Interactive. Its Web Services 2.0 API (the AudioScrobbler API at ws.audioscrobbler.com/2.0/)
+  exposes catalog data (artists, albums, tracks, tags), charts, geo-listening data, user listening history
+  (recent tracks, top tracks/albums/artists, weekly charts), and the Scrobbling 2.0 write surface (track.scrobble,
+  track.updateNowPlaying, track.love). Every operation is dispatched through a single endpoint via the
+  `method` parameter (e.g. `method=user.getRecentTracks`). Authentication uses an API key for reads and
+  a signed (`api_sig`) session-key flow for writes. The API is free for non-commercial use; commercial
+  use requires a separate agreement via partners@last.fm.
 type: Index
 accessModel:
   pricing: freemium
@@ -30,15 +26,15 @@ position: Consuming
 access: 3rd-Party
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/lastfm.png
 tags:
-  - Music
-  - Audio
-  - Scrobbling
-  - Recommendations
-  - Charts
-  - Public APIs
-  - AudioScrobbler
+- Music
+- Audio
+- Scrobbling
+- Recommendations
+- Charts
+- Public APIs
+- AudioScrobbler
 created: '2026-05-28'
-modified: '2026-05-29'
+modified: '2026-08-08'
 url: https://raw.githubusercontent.com/api-evangelist/lastfm/main/apis.yml
 specificationVersion: '0.20'
 x-source: public-apis/public-apis
@@ -750,130 +746,181 @@ apis:
   - type: X-NaftikoCapability
     url: capabilities/music-scrobbling.yaml
 common:
-  - type: AgenticAccess
-    url: agentic-access/lastfm-agentic-access.yml
-  - type: DomainSecurity
-    url: security/lastfm-domain-security.yml
-  - type: Authentication
-    url: authentication/lastfm-authentication.yml
-  - type: PostmanWorkspace
-    url: https://www.postman.com/kinlaneapi/lastfm/overview
-  - type: Arazzo
-    url: arazzo/lastfm-album-genre-profile-workflow.yml
-    name: Last.fm Album Genre Profile
-  - type: Arazzo
-    url: arazzo/lastfm-artist-discovery-workflow.yml
-    name: Last.fm Artist Discovery
-  - type: Arazzo
-    url: arazzo/lastfm-chart-to-album-workflow.yml
-    name: Last.fm Chart To Album Deep Dive
-  - type: Arazzo
-    url: arazzo/lastfm-genre-artist-explorer-workflow.yml
-    name: Last.fm Genre Artist Explorer
-  - type: Arazzo
-    url: arazzo/lastfm-geo-artist-spotlight-workflow.yml
-    name: Last.fm Geo Artist Spotlight
-  - type: Arazzo
-    url: arazzo/lastfm-loved-tracks-insight-workflow.yml
-    name: Last.fm Loved Tracks Insight
-  - type: Arazzo
-    url: arazzo/lastfm-now-playing-context-workflow.yml
-    name: Last.fm Now Playing Context
-  - type: Arazzo
-    url: arazzo/lastfm-tag-to-track-workflow.yml
-    name: Last.fm Tag To Track Deep Dive
-  - type: Arazzo
-    url: arazzo/lastfm-track-radio-workflow.yml
-    name: Last.fm Track Radio Seed
-  - type: Arazzo
-    url: arazzo/lastfm-user-taste-profile-workflow.yml
-    name: Last.fm User Taste Profile
-  - type: Website
-    url: https://www.last.fm
-  - type: DeveloperPortal
-    url: https://www.last.fm/api
-  - type: Documentation
-    url: https://www.last.fm/api
-  - type: GettingStarted
-    url: https://www.last.fm/api/intro
-  - type: APIReference
-    url: https://www.last.fm/api/intro
-  - type: Authentication
-    url: https://www.last.fm/api/authentication
-  - type: Signup
-    url: https://www.last.fm/api/account/create
-  - type: TermsOfService
-    url: https://www.last.fm/api/tos
-  - type: PrivacyPolicy
-    url: https://www.last.fm/legal/privacy
-  - type: ErrorCodes
-    url: https://www.last.fm/api/errorcodes
-  - type: Support
-    url: https://support.last.fm
-  - type: Contact
-    url: mailto:partners@last.fm
-  - type: GitHubOrganization
-    url: https://github.com/lastfm
-  - type: Pricing
-    url: plans/lastfm-plans-pricing.yml
-  - type: RateLimits
-    url: rate-limits/lastfm-rate-limits.yml
-  - type: SpectralRules
-    url: rules/lastfm-rules.yml
-  - type: Vocabulary
-    url: vocabulary/lastfm-vocabulary.yml
-  - type: JSONLD
-    url: json-ld/lastfm-context.jsonld
-  - type: PublicAPIsListing
-    url: https://github.com/public-apis/public-apis
-  - type: SDKs
-    url: https://github.com/inflatablefriends/lastfm
-    title: Inflatable.Lastfm (.NET / NuGet) — portable C# client
-  - type: SDKs
-    url: https://github.com/feross/last-fm
-    title: feross/last-fm (JavaScript) — simple public-data client
-  - type: SDKs
-    url: https://github.com/dandelionmood/php-lastfm
-    title: dandelionmood/php-lastfm (PHP) — dead-simple wrapper
-  - type: SDKs
-    url: https://github.com/barryvanveen/lastfm
-    title: barryvanveen/lastfm (PHP + Laravel service provider)
-  - type: SDKs
-    url: https://github.com/gordonbisnor/lastfm
-    title: gordonbisnor/lastfm (Ruby) — Rails plugin
-  - type: SDKs
-    url: https://github.com/codegram/lastfm
-    title: codegram/lastfm (Ruby) — broad method coverage
-  - type: SDKs
-    url: https://github.com/theorangewill/pylastfmapi
-    title: theorangewill/pylastfmapi (Python)
-  - type: SDKs
-    url: https://github.com/jrichocean/Elixirfm
-    title: jrichocean/Elixirfm (Elixir)
-  - type: SDKs
-    url: https://github.com/mihaiolteanu/lastfm
-    title: mihaiolteanu/lastfm (Common Lisp)
-  - type: SDKs
-    url: https://github.com/supki/liblastfm
-    title: supki/liblastfm (Haskell)
-  - type: SDKs
-    url: https://github.com/Nebulino/Scrobblenaut
-    title: Nebulino/Scrobblenaut (Dart)
-  - type: SDKs
-    url: https://github.com/SHOEGAZEssb/Shoegaze.LastFM
-    title: SHOEGAZEssb/Shoegaze.LastFM (modern C#)
-  - type: SDKs
-    url: https://github.com/mannuelf/lastfm-nodejs-client
-    title: mannuelf/lastfm-nodejs-client (TypeScript / Node.js)
-  - type: SDKs
-    url: https://github.com/michaellavelle/spring-social-lastfm
-    title: michaellavelle/spring-social-lastfm (Java / Spring Social)
-  - type: Tools
-    url: https://github.com/tfmart/ScrobblerContext
-    title: ScrobblerContext — Last.fm MCP server (Swift, stdio MCP transport, search/library/scrobble)
-  - type: Tools
-    url: https://github.com/rianvdm/lastfm-mcp
-    title: lastfm-mcp — Cloudflare Workers MCP server with OAuth 2.0 for AI access to Last.fm listening data
+- type: AgenticAccess
+  url: agentic-access/lastfm-agentic-access.yml
+- type: DomainSecurity
+  url: security/lastfm-domain-security.yml
+- type: Authentication
+  url: authentication/lastfm-authentication.yml
+- type: PostmanWorkspace
+  url: https://www.postman.com/kinlaneapi/lastfm/overview
+- type: Arazzo
+  url: arazzo/lastfm-album-genre-profile-workflow.yml
+  name: Last.fm Album Genre Profile
+- type: Arazzo
+  url: arazzo/lastfm-artist-discovery-workflow.yml
+  name: Last.fm Artist Discovery
+- type: Arazzo
+  url: arazzo/lastfm-chart-to-album-workflow.yml
+  name: Last.fm Chart To Album Deep Dive
+- type: Arazzo
+  url: arazzo/lastfm-genre-artist-explorer-workflow.yml
+  name: Last.fm Genre Artist Explorer
+- type: Arazzo
+  url: arazzo/lastfm-geo-artist-spotlight-workflow.yml
+  name: Last.fm Geo Artist Spotlight
+- type: Arazzo
+  url: arazzo/lastfm-loved-tracks-insight-workflow.yml
+  name: Last.fm Loved Tracks Insight
+- type: Arazzo
+  url: arazzo/lastfm-now-playing-context-workflow.yml
+  name: Last.fm Now Playing Context
+- type: Arazzo
+  url: arazzo/lastfm-tag-to-track-workflow.yml
+  name: Last.fm Tag To Track Deep Dive
+- type: Arazzo
+  url: arazzo/lastfm-track-radio-workflow.yml
+  name: Last.fm Track Radio Seed
+- type: Arazzo
+  url: arazzo/lastfm-user-taste-profile-workflow.yml
+  name: Last.fm User Taste Profile
+- type: Website
+  url: https://www.last.fm
+- type: DeveloperPortal
+  url: https://www.last.fm/api
+- type: Documentation
+  url: https://www.last.fm/api
+- type: GettingStarted
+  url: https://www.last.fm/api/intro
+- type: APIReference
+  url: https://www.last.fm/api/intro
+- type: Authentication
+  url: https://www.last.fm/api/authentication
+- type: Signup
+  url: https://www.last.fm/api/account/create
+- type: TermsOfService
+  url: https://www.last.fm/api/tos
+- type: PrivacyPolicy
+  url: https://www.last.fm/legal/privacy
+- type: ErrorCodes
+  url: https://www.last.fm/api/errorcodes
+- type: Support
+  url: https://support.last.fm
+- type: Contact
+  url: mailto:partners@last.fm
+- type: GitHubOrganization
+  url: https://github.com/lastfm
+- type: Pricing
+  url: plans/lastfm-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/lastfm-rate-limits.yml
+- type: SpectralRules
+  url: rules/lastfm-rules.yml
+- type: Vocabulary
+  url: vocabulary/lastfm-vocabulary.yml
+- type: JSONLD
+  url: json-ld/lastfm-context.jsonld
+- type: PublicAPIsListing
+  url: https://github.com/public-apis/public-apis
+- type: SDKs
+  url: https://github.com/inflatablefriends/lastfm
+  title: Inflatable.Lastfm (.NET / NuGet) — portable C# client
+- type: SDKs
+  url: https://github.com/feross/last-fm
+  title: feross/last-fm (JavaScript) — simple public-data client
+- type: SDKs
+  url: https://github.com/dandelionmood/php-lastfm
+  title: dandelionmood/php-lastfm (PHP) — dead-simple wrapper
+- type: SDKs
+  url: https://github.com/barryvanveen/lastfm
+  title: barryvanveen/lastfm (PHP + Laravel service provider)
+- type: SDKs
+  url: https://github.com/gordonbisnor/lastfm
+  title: gordonbisnor/lastfm (Ruby) — Rails plugin
+- type: SDKs
+  url: https://github.com/codegram/lastfm
+  title: codegram/lastfm (Ruby) — broad method coverage
+- type: SDKs
+  url: https://github.com/theorangewill/pylastfmapi
+  title: theorangewill/pylastfmapi (Python)
+- type: SDKs
+  url: https://github.com/jrichocean/Elixirfm
+  title: jrichocean/Elixirfm (Elixir)
+- type: SDKs
+  url: https://github.com/mihaiolteanu/lastfm
+  title: mihaiolteanu/lastfm (Common Lisp)
+- type: SDKs
+  url: https://github.com/supki/liblastfm
+  title: supki/liblastfm (Haskell)
+- type: SDKs
+  url: https://github.com/Nebulino/Scrobblenaut
+  title: Nebulino/Scrobblenaut (Dart)
+- type: SDKs
+  url: https://github.com/SHOEGAZEssb/Shoegaze.LastFM
+  title: SHOEGAZEssb/Shoegaze.LastFM (modern C#)
+- type: SDKs
+  url: https://github.com/mannuelf/lastfm-nodejs-client
+  title: mannuelf/lastfm-nodejs-client (TypeScript / Node.js)
+- type: SDKs
+  url: https://github.com/michaellavelle/spring-social-lastfm
+  title: michaellavelle/spring-social-lastfm (Java / Spring Social)
+- type: Tools
+  url: https://github.com/tfmart/ScrobblerContext
+  title: ScrobblerContext — Last.fm MCP server (Swift, stdio MCP transport, search/library/scrobble)
+- type: Tools
+  url: https://github.com/rianvdm/lastfm-mcp
+  title: lastfm-mcp — Cloudflare Workers MCP server with OAuth 2.0 for AI access to Last.fm listening
+    data
+- type: LinkedIn
+  url: https://www.linkedin.com/company/last-fm
+- type: Blog
+  url: https://www.last.fm/blog
+- type: X
+  url: https://x.com/lastfm
+- type: StatusPage
+  url: https://x.com/lastfmstatus
+- type: Plans
+  url: plans/lastfm-plans-pricing.yml
+- type: FinOps
+  url: finops/lastfm-finops.yml
+- type: Features
+  data:
+  - name: Music Metadata
+    description: Comprehensive metadata for artists, albums, and tracks including biographies, images,
+      tags, and similar items
+  - name: Scrobbling
+    description: Track submission API (Scrobbling 2.0) for recording listening history from any client
+      or device
+  - name: User Listening History
+    description: Access recent tracks, loved tracks, top artists, albums, and tracks for any user
+  - name: Music Charts
+    description: Global and geographic top artists and tracks, plus tag-based and weekly user charts
+  - name: Music Discovery
+    description: Similar artist and track recommendations powered by Last.fm's social listening data
+  - name: Artist and Track Search
+    description: Full-text search across the Last.fm music catalog for artists, albums, and tracks
+  - name: Tag Exploration
+    description: Browse music by community-applied tags to discover themed playlists and artists
+  - name: User Social Data
+    description: Access user friends, listening comparisons, and shared music taste data
+  url: ''
+- type: UseCases
+  data:
+  - name: Music Player Scrobbling
+    description: Record tracks played in music apps to Last.fm user profiles for history and recommendations
+  - name: Music Metadata Enrichment
+    description: Augment music catalogs with artist bios, album art, tags, and similar artist data
+  - name: Personalized Charts
+    description: Display weekly, monthly, or all-time listening charts for users in applications
+  - name: Music Discovery Features
+    description: Power recommendation engines with similar artist and track data from Last.fm
+  - name: Social Listening
+    description: Show what friends are listening to and compare music tastes between users
+  - name: Geographic Music Trends
+    description: Display top artists and tracks by country or region for localized music features
+  url: ''
 maintainers:
-  - FN: Kin Lane
-    email: kin@apievangelist.com
+- FN: Kin Lane
+  email: kin@apievangelist.com
+x-merged-from:
+- last-fm
