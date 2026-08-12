@@ -99,28 +99,6 @@ apis:
     url: examples/lastfm-user-getrecenttracks-example.json
   - type: Examples
     url: examples/lastfm-track-scrobble-example.json
-  - type: X-NaftikoCapability
-    url: capabilities/lastfm-album.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/lastfm-artist.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/lastfm-auth.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/lastfm-chart.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/lastfm-geo.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/lastfm-library.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/lastfm-tag.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/lastfm-track.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/lastfm-user.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/music-discovery.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/music-scrobbling.yaml
 - aid: lastfm:lastfm-artist-api
   name: Last.fm Artist API
   description: Artist metadata, similarity, tagging, top albums/tracks, and search.
@@ -177,28 +155,6 @@ apis:
     url: examples/lastfm-user-getrecenttracks-example.json
   - type: Examples
     url: examples/lastfm-track-scrobble-example.json
-  - type: X-NaftikoCapability
-    url: capabilities/lastfm-album.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/lastfm-artist.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/lastfm-auth.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/lastfm-chart.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/lastfm-geo.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/lastfm-library.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/lastfm-tag.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/lastfm-track.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/lastfm-user.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/music-discovery.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/music-scrobbling.yaml
 - aid: lastfm:lastfm-auth-api
   name: Last.fm Auth API
   description: Token, session, and mobile session acquisition for authenticated calls.
@@ -255,28 +211,6 @@ apis:
     url: examples/lastfm-user-getrecenttracks-example.json
   - type: Examples
     url: examples/lastfm-track-scrobble-example.json
-  - type: X-NaftikoCapability
-    url: capabilities/lastfm-album.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/lastfm-artist.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/lastfm-auth.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/lastfm-chart.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/lastfm-geo.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/lastfm-library.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/lastfm-tag.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/lastfm-track.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/lastfm-user.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/music-discovery.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/music-scrobbling.yaml
 - aid: lastfm:lastfm-chart-api
   name: Last.fm Chart API
   description: Global top artists, tags, and tracks.
@@ -333,28 +267,6 @@ apis:
     url: examples/lastfm-user-getrecenttracks-example.json
   - type: Examples
     url: examples/lastfm-track-scrobble-example.json
-  - type: X-NaftikoCapability
-    url: capabilities/lastfm-album.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/lastfm-artist.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/lastfm-auth.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/lastfm-chart.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/lastfm-geo.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/lastfm-library.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/lastfm-tag.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/lastfm-track.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/lastfm-user.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/music-discovery.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/music-scrobbling.yaml
 - aid: lastfm:lastfm-geo-api
   name: Last.fm Geo API
   description: Country-level top artists and tracks.
@@ -411,28 +323,6 @@ apis:
     url: examples/lastfm-user-getrecenttracks-example.json
   - type: Examples
     url: examples/lastfm-track-scrobble-example.json
-  - type: X-NaftikoCapability
-    url: capabilities/lastfm-album.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/lastfm-artist.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/lastfm-auth.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/lastfm-chart.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/lastfm-geo.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/lastfm-library.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/lastfm-tag.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/lastfm-track.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/lastfm-user.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/music-discovery.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/music-scrobbling.yaml
 - aid: lastfm:lastfm-library-api
   name: Last.fm Library API
   description: A user's scrobbled artist library.
@@ -489,28 +379,6 @@ apis:
     url: examples/lastfm-user-getrecenttracks-example.json
   - type: Examples
     url: examples/lastfm-track-scrobble-example.json
-  - type: X-NaftikoCapability
-    url: capabilities/lastfm-album.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/lastfm-artist.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/lastfm-auth.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/lastfm-chart.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/lastfm-geo.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/lastfm-library.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/lastfm-tag.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/lastfm-track.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/lastfm-user.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/music-discovery.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/music-scrobbling.yaml
 - aid: lastfm:lastfm-tag-api
   name: Last.fm Tag API
   description: Tag metadata, similar tags, top albums/artists/tracks, and chart history.
@@ -567,28 +435,6 @@ apis:
     url: examples/lastfm-user-getrecenttracks-example.json
   - type: Examples
     url: examples/lastfm-track-scrobble-example.json
-  - type: X-NaftikoCapability
-    url: capabilities/lastfm-album.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/lastfm-artist.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/lastfm-auth.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/lastfm-chart.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/lastfm-geo.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/lastfm-library.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/lastfm-tag.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/lastfm-track.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/lastfm-user.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/music-discovery.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/music-scrobbling.yaml
 - aid: lastfm:lastfm-track-api
   name: Last.fm Track API
   description: Track metadata, scrobbling, love/unlove, tagging, search.
@@ -645,28 +491,6 @@ apis:
     url: examples/lastfm-user-getrecenttracks-example.json
   - type: Examples
     url: examples/lastfm-track-scrobble-example.json
-  - type: X-NaftikoCapability
-    url: capabilities/lastfm-album.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/lastfm-artist.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/lastfm-auth.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/lastfm-chart.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/lastfm-geo.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/lastfm-library.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/lastfm-tag.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/lastfm-track.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/lastfm-user.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/music-discovery.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/music-scrobbling.yaml
 - aid: lastfm:lastfm-user-api
   name: Last.fm User API
   description: User profile, friends, listening history, top entities, and weekly charts.
@@ -723,28 +547,6 @@ apis:
     url: examples/lastfm-user-getrecenttracks-example.json
   - type: Examples
     url: examples/lastfm-track-scrobble-example.json
-  - type: X-NaftikoCapability
-    url: capabilities/lastfm-album.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/lastfm-artist.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/lastfm-auth.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/lastfm-chart.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/lastfm-geo.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/lastfm-library.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/lastfm-tag.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/lastfm-track.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/lastfm-user.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/music-discovery.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/music-scrobbling.yaml
 common:
 - type: AgenticAccess
   url: agentic-access/lastfm-agentic-access.yml
