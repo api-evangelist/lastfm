@@ -36,7 +36,7 @@ tags:
 created: '2026-05-28'
 modified: '2026-08-08'
 url: https://raw.githubusercontent.com/api-evangelist/lastfm/main/apis.yml
-specificationVersion: '0.20'
+specificationVersion: '0.23'
 x-source: public-apis/public-apis
 x-category: Music
 x-type: company
