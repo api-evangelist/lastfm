@@ -1,0 +1,431 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Last.fm Web Services API (2.0) Album API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "api_key",
+      "value": "{{api_key}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Album",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Invoke A Read Method",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ws.audioscrobbler.com/2.0/",
+            "params": [
+              {
+                "name": "method",
+                "value": "",
+                "type": "query",
+                "description": "Method name in `package.method` format (e.g. `track.getInfo`,\n`chart.getTopArtists`, `user.getRecentTracks`).\n"
+              },
+              {
+                "name": "api_key",
+                "value": "",
+                "type": "query",
+                "description": "Your Last.fm API key."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Response format. Defaults to XML."
+              },
+              {
+                "name": "callback",
+                "value": "",
+                "type": "query",
+                "description": "Optional JSONP callback function name when `format=json`."
+              },
+              {
+                "name": "artist",
+                "value": "",
+                "type": "query",
+                "description": "Artist name (used by album.*, artist.*, track.* read methods)."
+              },
+              {
+                "name": "album",
+                "value": "",
+                "type": "query",
+                "description": "Album name (used by album.* methods)."
+              },
+              {
+                "name": "track",
+                "value": "",
+                "type": "query",
+                "description": "Track name (used by track.* methods)."
+              },
+              {
+                "name": "mbid",
+                "value": "",
+                "type": "query",
+                "description": "MusicBrainz identifier; takes precedence over artist/album/track names."
+              },
+              {
+                "name": "user",
+                "value": "",
+                "type": "query",
+                "description": "Last.fm username (used by user.* methods)."
+              },
+              {
+                "name": "tag",
+                "value": "",
+                "type": "query",
+                "description": "Tag name (used by tag.* methods)."
+              },
+              {
+                "name": "country",
+                "value": "",
+                "type": "query",
+                "description": "ISO 3166-1 country name (used by geo.* methods)."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Max items per page."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number for paginated results."
+              },
+              {
+                "name": "period",
+                "value": "",
+                "type": "query",
+                "description": "Aggregation window for user.getTop* methods."
+              },
+              {
+                "name": "autocorrect",
+                "value": "",
+                "type": "query",
+                "description": "Auto-correct misspelled artist/track names when set to 1."
+              },
+              {
+                "name": "username",
+                "value": "",
+                "type": "query",
+                "description": "Username context for personalized fields (playcount, userplaycount)."
+              }
+            ]
+          },
+          "docs": "Single read-side dispatch endpoint. The `method` parameter selects the\noperation (e.g. `album.getInfo`, `artist.getTopTracks`, `chart.getTopArtists`).\nUse `format=json` for JSON responses.\n"
+        },
+        {
+          "info": {
+            "name": "Invoke A Write Method",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://ws.audioscrobbler.com/2.0/",
+            "body": {
+              "type": "form-urlencoded",
+              "data": []
+            }
+          },
+          "docs": "Single write-side dispatch endpoint. Used for authenticated write actions:\n`track.scrobble`, `track.updateNowPlaying`, `track.love`, `track.unlove`,\n`album.addTags`, `album.removeTag`, `artist.addTags`, `artist.removeTag`,\n`track.addTags`, `track.removeTag`. POST body parameters are\n`application/x-www-form-urlencoded` UTF-8 encoded and must include\n`api_key`, `sk` (session key), and `api_sig`.\n"
+        },
+        {
+          "info": {
+            "name": "Add Album Tags",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://ws.audioscrobbler.com/2.0/?method=album.addTags",
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "method",
+                  "value": ""
+                },
+                {
+                  "name": "api_key",
+                  "value": ""
+                },
+                {
+                  "name": "artist",
+                  "value": ""
+                },
+                {
+                  "name": "album",
+                  "value": ""
+                },
+                {
+                  "name": "tags",
+                  "value": ""
+                },
+                {
+                  "name": "tag",
+                  "value": ""
+                },
+                {
+                  "name": "sk",
+                  "value": ""
+                },
+                {
+                  "name": "api_sig",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Tag an album using a list of user supplied tags. Requires authentication."
+        },
+        {
+          "info": {
+            "name": "Get Album Info",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ws.audioscrobbler.com/2.0/?method=album.getInfo",
+            "params": [
+              {
+                "name": "api_key",
+                "value": "",
+                "type": "query",
+                "description": "Your Last.fm API key."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Response format. Defaults to XML."
+              },
+              {
+                "name": "artist",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "album",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "mbid",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "lang",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "autocorrect",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "username",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get the metadata and tracklist for an album on Last.fm using the album name or a musicbrainz id."
+        },
+        {
+          "info": {
+            "name": "Get Album Tags",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ws.audioscrobbler.com/2.0/?method=album.getTags",
+            "params": [
+              {
+                "name": "api_key",
+                "value": "",
+                "type": "query",
+                "description": "Your Last.fm API key."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Response format. Defaults to XML."
+              },
+              {
+                "name": "artist",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "album",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "mbid",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "user",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get the tags applied by an individual user to an album on Last.fm."
+        },
+        {
+          "info": {
+            "name": "Get Top Album Tags",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ws.audioscrobbler.com/2.0/?method=album.getTopTags",
+            "params": [
+              {
+                "name": "api_key",
+                "value": "",
+                "type": "query",
+                "description": "Your Last.fm API key."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Response format. Defaults to XML."
+              },
+              {
+                "name": "artist",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "album",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "mbid",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "autocorrect",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get the top tags for an album on Last.fm, ordered by popularity."
+        },
+        {
+          "info": {
+            "name": "Remove Album Tag",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://ws.audioscrobbler.com/2.0/?method=album.removeTag",
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "method",
+                  "value": ""
+                },
+                {
+                  "name": "api_key",
+                  "value": ""
+                },
+                {
+                  "name": "artist",
+                  "value": ""
+                },
+                {
+                  "name": "album",
+                  "value": ""
+                },
+                {
+                  "name": "tags",
+                  "value": ""
+                },
+                {
+                  "name": "tag",
+                  "value": ""
+                },
+                {
+                  "name": "sk",
+                  "value": ""
+                },
+                {
+                  "name": "api_sig",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Remove a user's tag from an album."
+        },
+        {
+          "info": {
+            "name": "Search Albums",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ws.audioscrobbler.com/2.0/?method=album.search",
+            "params": [
+              {
+                "name": "api_key",
+                "value": "",
+                "type": "query",
+                "description": "Your Last.fm API key."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Response format. Defaults to XML."
+              },
+              {
+                "name": "album",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Search for an album by name. Returns album matches sorted by relevance."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,675 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Last.fm Web Services API (2.0) Album User API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "api_key",
+      "value": "{{api_key}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "User",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Invoke A Read Method",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ws.audioscrobbler.com/2.0/",
+            "params": [
+              {
+                "name": "method",
+                "value": "",
+                "type": "query",
+                "description": "Method name in `package.method` format (e.g. `track.getInfo`,\n`chart.getTopArtists`, `user.getRecentTracks`).\n"
+              },
+              {
+                "name": "api_key",
+                "value": "",
+                "type": "query",
+                "description": "Your Last.fm API key."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Response format. Defaults to XML."
+              },
+              {
+                "name": "callback",
+                "value": "",
+                "type": "query",
+                "description": "Optional JSONP callback function name when `format=json`."
+              },
+              {
+                "name": "artist",
+                "value": "",
+                "type": "query",
+                "description": "Artist name (used by album.*, artist.*, track.* read methods)."
+              },
+              {
+                "name": "album",
+                "value": "",
+                "type": "query",
+                "description": "Album name (used by album.* methods)."
+              },
+              {
+                "name": "track",
+                "value": "",
+                "type": "query",
+                "description": "Track name (used by track.* methods)."
+              },
+              {
+                "name": "mbid",
+                "value": "",
+                "type": "query",
+                "description": "MusicBrainz identifier; takes precedence over artist/album/track names."
+              },
+              {
+                "name": "user",
+                "value": "",
+                "type": "query",
+                "description": "Last.fm username (used by user.* methods)."
+              },
+              {
+                "name": "tag",
+                "value": "",
+                "type": "query",
+                "description": "Tag name (used by tag.* methods)."
+              },
+              {
+                "name": "country",
+                "value": "",
+                "type": "query",
+                "description": "ISO 3166-1 country name (used by geo.* methods)."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Max items per page."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number for paginated results."
+              },
+              {
+                "name": "period",
+                "value": "",
+                "type": "query",
+                "description": "Aggregation window for user.getTop* methods."
+              },
+              {
+                "name": "autocorrect",
+                "value": "",
+                "type": "query",
+                "description": "Auto-correct misspelled artist/track names when set to 1."
+              },
+              {
+                "name": "username",
+                "value": "",
+                "type": "query",
+                "description": "Username context for personalized fields (playcount, userplaycount)."
+              }
+            ]
+          },
+          "docs": "Single read-side dispatch endpoint. The `method` parameter selects the\noperation (e.g. `album.getInfo`, `artist.getTopTracks`, `chart.getTopArtists`).\nUse `format=json` for JSON responses.\n"
+        },
+        {
+          "info": {
+            "name": "Get User Friends",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ws.audioscrobbler.com/2.0/?method=user.getFriends",
+            "params": [
+              {
+                "name": "api_key",
+                "value": "",
+                "type": "query",
+                "description": "Your Last.fm API key."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Response format. Defaults to XML."
+              },
+              {
+                "name": "user",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "recenttracks",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get a list of the user's friends on Last.fm."
+        },
+        {
+          "info": {
+            "name": "Get User Info",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ws.audioscrobbler.com/2.0/?method=user.getInfo",
+            "params": [
+              {
+                "name": "api_key",
+                "value": "",
+                "type": "query",
+                "description": "Your Last.fm API key."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Response format. Defaults to XML."
+              },
+              {
+                "name": "user",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get information about a user profile."
+        },
+        {
+          "info": {
+            "name": "Get Loved Tracks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ws.audioscrobbler.com/2.0/?method=user.getLovedTracks",
+            "params": [
+              {
+                "name": "api_key",
+                "value": "",
+                "type": "query",
+                "description": "Your Last.fm API key."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Response format. Defaults to XML."
+              },
+              {
+                "name": "user",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get the last 50 tracks loved by a user."
+        },
+        {
+          "info": {
+            "name": "Get Personal Tags",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ws.audioscrobbler.com/2.0/?method=user.getPersonalTags",
+            "params": [
+              {
+                "name": "api_key",
+                "value": "",
+                "type": "query",
+                "description": "Your Last.fm API key."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Response format. Defaults to XML."
+              },
+              {
+                "name": "user",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "tag",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "taggingtype",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get the user's personal tags for an artist, album, or track."
+        },
+        {
+          "info": {
+            "name": "Get Recent Tracks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ws.audioscrobbler.com/2.0/?method=user.getRecentTracks",
+            "params": [
+              {
+                "name": "api_key",
+                "value": "",
+                "type": "query",
+                "description": "Your Last.fm API key."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Response format. Defaults to XML."
+              },
+              {
+                "name": "user",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "from",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "to",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "extended",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get a list of the recent tracks listened to by this user. Also includes the currently playing track if there is one."
+        },
+        {
+          "info": {
+            "name": "Get User Top Albums",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ws.audioscrobbler.com/2.0/?method=user.getTopAlbums",
+            "params": [
+              {
+                "name": "api_key",
+                "value": "",
+                "type": "query",
+                "description": "Your Last.fm API key."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Response format. Defaults to XML."
+              },
+              {
+                "name": "user",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "period",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get the top albums listened to by a user. You can stipulate a time period."
+        },
+        {
+          "info": {
+            "name": "Get User Top Artists",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ws.audioscrobbler.com/2.0/?method=user.getTopArtists",
+            "params": [
+              {
+                "name": "api_key",
+                "value": "",
+                "type": "query",
+                "description": "Your Last.fm API key."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Response format. Defaults to XML."
+              },
+              {
+                "name": "user",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "period",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get the top artists listened to by a user. You can stipulate a time period."
+        },
+        {
+          "info": {
+            "name": "Get User Top Tags",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ws.audioscrobbler.com/2.0/?method=user.getTopTags",
+            "params": [
+              {
+                "name": "api_key",
+                "value": "",
+                "type": "query",
+                "description": "Your Last.fm API key."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Response format. Defaults to XML."
+              },
+              {
+                "name": "user",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get the top tags used by this user."
+        },
+        {
+          "info": {
+            "name": "Get User Top Tracks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ws.audioscrobbler.com/2.0/?method=user.getTopTracks",
+            "params": [
+              {
+                "name": "api_key",
+                "value": "",
+                "type": "query",
+                "description": "Your Last.fm API key."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Response format. Defaults to XML."
+              },
+              {
+                "name": "user",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "period",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get the top tracks listened to by a user. You can stipulate a time period."
+        },
+        {
+          "info": {
+            "name": "Get Weekly Album Chart",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ws.audioscrobbler.com/2.0/?method=user.getWeeklyAlbumChart",
+            "params": [
+              {
+                "name": "api_key",
+                "value": "",
+                "type": "query",
+                "description": "Your Last.fm API key."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Response format. Defaults to XML."
+              },
+              {
+                "name": "user",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "from",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "to",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get an album chart for a user profile, for a given date range. If no date range is supplied, it will return the most recent week."
+        },
+        {
+          "info": {
+            "name": "Get Weekly Artist Chart",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ws.audioscrobbler.com/2.0/?method=user.getWeeklyArtistChart",
+            "params": [
+              {
+                "name": "api_key",
+                "value": "",
+                "type": "query",
+                "description": "Your Last.fm API key."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Response format. Defaults to XML."
+              },
+              {
+                "name": "user",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "from",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "to",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get an artist chart for a user profile, for a given date range."
+        },
+        {
+          "info": {
+            "name": "Get Weekly Chart List",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ws.audioscrobbler.com/2.0/?method=user.getWeeklyChartList",
+            "params": [
+              {
+                "name": "api_key",
+                "value": "",
+                "type": "query",
+                "description": "Your Last.fm API key."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Response format. Defaults to XML."
+              },
+              {
+                "name": "user",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get a list of available charts for this user, expressed as date ranges that can be sent to the chart services."
+        },
+        {
+          "info": {
+            "name": "Get Weekly Track Chart",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ws.audioscrobbler.com/2.0/?method=user.getWeeklyTrackChart",
+            "params": [
+              {
+                "name": "api_key",
+                "value": "",
+                "type": "query",
+                "description": "Your Last.fm API key."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Response format. Defaults to XML."
+              },
+              {
+                "name": "user",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "from",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "to",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get a track chart for a user profile, for a given date range."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

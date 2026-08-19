@@ -1,0 +1,736 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Last.fm Web Services API (2.0) Album Track API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "api_key",
+      "value": "{{api_key}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Track",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Invoke A Read Method",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ws.audioscrobbler.com/2.0/",
+            "params": [
+              {
+                "name": "method",
+                "value": "",
+                "type": "query",
+                "description": "Method name in `package.method` format (e.g. `track.getInfo`,\n`chart.getTopArtists`, `user.getRecentTracks`).\n"
+              },
+              {
+                "name": "api_key",
+                "value": "",
+                "type": "query",
+                "description": "Your Last.fm API key."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Response format. Defaults to XML."
+              },
+              {
+                "name": "callback",
+                "value": "",
+                "type": "query",
+                "description": "Optional JSONP callback function name when `format=json`."
+              },
+              {
+                "name": "artist",
+                "value": "",
+                "type": "query",
+                "description": "Artist name (used by album.*, artist.*, track.* read methods)."
+              },
+              {
+                "name": "album",
+                "value": "",
+                "type": "query",
+                "description": "Album name (used by album.* methods)."
+              },
+              {
+                "name": "track",
+                "value": "",
+                "type": "query",
+                "description": "Track name (used by track.* methods)."
+              },
+              {
+                "name": "mbid",
+                "value": "",
+                "type": "query",
+                "description": "MusicBrainz identifier; takes precedence over artist/album/track names."
+              },
+              {
+                "name": "user",
+                "value": "",
+                "type": "query",
+                "description": "Last.fm username (used by user.* methods)."
+              },
+              {
+                "name": "tag",
+                "value": "",
+                "type": "query",
+                "description": "Tag name (used by tag.* methods)."
+              },
+              {
+                "name": "country",
+                "value": "",
+                "type": "query",
+                "description": "ISO 3166-1 country name (used by geo.* methods)."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Max items per page."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number for paginated results."
+              },
+              {
+                "name": "period",
+                "value": "",
+                "type": "query",
+                "description": "Aggregation window for user.getTop* methods."
+              },
+              {
+                "name": "autocorrect",
+                "value": "",
+                "type": "query",
+                "description": "Auto-correct misspelled artist/track names when set to 1."
+              },
+              {
+                "name": "username",
+                "value": "",
+                "type": "query",
+                "description": "Username context for personalized fields (playcount, userplaycount)."
+              }
+            ]
+          },
+          "docs": "Single read-side dispatch endpoint. The `method` parameter selects the\noperation (e.g. `album.getInfo`, `artist.getTopTracks`, `chart.getTopArtists`).\nUse `format=json` for JSON responses.\n"
+        },
+        {
+          "info": {
+            "name": "Invoke A Write Method",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://ws.audioscrobbler.com/2.0/",
+            "body": {
+              "type": "form-urlencoded",
+              "data": []
+            }
+          },
+          "docs": "Single write-side dispatch endpoint. Used for authenticated write actions:\n`track.scrobble`, `track.updateNowPlaying`, `track.love`, `track.unlove`,\n`album.addTags`, `album.removeTag`, `artist.addTags`, `artist.removeTag`,\n`track.addTags`, `track.removeTag`. POST body parameters are\n`application/x-www-form-urlencoded` UTF-8 encoded and must include\n`api_key`, `sk` (session key), and `api_sig`.\n"
+        },
+        {
+          "info": {
+            "name": "Add Track Tags",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://ws.audioscrobbler.com/2.0/?method=track.addTags",
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "method",
+                  "value": ""
+                },
+                {
+                  "name": "api_key",
+                  "value": ""
+                },
+                {
+                  "name": "artist",
+                  "value": ""
+                },
+                {
+                  "name": "track",
+                  "value": ""
+                },
+                {
+                  "name": "tags",
+                  "value": ""
+                },
+                {
+                  "name": "tag",
+                  "value": ""
+                },
+                {
+                  "name": "sk",
+                  "value": ""
+                },
+                {
+                  "name": "api_sig",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Tag a track using a list of user supplied tags."
+        },
+        {
+          "info": {
+            "name": "Get Track Correction",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ws.audioscrobbler.com/2.0/?method=track.getCorrection",
+            "params": [
+              {
+                "name": "api_key",
+                "value": "",
+                "type": "query",
+                "description": "Your Last.fm API key."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Response format. Defaults to XML."
+              },
+              {
+                "name": "artist",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "track",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Use the last.fm corrections data to check whether the supplied track has a correction to a canonical track."
+        },
+        {
+          "info": {
+            "name": "Get Track Info",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ws.audioscrobbler.com/2.0/?method=track.getInfo",
+            "params": [
+              {
+                "name": "api_key",
+                "value": "",
+                "type": "query",
+                "description": "Your Last.fm API key."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Response format. Defaults to XML."
+              },
+              {
+                "name": "artist",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "track",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "mbid",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "autocorrect",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "username",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get the metadata for a track on Last.fm using the artist/track name or a musicbrainz id."
+        },
+        {
+          "info": {
+            "name": "Get Similar Tracks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ws.audioscrobbler.com/2.0/?method=track.getSimilar",
+            "params": [
+              {
+                "name": "api_key",
+                "value": "",
+                "type": "query",
+                "description": "Your Last.fm API key."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Response format. Defaults to XML."
+              },
+              {
+                "name": "artist",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "track",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "mbid",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "autocorrect",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get the similar tracks for this track on Last.fm, based on listening data."
+        },
+        {
+          "info": {
+            "name": "Get Track Tags",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ws.audioscrobbler.com/2.0/?method=track.getTags",
+            "params": [
+              {
+                "name": "api_key",
+                "value": "",
+                "type": "query",
+                "description": "Your Last.fm API key."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Response format. Defaults to XML."
+              },
+              {
+                "name": "artist",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "track",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "mbid",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "user",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get the tags applied by an individual user to a track on Last.fm."
+        },
+        {
+          "info": {
+            "name": "Get Top Track Tags",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ws.audioscrobbler.com/2.0/?method=track.getTopTags",
+            "params": [
+              {
+                "name": "api_key",
+                "value": "",
+                "type": "query",
+                "description": "Your Last.fm API key."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Response format. Defaults to XML."
+              },
+              {
+                "name": "artist",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "track",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "mbid",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "autocorrect",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get the top tags for this track on Last.fm, ordered by tag count."
+        },
+        {
+          "info": {
+            "name": "Love Track",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://ws.audioscrobbler.com/2.0/?method=track.love",
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "method",
+                  "value": ""
+                },
+                {
+                  "name": "api_key",
+                  "value": ""
+                },
+                {
+                  "name": "artist",
+                  "value": ""
+                },
+                {
+                  "name": "track",
+                  "value": ""
+                },
+                {
+                  "name": "sk",
+                  "value": ""
+                },
+                {
+                  "name": "api_sig",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Love a track for a user profile."
+        },
+        {
+          "info": {
+            "name": "Remove Track Tag",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://ws.audioscrobbler.com/2.0/?method=track.removeTag",
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "method",
+                  "value": ""
+                },
+                {
+                  "name": "api_key",
+                  "value": ""
+                },
+                {
+                  "name": "artist",
+                  "value": ""
+                },
+                {
+                  "name": "track",
+                  "value": ""
+                },
+                {
+                  "name": "tags",
+                  "value": ""
+                },
+                {
+                  "name": "tag",
+                  "value": ""
+                },
+                {
+                  "name": "sk",
+                  "value": ""
+                },
+                {
+                  "name": "api_sig",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Remove a user's tag from a track."
+        },
+        {
+          "info": {
+            "name": "Scrobble Track",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://ws.audioscrobbler.com/2.0/?method=track.scrobble",
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "method",
+                  "value": ""
+                },
+                {
+                  "name": "api_key",
+                  "value": ""
+                },
+                {
+                  "name": "artist",
+                  "value": ""
+                },
+                {
+                  "name": "track",
+                  "value": ""
+                },
+                {
+                  "name": "album",
+                  "value": ""
+                },
+                {
+                  "name": "timestamp",
+                  "value": ""
+                },
+                {
+                  "name": "albumArtist",
+                  "value": ""
+                },
+                {
+                  "name": "trackNumber",
+                  "value": ""
+                },
+                {
+                  "name": "duration",
+                  "value": ""
+                },
+                {
+                  "name": "mbid",
+                  "value": ""
+                },
+                {
+                  "name": "streamId",
+                  "value": ""
+                },
+                {
+                  "name": "chosenByUser",
+                  "value": ""
+                },
+                {
+                  "name": "context",
+                  "value": ""
+                },
+                {
+                  "name": "sk",
+                  "value": ""
+                },
+                {
+                  "name": "api_sig",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Add a track-play to a user's profile (Scrobbling 2.0). Up to 50 scrobbles\nmay be sent in a single batch using array notation\n(`artist[0]`, `track[0]`, `timestamp[0]` etc.). A track must be longer\nthan 30 seconds and listened to for at least half its duration or 4 minutes\n(whichever comes first).\n"
+        },
+        {
+          "info": {
+            "name": "Search Tracks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ws.audioscrobbler.com/2.0/?method=track.search",
+            "params": [
+              {
+                "name": "api_key",
+                "value": "",
+                "type": "query",
+                "description": "Your Last.fm API key."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Response format. Defaults to XML."
+              },
+              {
+                "name": "track",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "artist",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Search for a track by name. Returns track matches sorted by relevance."
+        },
+        {
+          "info": {
+            "name": "Unlove Track",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://ws.audioscrobbler.com/2.0/?method=track.unlove",
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "method",
+                  "value": ""
+                },
+                {
+                  "name": "api_key",
+                  "value": ""
+                },
+                {
+                  "name": "artist",
+                  "value": ""
+                },
+                {
+                  "name": "track",
+                  "value": ""
+                },
+                {
+                  "name": "sk",
+                  "value": ""
+                },
+                {
+                  "name": "api_sig",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "UnLove a track for a user profile."
+        },
+        {
+          "info": {
+            "name": "Update Now Playing",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://ws.audioscrobbler.com/2.0/?method=track.updateNowPlaying",
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "method",
+                  "value": ""
+                },
+                {
+                  "name": "api_key",
+                  "value": ""
+                },
+                {
+                  "name": "artist",
+                  "value": ""
+                },
+                {
+                  "name": "track",
+                  "value": ""
+                },
+                {
+                  "name": "album",
+                  "value": ""
+                },
+                {
+                  "name": "albumArtist",
+                  "value": ""
+                },
+                {
+                  "name": "trackNumber",
+                  "value": ""
+                },
+                {
+                  "name": "context",
+                  "value": ""
+                },
+                {
+                  "name": "duration",
+                  "value": ""
+                },
+                {
+                  "name": "mbid",
+                  "value": ""
+                },
+                {
+                  "name": "sk",
+                  "value": ""
+                },
+                {
+                  "name": "api_sig",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Used to notify Last.fm that a user has started listening to a track."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

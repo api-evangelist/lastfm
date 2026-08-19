@@ -1,0 +1,2307 @@
+{
+  "item": [
+    {
+      "id": "8f7d0e48-9db2-4cba-9065-90ba93aba0fe",
+      "name": "Artist",
+      "description": {
+        "content": "Artist metadata, similarity, tagging, top albums/tracks, and search.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f6332d59-af58-47f1-b8ad-e7075e5a4d53",
+          "name": "Invoke A Read Method",
+          "request": {
+            "name": "Invoke A Read Method",
+            "description": {
+              "content": "Single read-side dispatch endpoint. The `method` parameter selects the\noperation (e.g. `album.getInfo`, `artist.getTopTracks`, `chart.getTopArtists`).\nUse `format=json` for JSON responses.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "method",
+                  "value": "<string>",
+                  "description": "(Required) Method name in `package.method` format (e.g. `track.getInfo`,\n`chart.getTopArtists`, `user.getRecentTracks`).\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "api_key",
+                  "value": "<string>",
+                  "description": "(Required) Your Last.fm API key."
+                },
+                {
+                  "disabled": false,
+                  "key": "format",
+                  "value": "xml",
+                  "description": "Response format. Defaults to XML."
+                },
+                {
+                  "disabled": false,
+                  "key": "callback",
+                  "value": "<string>",
+                  "description": "Optional JSONP callback function name when `format=json`."
+                },
+                {
+                  "disabled": false,
+                  "key": "artist",
+                  "value": "<string>",
+                  "description": "Artist name (used by album.*, artist.*, track.* read methods)."
+                },
+                {
+                  "disabled": false,
+                  "key": "album",
+                  "value": "<string>",
+                  "description": "Album name (used by album.* methods)."
+                },
+                {
+                  "disabled": false,
+                  "key": "track",
+                  "value": "<string>",
+                  "description": "Track name (used by track.* methods)."
+                },
+                {
+                  "disabled": false,
+                  "key": "mbid",
+                  "value": "<string>",
+                  "description": "MusicBrainz identifier; takes precedence over artist/album/track names."
+                },
+                {
+                  "disabled": false,
+                  "key": "user",
+                  "value": "<string>",
+                  "description": "Last.fm username (used by user.* methods)."
+                },
+                {
+                  "disabled": false,
+                  "key": "tag",
+                  "value": "<string>",
+                  "description": "Tag name (used by tag.* methods)."
+                },
+                {
+                  "disabled": false,
+                  "key": "country",
+                  "value": "<string>",
+                  "description": "ISO 3166-1 country name (used by geo.* methods)."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "50",
+                  "description": "Max items per page."
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number for paginated results."
+                },
+                {
+                  "disabled": false,
+                  "key": "period",
+                  "value": "<string>",
+                  "description": "Aggregation window for user.getTop* methods."
+                },
+                {
+                  "disabled": false,
+                  "key": "autocorrect",
+                  "value": "0",
+                  "description": "Auto-correct misspelled artist/track names when set to 1."
+                },
+                {
+                  "disabled": false,
+                  "key": "username",
+                  "value": "<string>",
+                  "description": "Username context for personalized fields (playcount, userplaycount)."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6c0d8b05-6d9f-4a3d-8257-666c5b57302e",
+              "name": "Successful response in XML (default) or JSON (`format=json`).",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "method",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "format",
+                      "value": "xml"
+                    },
+                    {
+                      "key": "callback",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "artist",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "album",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "track",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "mbid",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "user",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "tag",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "country",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "period",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "autocorrect",
+                      "value": "0"
+                    },
+                    {
+                      "key": "username",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"album\": {\n    \"artist\": \"string\",\n    \"name\": \"string\",\n    \"mbid\": \"string\",\n    \"url\": \"http://dsXwbTkDSyGaWm.xocH1nVYL2YLtnuV1g27wWBRhfylh3iQHD8sbwWqwRIq.w0TPF4rRLkGQ6vlI\",\n    \"image\": [\n      {\n        \"size\": \"extralarge\",\n        \"#text\": \"https://oeDpuA.coiSn5s,jh6RljnA97fGU5QAq\"\n      },\n      {\n        \"size\": \"mega\",\n        \"#text\": \"https://iZhNEeNSMBFzoKAkqrkEXXIThVo.nluygPm5imHWnQzqpU7MpoTZdVnOwUKiotF3VmcxR2XRBQxxYLn1p\"\n      }\n    ],\n    \"listeners\": \"string\",\n    \"playcount\": \"string\",\n    \"tracks\": {\n      \"track\": [\n        {\n          \"name\": \"string\",\n          \"mbid\": \"string\",\n          \"url\": \"https://MnLZYvwPaKldFFlBzWUBqSeahcMLyF.rwZ+6uJoCyIANHT4\",\n          \"duration\": \"string\",\n          \"artist\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"album\": {\n            \"artist\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"title\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"mbid\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"url\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"listeners\": \"string\",\n          \"playcount\": \"string\",\n          \"userplaycount\": \"string\",\n          \"userloved\": \"0\",\n          \"toptags\": {\n            \"tag\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"wiki\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"@attr\": {\n            \"nowplaying\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"date\": {\n            \"uts\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"#text\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        {\n          \"name\": \"string\",\n          \"mbid\": \"string\",\n          \"url\": \"http://cXUUnvgzhKFivNXChibLwvAG.djlmymulPQXijptZ,lnUvVuhHydBvtL\",\n          \"duration\": \"string\",\n          \"artist\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"album\": {\n            \"artist\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"title\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"mbid\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"url\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"listeners\": \"string\",\n          \"playcount\": \"string\",\n          \"userplaycount\": \"string\",\n          \"userloved\": \"1\",\n          \"toptags\": {\n            \"tag\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"wiki\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"@attr\": {\n            \"nowplaying\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"date\": {\n            \"uts\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"#text\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        }\n      ]\n    },\n    \"tags\": {\n      \"tag\": [\n        {\n          \"name\": \"string\",\n          \"url\": \"https://lCyOTARcJQVHvCFakEwFpSEMIikIqB.djpR,,D9BwMeswIIgiw8qSkoMs,OPsTO\",\n          \"count\": 1781\n        },\n        {\n          \"name\": \"string\",\n          \"url\": \"https://bONQtufXfU.oxxkY4y.JSWf,XSArVfzVPSs8A5FNAW3YiTAOh.pEGfrc4VZXs.y9iFWGHJx1cUTHSD\",\n          \"count\": 997\n        }\n      ]\n    },\n    \"wiki\": {\n      \"published\": \"string\",\n      \"summary\": \"string\",\n      \"content\": \"string\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e6a92673-c5a3-4f1b-85b2-8d0fd7c887d1",
+              "name": "Error response (status='failed').",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "method",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "format",
+                      "value": "xml"
+                    },
+                    {
+                      "key": "callback",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "artist",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "album",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "track",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "mbid",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "user",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "tag",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "country",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "period",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "autocorrect",
+                      "value": "0"
+                    },
+                    {
+                      "key": "username",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": 438,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3cce0d76-24d7-4b2c-bbf4-3c040b938326",
+              "name": "Error response (status='failed').",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "method",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "format",
+                      "value": "xml"
+                    },
+                    {
+                      "key": "callback",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "artist",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "album",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "track",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "mbid",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "user",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "tag",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "country",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "period",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "autocorrect",
+                      "value": "0"
+                    },
+                    {
+                      "key": "username",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": 438,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0f0fb124-440f-4311-8e48-ee375ddf4741",
+              "name": "Error response (status='failed').",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "method",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "format",
+                      "value": "xml"
+                    },
+                    {
+                      "key": "callback",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "artist",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "album",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "track",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "mbid",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "user",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "tag",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "country",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "period",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "autocorrect",
+                      "value": "0"
+                    },
+                    {
+                      "key": "username",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": 438,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "747d272c-65c5-4a70-9f23-5b59b608d14d",
+          "name": "Invoke A Write Method",
+          "request": {
+            "name": "Invoke A Write Method",
+            "description": {
+              "content": "Single write-side dispatch endpoint. Used for authenticated write actions:\n`track.scrobble`, `track.updateNowPlaying`, `track.love`, `track.unlove`,\n`album.addTags`, `album.removeTag`, `artist.addTags`, `artist.removeTag`,\n`track.addTags`, `track.removeTag`. POST body parameters are\n`application/x-www-form-urlencoded` UTF-8 encoded and must include\n`api_key`, `sk` (session key), and `api_sig`.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "method",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "api_key",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "sk",
+                  "value": "<string>",
+                  "description": "Session key returned by auth.getSession / auth.getMobileSession."
+                },
+                {
+                  "disabled": false,
+                  "key": "api_sig",
+                  "value": "<string>",
+                  "description": "MD5 signature of params + secret."
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "62c993f1-8ab5-4e88-9c82-704c5f4ec59c",
+              "name": "Successful write response with status wrapper.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "method",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "api_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Session key returned by auth.getSession / auth.getMobileSession.",
+                        "type": "text/plain"
+                      },
+                      "key": "sk",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "MD5 signature of params + secret.",
+                        "type": "text/plain"
+                      },
+                      "key": "api_sig",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"ok\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5fed85a6-ebe4-4f3e-83ae-1b18615ee67d",
+              "name": "Error response (status='failed').",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "method",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "api_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Session key returned by auth.getSession / auth.getMobileSession.",
+                        "type": "text/plain"
+                      },
+                      "key": "sk",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "MD5 signature of params + secret.",
+                        "type": "text/plain"
+                      },
+                      "key": "api_sig",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": 438,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e2228fac-b1d5-406c-b09b-e96dd775b8bc",
+              "name": "Error response (status='failed').",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "method",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "api_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Session key returned by auth.getSession / auth.getMobileSession.",
+                        "type": "text/plain"
+                      },
+                      "key": "sk",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "MD5 signature of params + secret.",
+                        "type": "text/plain"
+                      },
+                      "key": "api_sig",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": 438,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4f0287d0-8ed1-419f-96b4-879c18d949b4",
+              "name": "Error response (status='failed').",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "method",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "api_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Session key returned by auth.getSession / auth.getMobileSession.",
+                        "type": "text/plain"
+                      },
+                      "key": "sk",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "MD5 signature of params + secret.",
+                        "type": "text/plain"
+                      },
+                      "key": "api_sig",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": 438,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e948253f-70d1-4f09-a5a4-d832f24dbba7",
+          "name": "Add Artist Tags",
+          "request": {
+            "name": "Add Artist Tags",
+            "description": {
+              "content": "Tag an artist with one or more user supplied tags.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "method",
+                  "value": "artist.addTags"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "method",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "api_key",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "artist",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "sk",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "api_sig",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "tags",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "tag",
+                  "value": "<string>"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "b35910b7-f572-48d9-998e-e17ec70ce71d",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"ok\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "27fae833-df06-4304-a985-bb372eb1d011",
+          "name": "Get Artist Correction",
+          "request": {
+            "name": "Get Artist Correction",
+            "description": {
+              "content": "Use the last.fm corrections data to check whether the supplied artist has a correction to a canonical artist.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "method",
+                  "value": "artist.getCorrection"
+                },
+                {
+                  "disabled": false,
+                  "key": "api_key",
+                  "value": "<string>",
+                  "description": "(Required) Your Last.fm API key."
+                },
+                {
+                  "disabled": false,
+                  "key": "format",
+                  "value": "xml",
+                  "description": "Response format. Defaults to XML."
+                },
+                {
+                  "disabled": false,
+                  "key": "artist",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1f6ef9d3-81e1-45c0-90d6-a0829ad383cd",
+              "name": "Suggested artist correction, if any.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "format",
+                      "value": "xml"
+                    },
+                    {
+                      "key": "artist",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"key_0\": 5570.765175519343\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1916c5c6-15ee-4f8e-9e46-44577e729025",
+          "name": "Get Artist Info",
+          "request": {
+            "name": "Get Artist Info",
+            "description": {
+              "content": "Get the metadata for an artist. Includes biography, listener counts, similar artists, tags.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "method",
+                  "value": "artist.getInfo"
+                },
+                {
+                  "disabled": false,
+                  "key": "api_key",
+                  "value": "<string>",
+                  "description": "(Required) Your Last.fm API key."
+                },
+                {
+                  "disabled": false,
+                  "key": "format",
+                  "value": "xml",
+                  "description": "Response format. Defaults to XML."
+                },
+                {
+                  "disabled": false,
+                  "key": "artist",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "mbid",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "lang",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "autocorrect",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "username",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "fb161ab8-0479-428d-99ca-555bd0b5bd1c",
+              "name": "Artist info envelope.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "format",
+                      "value": "xml"
+                    },
+                    {
+                      "key": "artist",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "mbid",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "lang",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "autocorrect",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "username",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"artist\": {\n    \"name\": \"string\",\n    \"mbid\": \"string\",\n    \"url\": \"https://vGAOFKsQAZoJDrxuxQbaQVPoCZnAb.qksADRP95KQ3rH36zHUN\",\n    \"image\": [\n      {\n        \"size\": \"small\",\n        \"#text\": \"http://sliAw.gfHqHY7xMPQySi4CUX2a8bcUXzDjS9\"\n      },\n      {\n        \"size\": \"mega\",\n        \"#text\": \"http://tzeQGNsDm.rztzO-xnWlxEdhYLiG1,dzKg5CIyNSsOIVg6FHoytcOSfxtcmn0n6bA\"\n      }\n    ],\n    \"streamable\": \"string\",\n    \"ontour\": \"string\",\n    \"stats\": {\n      \"listeners\": \"string\",\n      \"playcount\": \"string\"\n    },\n    \"similar\": {\n      \"artist\": [\n        {\n          \"value\": \"<Circular reference to #/components/schemas/Artist detected>\"\n        },\n        {\n          \"value\": \"<Circular reference to #/components/schemas/Artist detected>\"\n        }\n      ]\n    },\n    \"tags\": {\n      \"tag\": [\n        {\n          \"name\": \"string\",\n          \"url\": \"http://lDYIgDU.senpl-8i66SvOa2D-IY4bgV.5sTUr09UCdOGFf0KL\",\n          \"count\": 7901\n        },\n        {\n          \"name\": \"string\",\n          \"url\": \"https://IPixXFketdddwbGayicnslWawFkdYaa.jtpVZjk8iAOLht32LYF2xgOFm6.NKK3hGarM057mn\",\n          \"count\": 918\n        }\n      ]\n    },\n    \"bio\": {\n      \"published\": \"string\",\n      \"summary\": \"string\",\n      \"content\": \"string\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2e9459d5-c7be-44e9-843c-bd96ff1cb26e",
+          "name": "Get Similar Artists",
+          "request": {
+            "name": "Get Similar Artists",
+            "description": {
+              "content": "Get all the artists similar to this artist.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "method",
+                  "value": "artist.getSimilar"
+                },
+                {
+                  "disabled": false,
+                  "key": "api_key",
+                  "value": "<string>",
+                  "description": "(Required) Your Last.fm API key."
+                },
+                {
+                  "disabled": false,
+                  "key": "format",
+                  "value": "xml",
+                  "description": "Response format. Defaults to XML."
+                },
+                {
+                  "disabled": false,
+                  "key": "artist",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "mbid",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "100"
+                },
+                {
+                  "disabled": false,
+                  "key": "autocorrect",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e6f594d9-629d-4a0a-9873-b64301fefcce",
+              "name": "Similar artists list.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "format",
+                      "value": "xml"
+                    },
+                    {
+                      "key": "artist",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "mbid",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "autocorrect",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"key_0\": 5570.765175519343\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "09f62e49-04c4-4329-a859-4e9f63814642",
+          "name": "Get Artist Tags",
+          "request": {
+            "name": "Get Artist Tags",
+            "description": {
+              "content": "Get the tags applied by an individual user to an artist on Last.fm.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "method",
+                  "value": "artist.getTags"
+                },
+                {
+                  "disabled": false,
+                  "key": "api_key",
+                  "value": "<string>",
+                  "description": "(Required) Your Last.fm API key."
+                },
+                {
+                  "disabled": false,
+                  "key": "format",
+                  "value": "xml",
+                  "description": "Response format. Defaults to XML."
+                },
+                {
+                  "disabled": false,
+                  "key": "artist",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "mbid",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "user",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1ac21d93-b775-4461-a9c8-1823c6deaad4",
+              "name": "User tags for the artist.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "format",
+                      "value": "xml"
+                    },
+                    {
+                      "key": "artist",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "mbid",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "user",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"tags\": {\n    \"tag\": [\n      {\n        \"name\": \"string\",\n        \"url\": \"https://GtjIinENAoHjaekTbAWXXPkRtzROFKRH.ogmqEbixmlJPcOA9jocUfjajgvIWSdimdMP5xeyXZZonBEhQm07FYp3JJg.dIFZQnluvo\",\n        \"count\": 1072\n      },\n      {\n        \"name\": \"string\",\n        \"url\": \"http://IqunDMr.jtpfE4syMI0s,AifYQtti6eIaT1t0ufZcjrcheXNcdfN1kgDUUpqV7J.55\",\n        \"count\": 4916\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "60abdd53-f84a-4e7b-80f5-b18214338f31",
+          "name": "Get Top Albums For Artist",
+          "request": {
+            "name": "Get Top Albums For Artist",
+            "description": {
+              "content": "Get the top albums for an artist on Last.fm, ordered by popularity.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "method",
+                  "value": "artist.getTopAlbums"
+                },
+                {
+                  "disabled": false,
+                  "key": "api_key",
+                  "value": "<string>",
+                  "description": "(Required) Your Last.fm API key."
+                },
+                {
+                  "disabled": false,
+                  "key": "format",
+                  "value": "xml",
+                  "description": "Response format. Defaults to XML."
+                },
+                {
+                  "disabled": false,
+                  "key": "artist",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "mbid",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "50"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "disabled": false,
+                  "key": "autocorrect",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9607f1be-4dd0-4f0e-a733-69d9a0593209",
+              "name": "Top albums for the artist.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "format",
+                      "value": "xml"
+                    },
+                    {
+                      "key": "artist",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "mbid",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "autocorrect",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"topalbums\": {\n    \"album\": [\n      {\n        \"artist\": \"string\",\n        \"name\": \"string\",\n        \"mbid\": \"string\",\n        \"url\": \"http://cArxPxwYmPZvcaOfJLhDKxPnFBoxvqFyc.pgxyisQ29DssGK.-RpeZPg.F+fONPKT\",\n        \"image\": [\n          {\n            \"size\": \"mega\",\n            \"#text\": \"http://r.oilcpaM9u7N3XG,ldyv+PA3zth,lY\"\n          },\n          {\n            \"size\": \"large\",\n            \"#text\": \"http://bDDFxuGpiWYTUHHyROnbttpHDBFteBp.zekawTheeLn4.mU9h8N9wagiH6DJiyq7b5eoqNzIoHn9yDEV0-JRyX2.Z\"\n          }\n        ],\n        \"listeners\": \"string\",\n        \"playcount\": \"string\",\n        \"tracks\": {\n          \"track\": [\n            {\n              \"name\": \"string\",\n              \"mbid\": \"string\",\n              \"url\": \"http://KfwrcQ.guwbm-f,entj,RaIfNAFyAFDrYEIavG4n1a,JKKG\",\n              \"duration\": \"string\",\n              \"artist\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"album\": {\n                \"artist\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"title\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"mbid\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"url\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              \"listeners\": \"string\",\n              \"playcount\": \"string\",\n              \"userplaycount\": \"string\",\n              \"userloved\": \"0\",\n              \"toptags\": {\n                \"tag\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              \"wiki\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"@attr\": {\n                \"nowplaying\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              \"date\": {\n                \"uts\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"#text\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            },\n            {\n              \"name\": \"string\",\n              \"mbid\": \"string\",\n              \"url\": \"https://ZlnjqGFEladmzwoCvcfgemYtSv.qoa72Zj6,hfPVv,Tt+9Xsqg9t3BM26pak,SU9smIYqDrC4BfotFNT7QhtzJ.KIQ\",\n              \"duration\": \"string\",\n              \"artist\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"album\": {\n                \"artist\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"title\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"mbid\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"url\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              \"listeners\": \"string\",\n              \"playcount\": \"string\",\n              \"userplaycount\": \"string\",\n              \"userloved\": \"0\",\n              \"toptags\": {\n                \"tag\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              \"wiki\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"@attr\": {\n                \"nowplaying\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              \"date\": {\n                \"uts\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"#text\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            }\n          ]\n        },\n        \"tags\": {\n          \"tag\": [\n            {\n              \"name\": \"string\",\n              \"url\": \"https://zvJUWciMwE.objkR5E4aDfjo3w.gT2euxkJN-LMMEV+arhRVLp3NTe0awT\",\n              \"count\": 9422\n            },\n            {\n              \"name\": \"string\",\n              \"url\": \"http://SuE.nhtFQ,wRql9tX\",\n              \"count\": 9768\n            }\n          ]\n        },\n        \"wiki\": {\n          \"published\": \"string\",\n          \"summary\": \"string\",\n          \"content\": \"string\"\n        }\n      },\n      {\n        \"artist\": \"string\",\n        \"name\": \"string\",\n        \"mbid\": \"string\",\n        \"url\": \"https://SQWbPjhjmADLw.vkwrqetZ\",\n        \"image\": [\n          {\n            \"size\": \"mega\",\n            \"#text\": \"https://ELiUnTuSTBmlLZeeELJATLLG.htPixKLtB8DHJy1GYnhgWwOZpNY8gYWyfiVfWH-Xps9,nnYCeTgj8vuswMXfjUxb\"\n          },\n          {\n            \"size\": \"medium\",\n            \"#text\": \"http://MqlXAbUeAcFabgfEgGFCXIcfrWPnYmBlg.svposDmWXkI2\"\n          }\n        ],\n        \"listeners\": \"string\",\n        \"playcount\": \"string\",\n        \"tracks\": {\n          \"track\": [\n            {\n              \"name\": \"string\",\n              \"mbid\": \"string\",\n              \"url\": \"https://Tfo.wdaoYgP-ud2c7KmEv8aUUQf4ax-VfwxqtB0NB4s,LO6Cs-p6dMlQh88\",\n              \"duration\": \"string\",\n              \"artist\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"album\": {\n                \"artist\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"title\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"mbid\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"url\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              \"listeners\": \"string\",\n              \"playcount\": \"string\",\n              \"userplaycount\": \"string\",\n              \"userloved\": \"0\",\n              \"toptags\": {\n                \"tag\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              \"wiki\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"@attr\": {\n                \"nowplaying\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              \"date\": {\n                \"uts\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"#text\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            },\n            {\n              \"name\": \"string\",\n              \"mbid\": \"string\",\n              \"url\": \"https://AWCQxKeUIptpJwFhhK.fmrNkaejxKJ\",\n              \"duration\": \"string\",\n              \"artist\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"album\": {\n                \"artist\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"title\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"mbid\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"url\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              \"listeners\": \"string\",\n              \"playcount\": \"string\",\n              \"userplaycount\": \"string\",\n              \"userloved\": \"1\",\n              \"toptags\": {\n                \"tag\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              \"wiki\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"@attr\": {\n                \"nowplaying\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              \"date\": {\n                \"uts\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"#text\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            }\n          ]\n        },\n        \"tags\": {\n          \"tag\": [\n            {\n              \"name\": \"string\",\n              \"url\": \"http://HVIODqLSBCzKKldfdlUr.tiYJPUQ5szbdbadmnDaLOiko9Y3yq+Tk+lTrcq-+erUhOIxaxVZQB0.KHx\",\n              \"count\": 4903\n            },\n            {\n              \"name\": \"string\",\n              \"url\": \"https://YDSblftKkhCdengUvVRDCuxVjPBvVut.lmSQG.nMBsSu3UaXHbJsNPke1VvWqfyXpZTDLyfzeH1McVK\",\n              \"count\": 490\n            }\n          ]\n        },\n        \"wiki\": {\n          \"published\": \"string\",\n          \"summary\": \"string\",\n          \"content\": \"string\"\n        }\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3c0313c4-09e9-47f8-b991-3207973879d1",
+          "name": "Get Top Artist Tags",
+          "request": {
+            "name": "Get Top Artist Tags",
+            "description": {
+              "content": "Get the top tags for an artist on Last.fm, ordered by popularity.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "method",
+                  "value": "artist.getTopTags"
+                },
+                {
+                  "disabled": false,
+                  "key": "api_key",
+                  "value": "<string>",
+                  "description": "(Required) Your Last.fm API key."
+                },
+                {
+                  "disabled": false,
+                  "key": "format",
+                  "value": "xml",
+                  "description": "Response format. Defaults to XML."
+                },
+                {
+                  "disabled": false,
+                  "key": "artist",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "mbid",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "autocorrect",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0f093bd1-8254-49ad-8221-041ce1398338",
+              "name": "Top tags for the artist.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "format",
+                      "value": "xml"
+                    },
+                    {
+                      "key": "artist",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "mbid",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "autocorrect",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"toptags\": {\n    \"tag\": [\n      {\n        \"name\": \"string\",\n        \"url\": \"https://zhrAuwqRrtMxUYgvbGIBQJECLmyKKX.wchsvQIMJyI-tP3.kIv9ZSH4lFpNUgNjcwtcdpgcIJt\",\n        \"count\": 9132\n      },\n      {\n        \"name\": \"string\",\n        \"url\": \"https://szmNjsTnGOAr.efkiuMXJ+boc\",\n        \"count\": 9624\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9fd7dbe9-351b-4805-b0e1-691549c5ea14",
+          "name": "Get Top Tracks For Artist",
+          "request": {
+            "name": "Get Top Tracks For Artist",
+            "description": {
+              "content": "Get the top tracks by an artist on Last.fm, ordered by popularity.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "method",
+                  "value": "artist.getTopTracks"
+                },
+                {
+                  "disabled": false,
+                  "key": "api_key",
+                  "value": "<string>",
+                  "description": "(Required) Your Last.fm API key."
+                },
+                {
+                  "disabled": false,
+                  "key": "format",
+                  "value": "xml",
+                  "description": "Response format. Defaults to XML."
+                },
+                {
+                  "disabled": false,
+                  "key": "artist",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "mbid",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "50"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "disabled": false,
+                  "key": "autocorrect",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4a790f1a-df55-4278-b0cd-84bd56cd859a",
+              "name": "Top tracks for the artist.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "format",
+                      "value": "xml"
+                    },
+                    {
+                      "key": "artist",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "mbid",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "autocorrect",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"toptracks\": {\n    \"track\": [\n      {\n        \"name\": \"string\",\n        \"mbid\": \"string\",\n        \"url\": \"http://smwSY.qfh81RRZ+H3xnKo+DM8C\",\n        \"duration\": \"string\",\n        \"artist\": {\n          \"name\": \"string\",\n          \"mbid\": \"string\",\n          \"url\": \"http://DWJkEyxz.kiuqLuJyLhmBrvjmEX5eEhsV7aQL1FBDvwqMbm-ELANFoo+e07UkHN8\",\n          \"image\": [\n            {\n              \"size\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"#text\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"size\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"#text\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"streamable\": \"string\",\n          \"ontour\": \"string\",\n          \"stats\": {\n            \"listeners\": \"string\",\n            \"playcount\": \"string\"\n          },\n          \"similar\": {\n            \"artist\": [\n              {\n                \"value\": \"<Circular reference to #/components/schemas/Artist detected>\"\n              },\n              {\n                \"value\": \"<Circular reference to #/components/schemas/Artist detected>\"\n              }\n            ]\n          },\n          \"tags\": {\n            \"tag\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          },\n          \"bio\": {\n            \"published\": \"string\",\n            \"summary\": \"string\",\n            \"content\": \"string\"\n          }\n        },\n        \"album\": {\n          \"artist\": \"string\",\n          \"title\": \"string\",\n          \"mbid\": \"string\",\n          \"url\": \"http://n.jgUKi0kowccE4+0,waIbPAXOjZe49Rqb0nPN+AriiX3.rHTXc0SJGTxrsLmgs.I\"\n        },\n        \"listeners\": \"string\",\n        \"playcount\": \"string\",\n        \"userplaycount\": \"string\",\n        \"userloved\": \"1\",\n        \"toptags\": {\n          \"tag\": [\n            {\n              \"name\": \"string\",\n              \"url\": \"http://Kt.iuiyaNReh654LE5ixZpAvm3ogTfpl+u9gSIl,BcJB+-kn\",\n              \"count\": 6840\n            },\n            {\n              \"name\": \"string\",\n              \"url\": \"http://DbLiyATIcdZZoGANdwecnlylqoaal.mqdmNTOQU\",\n              \"count\": 5611\n            }\n          ]\n        },\n        \"wiki\": {\n          \"published\": \"string\",\n          \"summary\": \"string\",\n          \"content\": \"string\"\n        },\n        \"@attr\": {\n          \"nowplaying\": \"string\"\n        },\n        \"date\": {\n          \"uts\": \"string\",\n          \"#text\": \"string\"\n        }\n      },\n      {\n        \"name\": \"string\",\n        \"mbid\": \"string\",\n        \"url\": \"http://HNhFUyDLgmOuVHlXzSGeqUbUJ.dzjsmxOK7rvm31zSB6tGTB8TpYEaWQ4,oUMgx\",\n        \"duration\": \"string\",\n        \"artist\": {\n          \"name\": \"string\",\n          \"mbid\": \"string\",\n          \"url\": \"https://HblACrEqHjUBKzbyTPGKWMfdW.nkibHeiR57KI\",\n          \"image\": [\n            {\n              \"size\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"#text\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"size\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"#text\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"streamable\": \"string\",\n          \"ontour\": \"string\",\n          \"stats\": {\n            \"listeners\": \"string\",\n            \"playcount\": \"string\"\n          },\n          \"similar\": {\n            \"artist\": [\n              {\n                \"value\": \"<Circular reference to #/components/schemas/Artist detected>\"\n              },\n              {\n                \"value\": \"<Circular reference to #/components/schemas/Artist detected>\"\n              }\n            ]\n          },\n          \"tags\": {\n            \"tag\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          },\n          \"bio\": {\n            \"published\": \"string\",\n            \"summary\": \"string\",\n            \"content\": \"string\"\n          }\n        },\n        \"album\": {\n          \"artist\": \"string\",\n          \"title\": \"string\",\n          \"mbid\": \"string\",\n          \"url\": \"http://W.itjdwh81NnWAWeV\"\n        },\n        \"listeners\": \"string\",\n        \"playcount\": \"string\",\n        \"userplaycount\": \"string\",\n        \"userloved\": \"1\",\n        \"toptags\": {\n          \"tag\": [\n            {\n              \"name\": \"string\",\n              \"url\": \"http://YWksutAleIkcuBXNI.orghel8.Yb6LFPEdeyJi57\",\n              \"count\": 7382\n            },\n            {\n              \"name\": \"string\",\n              \"url\": \"http://GFVKPtYOaqBrQrTrLIU.gqnulP9uIBFdeZr8dQVf5Q4F3Gc2d0WQ+GLpFJELAMUReq8n2Li\",\n              \"count\": 2296\n            }\n          ]\n        },\n        \"wiki\": {\n          \"published\": \"string\",\n          \"summary\": \"string\",\n          \"content\": \"string\"\n        },\n        \"@attr\": {\n          \"nowplaying\": \"string\"\n        },\n        \"date\": {\n          \"uts\": \"string\",\n          \"#text\": \"string\"\n        }\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8594b045-bd94-4848-8523-536201785148",
+          "name": "Remove Artist Tag",
+          "request": {
+            "name": "Remove Artist Tag",
+            "description": {
+              "content": "Remove a user's tag from an artist.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "method",
+                  "value": "artist.removeTag"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "method",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "api_key",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "artist",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "sk",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "api_sig",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "tags",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "tag",
+                  "value": "<string>"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "c54d638c-e9fd-4cdb-8b1e-3b4c62b71c9e",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"ok\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9ceb3dd5-f0ce-4847-a911-45b737f80dcf",
+          "name": "Search Artists",
+          "request": {
+            "name": "Search Artists",
+            "description": {
+              "content": "Search for an artist by name. Returns artist matches sorted by relevance.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "method",
+                  "value": "artist.search"
+                },
+                {
+                  "disabled": false,
+                  "key": "api_key",
+                  "value": "<string>",
+                  "description": "(Required) Your Last.fm API key."
+                },
+                {
+                  "disabled": false,
+                  "key": "format",
+                  "value": "xml",
+                  "description": "Response format. Defaults to XML."
+                },
+                {
+                  "disabled": false,
+                  "key": "artist",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "30"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3db86705-67cb-48bf-bad5-3e790fd7d97f",
+              "name": "Search results for artists.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "format",
+                      "value": "xml"
+                    },
+                    {
+                      "key": "artist",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "30"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"results\": {\n    \"opensearch:Query\": {\n      \"key_0\": 3103,\n      \"key_1\": 9746,\n      \"key_2\": 1252.0860296372282\n    },\n    \"opensearch:totalResults\": \"string\",\n    \"opensearch:startIndex\": \"string\",\n    \"opensearch:itemsPerPage\": \"string\",\n    \"albummatches\": {\n      \"album\": [\n        {\n          \"artist\": \"string\",\n          \"name\": \"string\",\n          \"mbid\": \"string\",\n          \"url\": \"https://qInjKrEEMtvWbvUCqRiK.xfrlpDtLIyp0j-vh,D6O+DqHYRE7.4krCEN1zBanTK,ClMZ9LuARZcdf86\",\n          \"image\": [\n            {\n              \"size\": \"mega\",\n              \"#text\": \"https://fUMKQiRUn.kcdxheosg1R0ssxXXP-P1pR0v1mtWy\"\n            },\n            {\n              \"size\": \"small\",\n              \"#text\": \"https://jpyaubEoCgiycWTu.dxPBabJYhBrIyxnYlui7RwCPq8iyGg2bpnMjS,EO3lHfYDMBdcuT\"\n            }\n          ],\n          \"listeners\": \"string\",\n          \"playcount\": \"string\",\n          \"tracks\": {\n            \"track\": [\n              {\n                \"name\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"mbid\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"url\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"duration\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"artist\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"album\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"listeners\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"playcount\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"userplaycount\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"userloved\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"toptags\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"wiki\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"@attr\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"date\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              {\n                \"name\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"mbid\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"url\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"duration\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"artist\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"album\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"listeners\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"playcount\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"userplaycount\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"userloved\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"toptags\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"wiki\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"@attr\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"date\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            ]\n          },\n          \"tags\": {\n            \"tag\": [\n              {\n                \"name\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"url\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"count\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              {\n                \"name\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"url\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"count\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            ]\n          },\n          \"wiki\": {\n            \"published\": \"string\",\n            \"summary\": \"string\",\n            \"content\": \"string\"\n          }\n        },\n        {\n          \"artist\": \"string\",\n          \"name\": \"string\",\n          \"mbid\": \"string\",\n          \"url\": \"https://wCUOIjiXptUmWc.aiL205mCNYu,CutuauKmQNAYgwIcMSbSg,eMNb.Mr7bE\",\n          \"image\": [\n            {\n              \"size\": \"mega\",\n              \"#text\": \"http://vLv.qmteLsSq-NEscgDb1mjMfB8Wg-T8kAxGfakMn6X\"\n            },\n            {\n              \"size\": \"extralarge\",\n              \"#text\": \"https://eNtJUnNYzqklYzheqyffdWRqpdS.ivahe+WZXlKvHxuitVoA.FmP.H\"\n            }\n          ],\n          \"listeners\": \"string\",\n          \"playcount\": \"string\",\n          \"tracks\": {\n            \"track\": [\n              {\n                \"name\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"mbid\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"url\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"duration\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"artist\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"album\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"listeners\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"playcount\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"userplaycount\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"userloved\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"toptags\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"wiki\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"@attr\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"date\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              {\n                \"name\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"mbid\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"url\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"duration\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"artist\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"album\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"listeners\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"playcount\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"userplaycount\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"userloved\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"toptags\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"wiki\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"@attr\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"date\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            ]\n          },\n          \"tags\": {\n            \"tag\": [\n              {\n                \"name\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"url\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"count\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              {\n                \"name\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"url\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"count\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            ]\n          },\n          \"wiki\": {\n            \"published\": \"string\",\n            \"summary\": \"string\",\n            \"content\": \"string\"\n          }\n        }\n      ]\n    },\n    \"artistmatches\": {\n      \"artist\": [\n        {\n          \"name\": \"string\",\n          \"mbid\": \"string\",\n          \"url\": \"http://AhFhoR.bstfCdHRaoRdTukBvBsd+NxKJCkWQoDHR3Ww8Am10Dr7PcERgYYRflMdrTbCvtd0hYbrK38lqtFy7\",\n          \"image\": [\n            {\n              \"size\": \"large\",\n              \"#text\": \"https://caaOuqtZCvu.bia15plHUfq6CWhIFICCz9fMz41WQgXx,woG0pPFHI\"\n            },\n            {\n              \"size\": \"medium\",\n              \"#text\": \"http://vqsGkndLSnqTjZSasarjxEcLrcykAdl.gevn9F0+cFcWKoFNH2XyT9eELLnSWI14nuUDrOJ+f4yS4DdHJwE83TDv\"\n            }\n          ],\n          \"streamable\": \"string\",\n          \"ontour\": \"string\",\n          \"stats\": {\n            \"listeners\": \"string\",\n            \"playcount\": \"string\"\n          },\n          \"similar\": {\n            \"artist\": [\n              {\n                \"value\": \"<Circular reference to #/components/schemas/Artist detected>\"\n              },\n              {\n                \"value\": \"<Circular reference to #/components/schemas/Artist detected>\"\n              }\n            ]\n          },\n          \"tags\": {\n            \"tag\": [\n              {\n                \"name\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"url\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"count\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              {\n                \"name\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"url\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"count\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            ]\n          },\n          \"bio\": {\n            \"published\": \"string\",\n            \"summary\": \"string\",\n            \"content\": \"string\"\n          }\n        },\n        {\n          \"name\": \"string\",\n          \"mbid\": \"string\",\n          \"url\": \"https://KjmpbZG.inaAjye7uI3ASQXi0QZjCZhGLhc5jwyNPy\",\n          \"image\": [\n            {\n              \"size\": \"small\",\n              \"#text\": \"https://nncGgezjiuBQqXaIHvwbBddku.okqyAq-ikmRIGGLWxoTQUwLfsvvX\"\n            },\n            {\n              \"size\": \"small\",\n              \"#text\": \"http://gifLdWnOMGuFYvRdEhzyldVl.kegPjLSIrd5xBfvK.tRSX8S+-eQMh.76v,+UQJWuTQ.t83O\"\n            }\n          ],\n          \"streamable\": \"string\",\n          \"ontour\": \"string\",\n          \"stats\": {\n            \"listeners\": \"string\",\n            \"playcount\": \"string\"\n          },\n          \"similar\": {\n            \"artist\": [\n              {\n                \"value\": \"<Circular reference to #/components/schemas/Artist detected>\"\n              },\n              {\n                \"value\": \"<Circular reference to #/components/schemas/Artist detected>\"\n              }\n            ]\n          },\n          \"tags\": {\n            \"tag\": [\n              {\n                \"name\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"url\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"count\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              {\n                \"name\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"url\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"count\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            ]\n          },\n          \"bio\": {\n            \"published\": \"string\",\n            \"summary\": \"string\",\n            \"content\": \"string\"\n          }\n        }\n      ]\n    },\n    \"trackmatches\": {\n      \"track\": [\n        {\n          \"name\": \"string\",\n          \"mbid\": \"string\",\n          \"url\": \"http://OOxeMawUolUfqyNNPUpJiWyFRt.tkslSPtRBeB7afFi11feN,NOQSwk5NUv\",\n          \"duration\": \"string\",\n          \"artist\": {\n            \"name\": \"string\",\n            \"mbid\": \"string\",\n            \"url\": \"http://ssOBlhynkzlaphrApuPyE.vuE5X4WqOz376dDfqpJMJlTjU5vpnAyJuXLLNOyCt2yRoU68fZgg6Db7X9eomPpk.\",\n            \"image\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"streamable\": \"string\",\n            \"ontour\": \"string\",\n            \"stats\": {\n              \"listeners\": \"string\",\n              \"playcount\": \"string\"\n            },\n            \"similar\": {\n              \"artist\": [\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              ]\n            },\n            \"tags\": {\n              \"tag\": [\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              ]\n            },\n            \"bio\": {\n              \"published\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"summary\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"content\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          },\n          \"album\": {\n            \"artist\": \"string\",\n            \"title\": \"string\",\n            \"mbid\": \"string\",\n            \"url\": \"https://iguoKGCyiBbp.nzqdKtbFhZCEA7P8g0gMdiOojUlMDKlnIA+Obzvpkf2A9s277avy4TorEt,70RZBylJOaHTqcn5kgB\"\n          },\n          \"listeners\": \"string\",\n          \"playcount\": \"string\",\n          \"userplaycount\": \"string\",\n          \"userloved\": \"1\",\n          \"toptags\": {\n            \"tag\": [\n              {\n                \"name\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"url\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"count\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              {\n                \"name\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"url\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"count\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            ]\n          },\n          \"wiki\": {\n            \"published\": \"string\",\n            \"summary\": \"string\",\n            \"content\": \"string\"\n          },\n          \"@attr\": {\n            \"nowplaying\": \"string\"\n          },\n          \"date\": {\n            \"uts\": \"string\",\n            \"#text\": \"string\"\n          }\n        },\n        {\n          \"name\": \"string\",\n          \"mbid\": \"string\",\n          \"url\": \"https://cjZFAOpSjnRaTwkrgLt.qieePI-r4NnvVxOTo0CBDcqzmtFQzsAks4Van3K7-OBvxgqA+hf5fItgMoMFBdDwWy1BPmk7M\",\n          \"duration\": \"string\",\n          \"artist\": {\n            \"name\": \"string\",\n            \"mbid\": \"string\",\n            \"url\": \"http://xmChqqFzHqMoMaQqIMqWZIXxVObxKBnEx.ifsxUnTAQ4k7jllj1f3r-lcCA\",\n            \"image\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"streamable\": \"string\",\n            \"ontour\": \"string\",\n            \"stats\": {\n              \"listeners\": \"string\",\n              \"playcount\": \"string\"\n            },\n            \"similar\": {\n              \"artist\": [\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              ]\n            },\n            \"tags\": {\n              \"tag\": [\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              ]\n            },\n            \"bio\": {\n              \"published\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"summary\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"content\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          },\n          \"album\": {\n            \"artist\": \"string\",\n            \"title\": \"string\",\n            \"mbid\": \"string\",\n            \"url\": \"https://G.mjkuO,ePc8UdOWIGaAew,5,XGzimqGopQbPBLgBiB1ltqCPVKBGyLcdk-pOWxnAImTrtZbNNF-2GvwAN\"\n          },\n          \"listeners\": \"string\",\n          \"playcount\": \"string\",\n          \"userplaycount\": \"string\",\n          \"userloved\": \"1\",\n          \"toptags\": {\n            \"tag\": [\n              {\n                \"name\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"url\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"count\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              {\n                \"name\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"url\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"count\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            ]\n          },\n          \"wiki\": {\n            \"published\": \"string\",\n            \"summary\": \"string\",\n            \"content\": \"string\"\n          },\n          \"@attr\": {\n            \"nowplaying\": \"string\"\n          },\n          \"date\": {\n            \"uts\": \"string\",\n            \"#text\": \"string\"\n          }\n        }\n      ]\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://ws.audioscrobbler.com/2.0",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "api_key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "query"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "8c21e32f-03f9-4e12-93ea-7be06ef8f7c5",
+    "name": "Last.fm Web Services API (2.0) Album Artist API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Last.fm (AudioScrobbler) Web Services 2.0 API provides programmatic access to\nmusic metadata, charts, geo-listening data, tags, user listening history, and\nscrobbling. The API is method-dispatched: every request targets the single endpoint\n`https://ws.audioscrobbler.com/2.0/` and identifies the operation via the `method`\nquery/body parameter (e.g. `method=track.getInfo`).\n\nRead methods accept `GET`; write methods (scrobbling, tagging, love/unlove, session\nmanagement) require `POST` with an authenticated session key and a signed\n`api_sig` parameter (MD5 of sorted params + shared secret).\n\nResponses default to XML; pass `format=json` for JSON.\n\n\nContact Support:\n Name: Last.fm API Support\n Email: partners@last.fm",
+      "type": "text/plain"
+    }
+  }
+}

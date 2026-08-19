@@ -1,0 +1,220 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Last.fm Web Services API (2.0) Album Geo API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "api_key",
+      "value": "{{api_key}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Geo",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Invoke A Read Method",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ws.audioscrobbler.com/2.0/",
+            "params": [
+              {
+                "name": "method",
+                "value": "",
+                "type": "query",
+                "description": "Method name in `package.method` format (e.g. `track.getInfo`,\n`chart.getTopArtists`, `user.getRecentTracks`).\n"
+              },
+              {
+                "name": "api_key",
+                "value": "",
+                "type": "query",
+                "description": "Your Last.fm API key."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Response format. Defaults to XML."
+              },
+              {
+                "name": "callback",
+                "value": "",
+                "type": "query",
+                "description": "Optional JSONP callback function name when `format=json`."
+              },
+              {
+                "name": "artist",
+                "value": "",
+                "type": "query",
+                "description": "Artist name (used by album.*, artist.*, track.* read methods)."
+              },
+              {
+                "name": "album",
+                "value": "",
+                "type": "query",
+                "description": "Album name (used by album.* methods)."
+              },
+              {
+                "name": "track",
+                "value": "",
+                "type": "query",
+                "description": "Track name (used by track.* methods)."
+              },
+              {
+                "name": "mbid",
+                "value": "",
+                "type": "query",
+                "description": "MusicBrainz identifier; takes precedence over artist/album/track names."
+              },
+              {
+                "name": "user",
+                "value": "",
+                "type": "query",
+                "description": "Last.fm username (used by user.* methods)."
+              },
+              {
+                "name": "tag",
+                "value": "",
+                "type": "query",
+                "description": "Tag name (used by tag.* methods)."
+              },
+              {
+                "name": "country",
+                "value": "",
+                "type": "query",
+                "description": "ISO 3166-1 country name (used by geo.* methods)."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Max items per page."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number for paginated results."
+              },
+              {
+                "name": "period",
+                "value": "",
+                "type": "query",
+                "description": "Aggregation window for user.getTop* methods."
+              },
+              {
+                "name": "autocorrect",
+                "value": "",
+                "type": "query",
+                "description": "Auto-correct misspelled artist/track names when set to 1."
+              },
+              {
+                "name": "username",
+                "value": "",
+                "type": "query",
+                "description": "Username context for personalized fields (playcount, userplaycount)."
+              }
+            ]
+          },
+          "docs": "Single read-side dispatch endpoint. The `method` parameter selects the\noperation (e.g. `album.getInfo`, `artist.getTopTracks`, `chart.getTopArtists`).\nUse `format=json` for JSON responses.\n"
+        },
+        {
+          "info": {
+            "name": "Get Top Artists By Country",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ws.audioscrobbler.com/2.0/?method=geo.getTopArtists",
+            "params": [
+              {
+                "name": "api_key",
+                "value": "",
+                "type": "query",
+                "description": "Your Last.fm API key."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Response format. Defaults to XML."
+              },
+              {
+                "name": "country",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get the most popular artists on Last.fm by country."
+        },
+        {
+          "info": {
+            "name": "Get Top Tracks By Country",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ws.audioscrobbler.com/2.0/?method=geo.getTopTracks",
+            "params": [
+              {
+                "name": "api_key",
+                "value": "",
+                "type": "query",
+                "description": "Your Last.fm API key."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Response format. Defaults to XML."
+              },
+              {
+                "name": "country",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "location",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get the most popular tracks on Last.fm last week by country."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

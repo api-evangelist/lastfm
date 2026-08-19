@@ -1,0 +1,137 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Last.fm Web Services API (2.0) Album Auth API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "api_key",
+      "value": "{{api_key}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Auth",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Invoke A Write Method",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://ws.audioscrobbler.com/2.0/",
+            "body": {
+              "type": "form-urlencoded",
+              "data": []
+            }
+          },
+          "docs": "Single write-side dispatch endpoint. Used for authenticated write actions:\n`track.scrobble`, `track.updateNowPlaying`, `track.love`, `track.unlove`,\n`album.addTags`, `album.removeTag`, `artist.addTags`, `artist.removeTag`,\n`track.addTags`, `track.removeTag`. POST body parameters are\n`application/x-www-form-urlencoded` UTF-8 encoded and must include\n`api_key`, `sk` (session key), and `api_sig`.\n"
+        },
+        {
+          "info": {
+            "name": "Get Mobile Session",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://ws.audioscrobbler.com/2.0/?method=auth.getMobileSession",
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "method",
+                  "value": ""
+                },
+                {
+                  "name": "api_key",
+                  "value": ""
+                },
+                {
+                  "name": "username",
+                  "value": ""
+                },
+                {
+                  "name": "password",
+                  "value": ""
+                },
+                {
+                  "name": "api_sig",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Create a Last.fm web service session for a user. Used by mobile devices. Requires signed POST."
+        },
+        {
+          "info": {
+            "name": "Get Web Session",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ws.audioscrobbler.com/2.0/?method=auth.getSession",
+            "params": [
+              {
+                "name": "api_key",
+                "value": "",
+                "type": "query",
+                "description": "Your Last.fm API key."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Response format. Defaults to XML."
+              },
+              {
+                "name": "token",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "api_sig",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Fetch a session key for a user using a previously authorized token."
+        },
+        {
+          "info": {
+            "name": "Get Auth Token",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ws.audioscrobbler.com/2.0/?method=auth.getToken",
+            "params": [
+              {
+                "name": "api_key",
+                "value": "",
+                "type": "query",
+                "description": "Your Last.fm API key."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Response format. Defaults to XML."
+              }
+            ]
+          },
+          "docs": "Fetch an unauthorized request token for an API account. Returns a token to be authorized by the user."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
