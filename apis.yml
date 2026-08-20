@@ -105,6 +105,8 @@ apis:
   humanURL: https://www.last.fm/api
   baseURL: https://ws.audioscrobbler.com/2.0
   tags:
+  - Artists
+  tags_raw:
   - Artist
   properties:
   - type: OpenAPI
@@ -161,6 +163,8 @@ apis:
   humanURL: https://www.last.fm/api
   baseURL: https://ws.audioscrobbler.com/2.0
   tags:
+  - Authentication
+  tags_raw:
   - Auth
   properties:
   - type: OpenAPI
