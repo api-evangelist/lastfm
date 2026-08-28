@@ -11,8 +11,11 @@ info:
     chain is self-contained and replayable without the OpenAPI source.
   version: 1.0.0
 sourceDescriptions:
-- name: lastfmApi
-  url: ../openapi/lastfm-openapi-original.yml
+- name: trackApi
+  url: ../openapi/lastfm-track-api-openapi.yml
+  type: openapi
+- name: userApi
+  url: ../openapi/lastfm-user-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: now-playing-context

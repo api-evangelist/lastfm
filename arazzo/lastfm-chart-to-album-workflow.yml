@@ -11,8 +11,14 @@ info:
     be read and replayed without consulting the OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: lastfmApi
-  url: ../openapi/lastfm-openapi-original.yml
+- name: albumApi
+  url: ../openapi/lastfm-album-api-openapi.yml
+  type: openapi
+- name: artistApi
+  url: ../openapi/lastfm-artist-api-openapi.yml
+  type: openapi
+- name: chartApi
+  url: ../openapi/lastfm-chart-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: chart-to-album

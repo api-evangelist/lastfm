@@ -11,8 +11,8 @@ info:
     readable and replayable without the OpenAPI source.
   version: 1.0.0
 sourceDescriptions:
-- name: lastfmApi
-  url: ../openapi/lastfm-openapi-original.yml
+- name: trackApi
+  url: ../openapi/lastfm-track-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: track-radio-seed

@@ -11,8 +11,11 @@ info:
     and replayable without the OpenAPI source.
   version: 1.0.0
 sourceDescriptions:
-- name: lastfmApi
-  url: ../openapi/lastfm-openapi-original.yml
+- name: artistApi
+  url: ../openapi/lastfm-artist-api-openapi.yml
+  type: openapi
+- name: geoApi
+  url: ../openapi/lastfm-geo-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: geo-artist-spotlight

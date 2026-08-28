@@ -11,8 +11,11 @@ info:
     self-describing without the OpenAPI source.
   version: 1.0.0
 sourceDescriptions:
-- name: lastfmApi
-  url: ../openapi/lastfm-openapi-original.yml
+- name: artistApi
+  url: ../openapi/lastfm-artist-api-openapi.yml
+  type: openapi
+- name: userApi
+  url: ../openapi/lastfm-user-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: user-taste-profile
