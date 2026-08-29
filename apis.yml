@@ -9,6 +9,18 @@ description: Last.fm is the long-running music recommendation, scrobbling, and m
   a signed (`api_sig`) session-key flow for writes. The API is free for non-commercial use; commercial
   use requires a separate agreement via partners@last.fm.
 type: Index
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: freemium
   onboarding: self-serve
