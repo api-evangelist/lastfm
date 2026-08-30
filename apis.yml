@@ -117,7 +117,7 @@ apis:
   humanURL: https://www.last.fm/api
   baseURL: https://ws.audioscrobbler.com/2.0
   tags:
-  - Artists
+  - Artist
   tags_raw:
   - Artist
   properties:
