@@ -1,28 +1,12 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Last.fm Web Services API (2.0) Album Auth API
+  title: Last.fm Web Services API (2.0) Auth API
   version: '2.0'
   description: 'The Last.fm (AudioScrobbler) Web Services 2.0 API provides programmatic access to
 
     music metadata, charts, geo-listening data, tags, user listening history, and
 
-    scrobbling. The API is method-dispatched: every request targets the single endpoint
-
-    `https://ws.audioscrobbler.com/2.0/` and identifies the operation via the `method`
-
-    query/body parameter (e.g. `method=track.getInfo`).
-
-
-    Read methods accept `GET`; write methods (scrobbling, tagging, love/unlove, session
-
-    management) require `POST` with an authenticated session key and a signed
-
-    `api_sig` parameter (MD5 of sorted params + shared secret).
-
-
-    Responses default to XML; pass `format=json` for JSON.
-
-    '
+    scrobbling.'
   termsOfService: https://www.last.fm/api/tos
   contact:
     name: Last.fm API Support
@@ -57,9 +41,7 @@ paths:
 
         `application/x-www-form-urlencoded` UTF-8 encoded and must include
 
-        `api_key`, `sk` (session key), and `api_sig`.
-
-        '
+        `api_key`, `sk` (session key), and `api_sig`.'
       tags:
       - Auth
       requestBody:
@@ -169,24 +151,42 @@ paths:
                   token:
                     type: string
 components:
-  responses:
-    ErrorResponse:
-      description: Error response (status='failed').
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorPayload'
-        application/xml:
-          schema:
-            type: string
-            description: '`<lfm status="failed"><error code="N">message</error></lfm>`'
+  parameters:
+    ApiKeyParam:
+      name: api_key
+      in: query
+      required: true
+      schema:
+        type: string
+      description: Your Last.fm API key.
+    FormatParam:
+      name: format
+      in: query
+      schema:
+        type: string
+        enum:
+        - xml
+        - json
+        default: xml
+      description: Response format. Defaults to XML.
   schemas:
-    WriteResponse:
+    WriteRequestBody:
       type: object
+      required:
+      - method
+      - api_key
       properties:
-        status:
+        method:
           type: string
-          example: ok
+        api_key:
+          type: string
+        sk:
+          type: string
+          description: Session key returned by auth.getSession / auth.getMobileSession.
+        api_sig:
+          type: string
+          description: MD5 signature of params + secret.
+      additionalProperties: true
     SessionResponse:
       type: object
       properties:
@@ -217,41 +217,23 @@ components:
             '
         message:
           type: string
-    WriteRequestBody:
+    WriteResponse:
       type: object
-      required:
-      - method
-      - api_key
       properties:
-        method:
+        status:
           type: string
-        api_key:
-          type: string
-        sk:
-          type: string
-          description: Session key returned by auth.getSession / auth.getMobileSession.
-        api_sig:
-          type: string
-          description: MD5 signature of params + secret.
-      additionalProperties: true
-  parameters:
-    ApiKeyParam:
-      name: api_key
-      in: query
-      required: true
-      schema:
-        type: string
-      description: Your Last.fm API key.
-    FormatParam:
-      name: format
-      in: query
-      schema:
-        type: string
-        enum:
-        - xml
-        - json
-        default: xml
-      description: Response format. Defaults to XML.
+          example: ok
+  responses:
+    ErrorResponse:
+      description: Error response (status='failed').
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorPayload'
+        application/xml:
+          schema:
+            type: string
+            description: '`<lfm status="failed"><error code="N">message</error></lfm>`'
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

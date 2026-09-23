@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   title: Last.fm Web Services API (2.0) Album API
   version: '2.0'
@@ -6,23 +6,7 @@ info:
 
     music metadata, charts, geo-listening data, tags, user listening history, and
 
-    scrobbling. The API is method-dispatched: every request targets the single endpoint
-
-    `https://ws.audioscrobbler.com/2.0/` and identifies the operation via the `method`
-
-    query/body parameter (e.g. `method=track.getInfo`).
-
-
-    Read methods accept `GET`; write methods (scrobbling, tagging, love/unlove, session
-
-    management) require `POST` with an authenticated session key and a signed
-
-    `api_sig` parameter (MD5 of sorted params + shared secret).
-
-
-    Responses default to XML; pass `format=json` for JSON.
-
-    '
+    scrobbling.'
   termsOfService: https://www.last.fm/api/tos
   contact:
     name: Last.fm API Support
@@ -51,9 +35,7 @@ paths:
 
         operation (e.g. `album.getInfo`, `artist.getTopTracks`, `chart.getTopArtists`).
 
-        Use `format=json` for JSON responses.
-
-        '
+        Use `format=json` for JSON responses.'
       tags:
       - Album
       parameters:
@@ -173,9 +155,7 @@ paths:
 
         `application/x-www-form-urlencoded` UTF-8 encoded and must include
 
-        `api_key`, `sk` (session key), and `api_sig`.
-
-        '
+        `api_key`, `sk` (session key), and `api_sig`.'
       tags:
       - Album
       requestBody:
@@ -377,139 +357,42 @@ paths:
               schema:
                 $ref: '#/components/schemas/SearchResponse'
 components:
-  responses:
-    ErrorResponse:
-      description: Error response (status='failed').
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorPayload'
-        application/xml:
-          schema:
-            type: string
-            description: '`<lfm status="failed"><error code="N">message</error></lfm>`'
   schemas:
-    Artist:
+    WriteRequestBody:
+      type: object
+      required:
+      - method
+      - api_key
+      properties:
+        method:
+          type: string
+        api_key:
+          type: string
+        sk:
+          type: string
+          description: Session key returned by auth.getSession / auth.getMobileSession.
+        api_sig:
+          type: string
+          description: MD5 signature of params + secret.
+      additionalProperties: true
+    ErrorPayload:
       type: object
       properties:
-        name:
+        error:
+          type: integer
+          description: 'Numeric Last.fm error code. Common: 2 invalid service, 3 invalid method,
+
+            4 authentication failed, 5 invalid format, 6 invalid parameters,
+
+            7 invalid resource, 8 operation failed, 9 invalid session key,
+
+            10 invalid api key, 11 service offline, 13 invalid method signature,
+
+            16 service temporarily unavailable, 26 suspended api key, 29 rate limit exceeded.
+
+            '
+        message:
           type: string
-        mbid:
-          type: string
-        url:
-          type: string
-          format: uri
-        image:
-          type: array
-          items:
-            $ref: '#/components/schemas/Image'
-        streamable:
-          type: string
-        ontour:
-          type: string
-        stats:
-          type: object
-          properties:
-            listeners:
-              type: string
-            playcount:
-              type: string
-        similar:
-          type: object
-          properties:
-            artist:
-              type: array
-              items:
-                $ref: '#/components/schemas/Artist'
-        tags:
-          type: object
-          properties:
-            tag:
-              type: array
-              items:
-                $ref: '#/components/schemas/Tag'
-        bio:
-          $ref: '#/components/schemas/Wiki'
-    SearchResponse:
-      type: object
-      properties:
-        results:
-          type: object
-          properties:
-            opensearch:Query:
-              type: object
-              additionalProperties: true
-            opensearch:totalResults:
-              type: string
-            opensearch:startIndex:
-              type: string
-            opensearch:itemsPerPage:
-              type: string
-            albummatches:
-              type: object
-              properties:
-                album:
-                  type: array
-                  items:
-                    $ref: '#/components/schemas/Album'
-            artistmatches:
-              type: object
-              properties:
-                artist:
-                  type: array
-                  items:
-                    $ref: '#/components/schemas/Artist'
-            trackmatches:
-              type: object
-              properties:
-                track:
-                  type: array
-                  items:
-                    $ref: '#/components/schemas/Track'
-    Image:
-      type: object
-      properties:
-        size:
-          type: string
-          enum:
-          - small
-          - medium
-          - large
-          - extralarge
-          - mega
-        '#text':
-          type: string
-          format: uri
-    ChartResponse:
-      type: object
-      properties:
-        artists:
-          type: object
-          properties:
-            artist:
-              type: array
-              items:
-                $ref: '#/components/schemas/Artist'
-    AlbumInfoResponse:
-      type: object
-      properties:
-        album:
-          $ref: '#/components/schemas/Album'
-    ArtistInfoResponse:
-      type: object
-      properties:
-        artist:
-          $ref: '#/components/schemas/Artist'
-    TopTagsResponse:
-      type: object
-      properties:
-        toptags:
-          type: object
-          properties:
-            tag:
-              type: array
-              items:
-                $ref: '#/components/schemas/Tag'
     Track:
       type: object
       properties:
@@ -568,38 +451,6 @@ components:
               type: string
             '#text':
               type: string
-    WriteRequestBody:
-      type: object
-      required:
-      - method
-      - api_key
-      properties:
-        method:
-          type: string
-        api_key:
-          type: string
-        sk:
-          type: string
-          description: Session key returned by auth.getSession / auth.getMobileSession.
-        api_sig:
-          type: string
-          description: MD5 signature of params + secret.
-      additionalProperties: true
-    TrackInfoResponse:
-      type: object
-      properties:
-        track:
-          $ref: '#/components/schemas/Track'
-    Tag:
-      type: object
-      properties:
-        name:
-          type: string
-        url:
-          type: string
-          format: uri
-        count:
-          type: integer
     UserProfile:
       type: object
       properties:
@@ -635,9 +486,74 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Image'
-    TagListResponse:
+    SearchResponse:
       type: object
       properties:
+        results:
+          type: object
+          properties:
+            opensearch:Query:
+              type: object
+              additionalProperties: true
+            opensearch:totalResults:
+              type: string
+            opensearch:startIndex:
+              type: string
+            opensearch:itemsPerPage:
+              type: string
+            albummatches:
+              type: object
+              properties:
+                album:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/Album'
+            artistmatches:
+              type: object
+              properties:
+                artist:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/Artist'
+            trackmatches:
+              type: object
+              properties:
+                track:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/Track'
+    Artist:
+      type: object
+      properties:
+        name:
+          type: string
+        mbid:
+          type: string
+        url:
+          type: string
+          format: uri
+        image:
+          type: array
+          items:
+            $ref: '#/components/schemas/Image'
+        streamable:
+          type: string
+        ontour:
+          type: string
+        stats:
+          type: object
+          properties:
+            listeners:
+              type: string
+            playcount:
+              type: string
+        similar:
+          type: object
+          properties:
+            artist:
+              type: array
+              items:
+                $ref: '#/components/schemas/Artist'
         tags:
           type: object
           properties:
@@ -645,25 +561,13 @@ components:
               type: array
               items:
                 $ref: '#/components/schemas/Tag'
-    Wiki:
+        bio:
+          $ref: '#/components/schemas/Wiki'
+    UserInfoResponse:
       type: object
       properties:
-        published:
-          type: string
-        summary:
-          type: string
-        content:
-          type: string
-    GeoResponse:
-      type: object
-      properties:
-        topartists:
-          type: object
-          properties:
-            artist:
-              type: array
-              items:
-                $ref: '#/components/schemas/Artist'
+        user:
+          $ref: '#/components/schemas/UserProfile'
     Album:
       type: object
       properties:
@@ -700,35 +604,100 @@ components:
                 $ref: '#/components/schemas/Tag'
         wiki:
           $ref: '#/components/schemas/Wiki'
-    UserInfoResponse:
+    GeoResponse:
       type: object
       properties:
-        user:
-          $ref: '#/components/schemas/UserProfile'
+        topartists:
+          type: object
+          properties:
+            artist:
+              type: array
+              items:
+                $ref: '#/components/schemas/Artist'
+    ArtistInfoResponse:
+      type: object
+      properties:
+        artist:
+          $ref: '#/components/schemas/Artist'
+    AlbumInfoResponse:
+      type: object
+      properties:
+        album:
+          $ref: '#/components/schemas/Album'
+    TagListResponse:
+      type: object
+      properties:
+        tags:
+          type: object
+          properties:
+            tag:
+              type: array
+              items:
+                $ref: '#/components/schemas/Tag'
+    TopTagsResponse:
+      type: object
+      properties:
+        toptags:
+          type: object
+          properties:
+            tag:
+              type: array
+              items:
+                $ref: '#/components/schemas/Tag'
+    ChartResponse:
+      type: object
+      properties:
+        artists:
+          type: object
+          properties:
+            artist:
+              type: array
+              items:
+                $ref: '#/components/schemas/Artist'
+    TrackInfoResponse:
+      type: object
+      properties:
+        track:
+          $ref: '#/components/schemas/Track'
+    Tag:
+      type: object
+      properties:
+        name:
+          type: string
+        url:
+          type: string
+          format: uri
+        count:
+          type: integer
+    Wiki:
+      type: object
+      properties:
+        published:
+          type: string
+        summary:
+          type: string
+        content:
+          type: string
+    Image:
+      type: object
+      properties:
+        size:
+          type: string
+          enum:
+          - small
+          - medium
+          - large
+          - extralarge
+          - mega
+        '#text':
+          type: string
+          format: uri
     WriteResponse:
       type: object
       properties:
         status:
           type: string
           example: ok
-    ErrorPayload:
-      type: object
-      properties:
-        error:
-          type: integer
-          description: 'Numeric Last.fm error code. Common: 2 invalid service, 3 invalid method,
-
-            4 authentication failed, 5 invalid format, 6 invalid parameters,
-
-            7 invalid resource, 8 operation failed, 9 invalid session key,
-
-            10 invalid api key, 11 service offline, 13 invalid method signature,
-
-            16 service temporarily unavailable, 26 suspended api key, 29 rate limit exceeded.
-
-            '
-        message:
-          type: string
     TagInfoResponse:
       type: object
       properties:
@@ -744,17 +713,6 @@ components:
             wiki:
               $ref: '#/components/schemas/Wiki'
   parameters:
-    MethodParam:
-      name: method
-      in: query
-      required: true
-      schema:
-        type: string
-      description: 'Method name in `package.method` format (e.g. `track.getInfo`,
-
-        `chart.getTopArtists`, `user.getRecentTracks`).
-
-        '
     FormatParam:
       name: format
       in: query
@@ -778,6 +736,28 @@ components:
       schema:
         type: string
       description: Optional JSONP callback function name when `format=json`.
+    MethodParam:
+      name: method
+      in: query
+      required: true
+      schema:
+        type: string
+      description: 'Method name in `package.method` format (e.g. `track.getInfo`,
+
+        `chart.getTopArtists`, `user.getRecentTracks`).
+
+        '
+  responses:
+    ErrorResponse:
+      description: Error response (status='failed').
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorPayload'
+        application/xml:
+          schema:
+            type: string
+            description: '`<lfm status="failed"><error code="N">message</error></lfm>`'
   requestBodies:
     AlbumTagWrite:
       required: true

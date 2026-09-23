@@ -1,15 +1,7 @@
 {
   "provider": "lastfm",
   "sources": [
-    "lastfm-album-api-openapi.yml",
-    "lastfm-artist-api-openapi.yml",
-    "lastfm-auth-api-openapi.yml",
-    "lastfm-chart-api-openapi.yml",
-    "lastfm-geo-api-openapi.yml",
-    "lastfm-library-api-openapi.yml",
-    "lastfm-tag-api-openapi.yml",
-    "lastfm-track-api-openapi.yml",
-    "lastfm-user-api-openapi.yml"
+    "_original/lastfm-openapi-original.yml"
   ],
   "outputs": [
     "lastfm-album-api-openapi.yml",
@@ -25,6 +17,22 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "1 archived document(s) dropped as subsets of other archived documents",
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "lastfm-openapi-original.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "_original/lastfm-openapi.yml: archived document superseded by a larger archived document",
+    "lastfm-album-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "lastfm-artist-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "lastfm-auth-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "lastfm-chart-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "lastfm-geo-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "lastfm-library-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "lastfm-tag-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "lastfm-track-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "lastfm-user-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
