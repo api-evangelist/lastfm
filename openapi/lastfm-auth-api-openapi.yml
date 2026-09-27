@@ -169,24 +169,18 @@ components:
         - json
         default: xml
       description: Response format. Defaults to XML.
+  responses:
+    ErrorResponse:
+      description: Error response (status='failed').
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorPayload'
+        application/xml:
+          schema:
+            type: string
+            description: '`<lfm status="failed"><error code="N">message</error></lfm>`'
   schemas:
-    WriteRequestBody:
-      type: object
-      required:
-      - method
-      - api_key
-      properties:
-        method:
-          type: string
-        api_key:
-          type: string
-        sk:
-          type: string
-          description: Session key returned by auth.getSession / auth.getMobileSession.
-        api_sig:
-          type: string
-          description: MD5 signature of params + secret.
-      additionalProperties: true
     SessionResponse:
       type: object
       properties:
@@ -199,6 +193,12 @@ components:
               type: string
             subscriber:
               type: integer
+    WriteResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          example: ok
     ErrorPayload:
       type: object
       properties:
@@ -217,23 +217,23 @@ components:
             '
         message:
           type: string
-    WriteResponse:
+    WriteRequestBody:
       type: object
+      required:
+      - method
+      - api_key
       properties:
-        status:
+        method:
           type: string
-          example: ok
-  responses:
-    ErrorResponse:
-      description: Error response (status='failed').
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorPayload'
-        application/xml:
-          schema:
-            type: string
-            description: '`<lfm status="failed"><error code="N">message</error></lfm>`'
+        api_key:
+          type: string
+        sk:
+          type: string
+          description: Session key returned by auth.getSession / auth.getMobileSession.
+        api_sig:
+          type: string
+          description: MD5 signature of params + secret.
+      additionalProperties: true
   securitySchemes:
     ApiKeyAuth:
       type: apiKey
