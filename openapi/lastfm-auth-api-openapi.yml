@@ -151,48 +151,7 @@ paths:
                   token:
                     type: string
 components:
-  parameters:
-    ApiKeyParam:
-      name: api_key
-      in: query
-      required: true
-      schema:
-        type: string
-      description: Your Last.fm API key.
-    FormatParam:
-      name: format
-      in: query
-      schema:
-        type: string
-        enum:
-        - xml
-        - json
-        default: xml
-      description: Response format. Defaults to XML.
-  responses:
-    ErrorResponse:
-      description: Error response (status='failed').
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorPayload'
-        application/xml:
-          schema:
-            type: string
-            description: '`<lfm status="failed"><error code="N">message</error></lfm>`'
   schemas:
-    SessionResponse:
-      type: object
-      properties:
-        session:
-          type: object
-          properties:
-            name:
-              type: string
-            key:
-              type: string
-            subscriber:
-              type: integer
     WriteResponse:
       type: object
       properties:
@@ -217,6 +176,18 @@ components:
             '
         message:
           type: string
+    SessionResponse:
+      type: object
+      properties:
+        session:
+          type: object
+          properties:
+            name:
+              type: string
+            key:
+              type: string
+            subscriber:
+              type: integer
     WriteRequestBody:
       type: object
       required:
@@ -234,6 +205,35 @@ components:
           type: string
           description: MD5 signature of params + secret.
       additionalProperties: true
+  responses:
+    ErrorResponse:
+      description: Error response (status='failed').
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorPayload'
+        application/xml:
+          schema:
+            type: string
+            description: '`<lfm status="failed"><error code="N">message</error></lfm>`'
+  parameters:
+    ApiKeyParam:
+      name: api_key
+      in: query
+      required: true
+      schema:
+        type: string
+      description: Your Last.fm API key.
+    FormatParam:
+      name: format
+      in: query
+      schema:
+        type: string
+        enum:
+        - xml
+        - json
+        default: xml
+      description: Response format. Defaults to XML.
   securitySchemes:
     ApiKeyAuth:
       type: apiKey
