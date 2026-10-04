@@ -158,6 +158,23 @@ components:
         status:
           type: string
           example: ok
+    WriteRequestBody:
+      type: object
+      required:
+      - method
+      - api_key
+      properties:
+        method:
+          type: string
+        api_key:
+          type: string
+        sk:
+          type: string
+          description: Session key returned by auth.getSession / auth.getMobileSession.
+        api_sig:
+          type: string
+          description: MD5 signature of params + secret.
+      additionalProperties: true
     ErrorPayload:
       type: object
       properties:
@@ -188,34 +205,6 @@ components:
               type: string
             subscriber:
               type: integer
-    WriteRequestBody:
-      type: object
-      required:
-      - method
-      - api_key
-      properties:
-        method:
-          type: string
-        api_key:
-          type: string
-        sk:
-          type: string
-          description: Session key returned by auth.getSession / auth.getMobileSession.
-        api_sig:
-          type: string
-          description: MD5 signature of params + secret.
-      additionalProperties: true
-  responses:
-    ErrorResponse:
-      description: Error response (status='failed').
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorPayload'
-        application/xml:
-          schema:
-            type: string
-            description: '`<lfm status="failed"><error code="N">message</error></lfm>`'
   parameters:
     ApiKeyParam:
       name: api_key
@@ -234,6 +223,17 @@ components:
         - json
         default: xml
       description: Response format. Defaults to XML.
+  responses:
+    ErrorResponse:
+      description: Error response (status='failed').
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorPayload'
+        application/xml:
+          schema:
+            type: string
+            description: '`<lfm status="failed"><error code="N">message</error></lfm>`'
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

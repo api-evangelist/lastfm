@@ -176,23 +176,76 @@ paths:
                 type: object
                 additionalProperties: true
 components:
-  responses:
-    ErrorResponse:
-      description: Error response (status='failed').
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorPayload'
-        application/xml:
-          schema:
-            type: string
-            description: '`<lfm status="failed"><error code="N">message</error></lfm>`'
   schemas:
-    UserInfoResponse:
+    TrackInfoResponse:
       type: object
       properties:
-        user:
-          $ref: '#/components/schemas/UserProfile'
+        track:
+          $ref: '#/components/schemas/Track'
+    TagInfoResponse:
+      type: object
+      properties:
+        tag:
+          type: object
+          properties:
+            name:
+              type: string
+            total:
+              type: integer
+            reach:
+              type: integer
+            wiki:
+              $ref: '#/components/schemas/Wiki'
+    UserProfile:
+      type: object
+      properties:
+        name:
+          type: string
+        realname:
+          type: string
+        url:
+          type: string
+          format: uri
+        country:
+          type: string
+        age:
+          type: string
+        gender:
+          type: string
+        subscriber:
+          type: string
+        playcount:
+          type: string
+        playlists:
+          type: string
+        bootstrap:
+          type: string
+        registered:
+          type: object
+          properties:
+            unixtime:
+              type: string
+            '#text':
+              type: string
+        image:
+          type: array
+          items:
+            $ref: '#/components/schemas/Image'
+    ArtistInfoResponse:
+      type: object
+      properties:
+        artist:
+          $ref: '#/components/schemas/Artist'
+    Tag:
+      type: object
+      properties:
+        name:
+          type: string
+        url:
+          type: string
+          format: uri
+        count:
+          type: integer
     ErrorPayload:
       type: object
       properties:
@@ -211,20 +264,61 @@ components:
             '
         message:
           type: string
-    Image:
+    Album:
       type: object
       properties:
-        size:
+        artist:
           type: string
-          enum:
-          - small
-          - medium
-          - large
-          - extralarge
-          - mega
-        '#text':
+        name:
+          type: string
+        mbid:
+          type: string
+        url:
           type: string
           format: uri
+        image:
+          type: array
+          items:
+            $ref: '#/components/schemas/Image'
+        listeners:
+          type: string
+        playcount:
+          type: string
+        tracks:
+          type: object
+          properties:
+            track:
+              type: array
+              items:
+                $ref: '#/components/schemas/Track'
+        tags:
+          type: object
+          properties:
+            tag:
+              type: array
+              items:
+                $ref: '#/components/schemas/Tag'
+        wiki:
+          $ref: '#/components/schemas/Wiki'
+    GeoResponse:
+      type: object
+      properties:
+        topartists:
+          type: object
+          properties:
+            artist:
+              type: array
+              items:
+                $ref: '#/components/schemas/Artist'
+    Wiki:
+      type: object
+      properties:
+        published:
+          type: string
+        summary:
+          type: string
+        content:
+          type: string
     Artist:
       type: object
       properties:
@@ -266,29 +360,65 @@ components:
                 $ref: '#/components/schemas/Tag'
         bio:
           $ref: '#/components/schemas/Wiki'
-    Wiki:
+    SearchResponse:
       type: object
       properties:
-        published:
+        results:
+          type: object
+          properties:
+            opensearch:Query:
+              type: object
+              additionalProperties: true
+            opensearch:totalResults:
+              type: string
+            opensearch:startIndex:
+              type: string
+            opensearch:itemsPerPage:
+              type: string
+            albummatches:
+              type: object
+              properties:
+                album:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/Album'
+            artistmatches:
+              type: object
+              properties:
+                artist:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/Artist'
+            trackmatches:
+              type: object
+              properties:
+                track:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/Track'
+    UserInfoResponse:
+      type: object
+      properties:
+        user:
+          $ref: '#/components/schemas/UserProfile'
+    Image:
+      type: object
+      properties:
+        size:
           type: string
-        summary:
+          enum:
+          - small
+          - medium
+          - large
+          - extralarge
+          - mega
+        '#text':
           type: string
-        content:
-          type: string
+          format: uri
     ChartResponse:
       type: object
       properties:
         artists:
-          type: object
-          properties:
-            artist:
-              type: array
-              items:
-                $ref: '#/components/schemas/Artist'
-    GeoResponse:
-      type: object
-      properties:
-        topartists:
           type: object
           properties:
             artist:
@@ -353,153 +483,29 @@ components:
               type: string
             '#text':
               type: string
-    Tag:
-      type: object
-      properties:
-        name:
-          type: string
-        url:
-          type: string
-          format: uri
-        count:
-          type: integer
-    ArtistInfoResponse:
-      type: object
-      properties:
-        artist:
-          $ref: '#/components/schemas/Artist'
-    UserProfile:
-      type: object
-      properties:
-        name:
-          type: string
-        realname:
-          type: string
-        url:
-          type: string
-          format: uri
-        country:
-          type: string
-        age:
-          type: string
-        gender:
-          type: string
-        subscriber:
-          type: string
-        playcount:
-          type: string
-        playlists:
-          type: string
-        bootstrap:
-          type: string
-        registered:
-          type: object
-          properties:
-            unixtime:
-              type: string
-            '#text':
-              type: string
-        image:
-          type: array
-          items:
-            $ref: '#/components/schemas/Image'
     AlbumInfoResponse:
       type: object
       properties:
         album:
           $ref: '#/components/schemas/Album'
-    TagInfoResponse:
-      type: object
-      properties:
-        tag:
-          type: object
-          properties:
-            name:
-              type: string
-            total:
-              type: integer
-            reach:
-              type: integer
-            wiki:
-              $ref: '#/components/schemas/Wiki'
-    SearchResponse:
-      type: object
-      properties:
-        results:
-          type: object
-          properties:
-            opensearch:Query:
-              type: object
-              additionalProperties: true
-            opensearch:totalResults:
-              type: string
-            opensearch:startIndex:
-              type: string
-            opensearch:itemsPerPage:
-              type: string
-            albummatches:
-              type: object
-              properties:
-                album:
-                  type: array
-                  items:
-                    $ref: '#/components/schemas/Album'
-            artistmatches:
-              type: object
-              properties:
-                artist:
-                  type: array
-                  items:
-                    $ref: '#/components/schemas/Artist'
-            trackmatches:
-              type: object
-              properties:
-                track:
-                  type: array
-                  items:
-                    $ref: '#/components/schemas/Track'
-    Album:
-      type: object
-      properties:
-        artist:
-          type: string
-        name:
-          type: string
-        mbid:
-          type: string
-        url:
-          type: string
-          format: uri
-        image:
-          type: array
-          items:
-            $ref: '#/components/schemas/Image'
-        listeners:
-          type: string
-        playcount:
-          type: string
-        tracks:
-          type: object
-          properties:
-            track:
-              type: array
-              items:
-                $ref: '#/components/schemas/Track'
-        tags:
-          type: object
-          properties:
-            tag:
-              type: array
-              items:
-                $ref: '#/components/schemas/Tag'
-        wiki:
-          $ref: '#/components/schemas/Wiki'
-    TrackInfoResponse:
-      type: object
-      properties:
-        track:
-          $ref: '#/components/schemas/Track'
   parameters:
+    ApiKeyParam:
+      name: api_key
+      in: query
+      required: true
+      schema:
+        type: string
+      description: Your Last.fm API key.
+    FormatParam:
+      name: format
+      in: query
+      schema:
+        type: string
+        enum:
+        - xml
+        - json
+        default: xml
+      description: Response format. Defaults to XML.
     MethodParam:
       name: method
       in: query
@@ -511,29 +517,23 @@ components:
         `chart.getTopArtists`, `user.getRecentTracks`).
 
         '
-    ApiKeyParam:
-      name: api_key
-      in: query
-      required: true
-      schema:
-        type: string
-      description: Your Last.fm API key.
     CallbackParam:
       name: callback
       in: query
       schema:
         type: string
       description: Optional JSONP callback function name when `format=json`.
-    FormatParam:
-      name: format
-      in: query
-      schema:
-        type: string
-        enum:
-        - xml
-        - json
-        default: xml
-      description: Response format. Defaults to XML.
+  responses:
+    ErrorResponse:
+      description: Error response (status='failed').
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorPayload'
+        application/xml:
+          schema:
+            type: string
+            description: '`<lfm status="failed"><error code="N">message</error></lfm>`'
   securitySchemes:
     ApiKeyAuth:
       type: apiKey
