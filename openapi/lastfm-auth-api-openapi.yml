@@ -152,12 +152,18 @@ paths:
                     type: string
 components:
   schemas:
-    WriteResponse:
+    SessionResponse:
       type: object
       properties:
-        status:
-          type: string
-          example: ok
+        session:
+          type: object
+          properties:
+            name:
+              type: string
+            key:
+              type: string
+            subscriber:
+              type: integer
     WriteRequestBody:
       type: object
       required:
@@ -193,18 +199,12 @@ components:
             '
         message:
           type: string
-    SessionResponse:
+    WriteResponse:
       type: object
       properties:
-        session:
-          type: object
-          properties:
-            name:
-              type: string
-            key:
-              type: string
-            subscriber:
-              type: integer
+        status:
+          type: string
+          example: ok
   parameters:
     ApiKeyParam:
       name: api_key
