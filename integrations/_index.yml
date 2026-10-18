@@ -30,5 +30,5 @@
     quality:
     - silver
     builder: 'community (Meltano Hub variant maintainers: rabidaudio)'
-  status: pending-partner-spec
+  status: not-a-workflow
   arazzo: null
