@@ -1,4 +1,4 @@
-# Last.fm (lastfm)
+# Last.fm
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -64,88 +64,212 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Last.fm is the long-running music recommendation, scrobbling, and music-data service operated by CBS Interactive. Its Web Services 2.0 API (the AudioScrobbler API at `ws.audioscrobbler.com/2.0/`) exposes catalog data (artists, albums, tracks, tags), charts, geo-listening data, user listening history, and the Scrobbling 2.0 write surface.
+Last.fm is the long-running music recommendation, scrobbling, and music-data service operated by CBS Interactive. Its Web Services 2.0 API (the AudioScrobbler API at ws.audioscrobbler.com/2.0/) exposes catalog data (artists, albums, tracks, tags), charts, geo-listening data, user listening history (recent tracks, top tracks/albums/artists, weekly charts), and the Scrobbling 2.0 write surface (track.scrobble, track.updateNowPlaying, track.love). Every operation is dispatched through a single endpoint via the `method` parameter (e.g. `method=user.getRecentTracks`). Authentication uses an API key for reads and a signed (`api_sig`) session-key flow for writes. The API is free for non-commercial use; commercial use requires a separate agreement via partners@last.fm.
 
-Every operation is dispatched through a single endpoint via the `method` parameter (e.g. `method=user.getRecentTracks`). Authentication uses an API key for reads and a signed (`api_sig`) session-key flow for writes. The API is free for non-commercial use; commercial use requires a separate agreement via `partners@last.fm`.
+**Areas:** Music · Audio · Scrobbling · Recommendations · Charts · Public APIs · AudioScrobbler
 
-**APIs.yml:** [apis.yml](apis.yml)
+## Last.fm on APIs.io
 
-## Type
+Everything profiled for Last.fm is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/lastfm/](https://apis.io/providers/lastfm/)** — or go straight to one of the APIs or properties below.
 
-- **x-type:** company
-- **x-tier:** 3 (bulk-registered from public-apis, then enriched)
-- **source:** [public-apis/public-apis](https://github.com/public-apis/public-apis) — category: Music
+### APIs (9)
 
-## APIs
+- [Last.fm Album API](https://apis.io/apis/lastfm/lastfm-album-api/) — Album metadata, tagging, and search.
+- [Last.fm Artist API](https://apis.io/apis/lastfm/lastfm-artist-api/) — Artist metadata, similarity, tagging, top albums/tracks, and search.
+- [Last.fm Auth API](https://apis.io/apis/lastfm/lastfm-auth-api/) — Token, session, and mobile session acquisition for authenticated calls.
+- [Last.fm Chart API](https://apis.io/apis/lastfm/lastfm-chart-api/) — Global top artists, tags, and tracks.
+- [Last.fm Geo API](https://apis.io/apis/lastfm/lastfm-geo-api/) — Country-level top artists and tracks.
+- [Last.fm Library API](https://apis.io/apis/lastfm/lastfm-library-api/) — A user's scrobbled artist library.
+- [Last.fm Tag API](https://apis.io/apis/lastfm/lastfm-tag-api/) — Tag metadata, similar tags, top albums/artists/tracks, and chart history.
+- [Last.fm Track API](https://apis.io/apis/lastfm/lastfm-track-api/) — Track metadata, scrobbling, love/unlove, tagging, search.
+- [Last.fm User API](https://apis.io/apis/lastfm/lastfm-user-api/) — User profile, friends, listening history, top entities, and weekly charts.
 
-### Last.fm Web Services 2.0
+### Published properties
 
-- **Documentation:** https://www.last.fm/api
-- **Base URL:** `https://ws.audioscrobbler.com/2.0`
-- **Auth:** `api_key` (reads) + `sk` session key + `api_sig` MD5 signature (writes)
-- **Formats:** XML (default), JSON (`format=json`)
-- **Packages:** Album, Artist, Auth, Chart, Geo, Library, Tag, Track, User
-- **OpenAPI:** [openapi/lastfm-openapi-original.yml](openapi/lastfm-openapi-original.yml)
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## Artifacts
+#### Arazzo workflows (10)
 
-| Type | Path |
+Multi-step workflows that chain operations into a business task.
+
+- [Last.fm Album Genre Profile](https://apis.io/arazzos/lastfm/lastfm-album-genre-profile-workflow/)
+- [Last.fm Artist Discovery](https://apis.io/arazzos/lastfm/lastfm-artist-discovery-workflow/)
+- [Last.fm Chart To Album Deep Dive](https://apis.io/arazzos/lastfm/lastfm-chart-to-album-workflow/)
+- [Last.fm Genre Artist Explorer](https://apis.io/arazzos/lastfm/lastfm-genre-artist-explorer-workflow/)
+- [Last.fm Geo Artist Spotlight](https://apis.io/arazzos/lastfm/lastfm-geo-artist-spotlight-workflow/)
+- [Last.fm Loved Tracks Insight](https://apis.io/arazzos/lastfm/lastfm-loved-tracks-insight-workflow/)
+- [Last.fm Now Playing Context](https://apis.io/arazzos/lastfm/lastfm-now-playing-context-workflow/)
+- [Last.fm Tag To Track Deep Dive](https://apis.io/arazzos/lastfm/lastfm-tag-to-track-workflow/)
+- [Last.fm Track Radio Seed](https://apis.io/arazzos/lastfm/lastfm-track-radio-workflow/)
+- [Last.fm User Taste Profile](https://apis.io/arazzos/lastfm/lastfm-user-taste-profile-workflow/)
+
+#### Agentic access (1)
+
+Which operations an agent can call, which act, and which need a human in the loop.
+
+- [Lastfm Agentic Access](https://apis.io/agentic-access/lastfm/lastfm-agentic-access/)
+
+#### JSON Schema (8)
+
+The data models the API reads and writes.
+
+- [Artist](https://apis.io/schemas/lastfm/artist/)
+- [Last.fm Album](https://apis.io/schemas/lastfm/lastfm-album/)
+- [Last.fm Artist](https://apis.io/schemas/lastfm/lastfm-artist/)
+- [Last.fm Tag](https://apis.io/schemas/lastfm/lastfm-tag/)
+- [Last.fm Track](https://apis.io/schemas/lastfm/lastfm-track/)
+- [Last.fm User](https://apis.io/schemas/lastfm/lastfm-user/)
+- [Scrobble](https://apis.io/schemas/lastfm/scrobble/)
+- [Track](https://apis.io/schemas/lastfm/track/)
+
+#### JSON Structure (3)
+
+Data models expressed in JSON Structure.
+
+- [Lastfm Album Structure](https://apis.io/json-structure/lastfm/lastfm-album-structure/)
+- [Lastfm Artist Structure](https://apis.io/json-structure/lastfm/lastfm-artist-structure/)
+- [Lastfm Track Structure](https://apis.io/json-structure/lastfm/lastfm-track-structure/)
+
+#### JSON-LD (1)
+
+Linked-data contexts for the provider's vocabulary.
+
+- [Lastfm Context](https://apis.io/jsonld/lastfm/lastfm-context/)
+
+#### Vocabulary (1)
+
+The provider's domain terms, defined.
+
+- [Last.fm Music Vocabulary](https://apis.io/vocabularies/lastfm/lastfm-vocabulary/)
+
+#### Examples (9)
+
+Example requests and responses.
+
+- [Artist Getinfo Response](https://apis.io/examples/lastfm/artist-getInfo-response/)
+- [Lastfm Album Getinfo Example](https://apis.io/examples/lastfm/lastfm-album-getinfo-example/)
+- [Lastfm Artist Getinfo Example](https://apis.io/examples/lastfm/lastfm-artist-getinfo-example/)
+- [Lastfm Chart Gettopartists Example](https://apis.io/examples/lastfm/lastfm-chart-gettopartists-example/)
+- [Lastfm Track Getinfo Example](https://apis.io/examples/lastfm/lastfm-track-getinfo-example/)
+- [Lastfm Track Scrobble Example](https://apis.io/examples/lastfm/lastfm-track-scrobble-example/)
+- [Lastfm User Getrecenttracks Example](https://apis.io/examples/lastfm/lastfm-user-getrecenttracks-example/)
+- [Track Scrobble Request](https://apis.io/examples/lastfm/track-scrobble-request/)
+- [User Getrecenttracks Response](https://apis.io/examples/lastfm/user-getRecentTracks-response/)
+
+#### Collections (11)
+
+Postman and Open Collection request collections.
+
+- [Last.fm Web Services API (2.0) Album API](https://apis.io/collections/lastfm/open-lastfm-album-api/)
+- [Last.fm Web Services API (2.0) Album Artist API](https://apis.io/collections/lastfm/open-lastfm-artist-api/)
+- [Last.fm Web Services API (2.0) Album Auth API](https://apis.io/collections/lastfm/open-lastfm-auth-api/)
+- [Last.fm Web Services API (2.0) Album Chart API](https://apis.io/collections/lastfm/open-lastfm-chart-api/)
+- [Last.fm Web Services API (2.0) Album Geo API](https://apis.io/collections/lastfm/open-lastfm-geo-api/)
+- [Last.fm Web Services API (2.0) Album Library API](https://apis.io/collections/lastfm/open-lastfm-library-api/)
+- [Last.fm Web Services API (2.0) Album Tag API](https://apis.io/collections/lastfm/open-lastfm-tag-api/)
+- [Last.fm Web Services API (2.0) Album Track API](https://apis.io/collections/lastfm/open-lastfm-track-api/)
+- [Last.fm Web Services API (2.0) Album User API](https://apis.io/collections/lastfm/open-lastfm-user-api/)
+- [Last.fm Album API](https://apis.io/collections/lastfm/postman-lastfm-album-api/)
+- [Last.fm Web Services API (2.0)](https://apis.io/collections/lastfm/postman-lastfm-openapi-original/)
+
+#### Governance rules (2)
+
+Spectral rulesets for the provider's contracts.
+
+- [Last.fm — jsonschema rules](https://apis.io/rules/lastfm/lastfm-jsonschema-spectral-rules/)
+- [Last.fm API Rules](https://apis.io/rules/lastfm/lastfm-rules/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Lastfm Authentication](https://apis.io/security/lastfm/lastfm-authentication/)
+- [Lastfm Domain Security](https://apis.io/security/lastfm/lastfm-domain-security/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Lastfm Plans Pricing](https://apis.io/plans/lastfm/lastfm-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Lastfm Rate Limits](https://apis.io/rate-limits/lastfm/lastfm-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Lastfm Finops](https://apis.io/finops/lastfm/lastfm-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.last.fm)
+- [Documentation](https://www.last.fm/api)
+- [Getting started](https://www.last.fm/api/intro)
+- [API reference](https://www.last.fm/api/intro)
+- [Support](https://support.last.fm)
+- [Blog](https://www.last.fm/blog)
+- [Terms of service](https://www.last.fm/api/tos)
+- [Privacy policy](https://www.last.fm/legal/privacy)
+- [GitHub](https://github.com/lastfm)
+- [Status](https://x.com/lastfmstatus)
+
+## API Evangelist rating
+
+**Kin Score 54.2** — developing · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
 |---|---|
-| OpenAPI | [openapi/lastfm-openapi-original.yml](openapi/lastfm-openapi-original.yml) |
-| Spectral Rules | [rules/lastfm-rules.yml](rules/lastfm-rules.yml) |
-| JSON Schemas | [json-schema/](json-schema/) (album, artist, track, tag, user) |
-| JSON Structure | [json-structure/](json-structure/) (album, artist, track) |
-| JSON-LD Context | [json-ld/lastfm-context.jsonld](json-ld/lastfm-context.jsonld) |
-| Vocabulary | [vocabulary/lastfm-vocabulary.yml](vocabulary/lastfm-vocabulary.yml) |
-| Examples | [examples/](examples/) (album, artist, track, chart, recent tracks, scrobble) |
-| Plans / Pricing | [plans/lastfm-plans-pricing.yml](plans/lastfm-plans-pricing.yml) |
-| Rate Limits | [rate-limits/lastfm-rate-limits.yml](rate-limits/lastfm-rate-limits.yml) |
+| Discoverability | 66.1 |
+| Contract quality | 62.7 |
+| Contract governance | 27.3 |
+| Operational transparency | 26.3 |
+| Developer ergonomics | 72.6 |
+| Access clarity | 50.0 |
 
-## Naftiko Capabilities
+**Agent readiness 23.7** — agent-aware
 
-Per-package capabilities (one per Last.fm method package):
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | documented (partial credit) |
+| OpenAPI Examples | documented (partial credit) |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | na |
+| Operation Distinctiveness | distinct |
 
-- [capabilities/lastfm-album.yaml](capabilities/lastfm-album.yaml)
-- [capabilities/lastfm-artist.yaml](capabilities/lastfm-artist.yaml)
-- [capabilities/lastfm-auth.yaml](capabilities/lastfm-auth.yaml)
-- [capabilities/lastfm-chart.yaml](capabilities/lastfm-chart.yaml)
-- [capabilities/lastfm-geo.yaml](capabilities/lastfm-geo.yaml)
-- [capabilities/lastfm-library.yaml](capabilities/lastfm-library.yaml)
-- [capabilities/lastfm-tag.yaml](capabilities/lastfm-tag.yaml)
-- [capabilities/lastfm-track.yaml](capabilities/lastfm-track.yaml)
-- [capabilities/lastfm-user.yaml](capabilities/lastfm-user.yaml)
+**Regulatory alignment 24.5** — Horizontal (data, software, accessibility, platform)
 
-Cross-package workflow capabilities:
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/lastfm/](https://apis.io/providers/lastfm/).
 
-- [capabilities/music-discovery.yaml](capabilities/music-discovery.yaml) — search → similar artists → top tags → tag-pivot → geo lens
-- [capabilities/music-scrobbling.yaml](capabilities/music-scrobbling.yaml) — mobile session → now playing → scrobble → love
+## How this profile is made
 
-## Community SDKs
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
 
-A vibrant community library ecosystem covers Last.fm in JavaScript, TypeScript, Python, PHP, Ruby, .NET (Inflatable.Lastfm), Dart, Elixir, Haskell, Common Lisp, and Java/Spring Social. See `common` SDK entries in [apis.yml](apis.yml).
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Last.fm: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
 
-## MCP Servers
+## Open an issue
 
-- [ScrobblerContext](https://github.com/tfmart/ScrobblerContext) — Swift Last.fm MCP server with search/library/scrobble tools
-- [lastfm-mcp](https://github.com/rianvdm/lastfm-mcp) — Cloudflare Workers Last.fm MCP server with OAuth 2.0
-
-## Notes
-
-- Single dispatch endpoint pattern — all methods are `package.methodName` selected via the `method` parameter
-- Free non-commercial tier; commercial use requires an agreement (`partners@last.fm`)
-- Documented rate guidance: ~5 req/sec per originating IP; scrobble batches capped at 50/request
-- Reasonable Usage Cap: 100 MB stored Last.fm Data per integration
-- "powered by AudioScrobbler" attribution required on consuming surfaces
-
-## Tags
-
-Music, Audio, Scrobbling, Recommendations, Charts, Public APIs, AudioScrobbler
-
-## Timestamps
-
-- **Created:** 2026-05-28
-- **Modified:** 2026-05-29
-
-## Maintainers
-
-- **Kin Lane** — kin@apievangelist.com
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/lastfm/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
